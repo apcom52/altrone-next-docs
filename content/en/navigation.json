@@ -1,0 +1,74 @@
+{
+  "items": [
+    {
+      "type": "page",
+      "slug": "getting-started",
+      "title": "Getting Started",
+      "icon": "PlugZap"
+    },
+    {
+      "type": "page",
+      "slug": "releases",
+      "title": "Releases",
+      "icon": "Rss"
+    },
+    {
+      "type": "group",
+      "slug": "design-system",
+      "title": "Design System",
+      "pages": [
+        { "slug": "colors", "title": "Colors", "icon": "SwatchBook" },
+        { "slug": "dark-theme", "title": "Dark Theme", "icon": "SunMoon" },
+        { "slug": "typography", "title": "Typography", "icon": "Ligature" },
+        { "slug": "responsiveness", "title": "Responsiveness", "icon": "MonitorSmartphone" },
+        { "slug": "border-radius", "title": "Border Radius", "icon": "SquareRoundCorner" },
+        { "slug": "shadows", "title": "Shadows", "icon": "SolarPanel" }
+      ]
+    },
+    {
+      "type": "nested-group",
+      "slug": "components",
+      "title": "Components",
+      "groups": [
+        {
+          "slug": "typography",
+          "title": "Typography",
+          "icon": "CaseSensitive",
+          "pages": []
+        },
+        {
+          "slug": "containers",
+          "title": "Containers",
+          "icon": "LayoutPanelLeft",
+          "pages": []
+        },
+        {
+          "slug": "forms",
+          "title": "Forms",
+          "icon": "Form",
+          "pages": [
+            { "slug": "button", "title": "Button" }
+          ]
+        },
+        {
+          "slug": "navigation",
+          "title": "Navigation",
+          "icon": "Signpost",
+          "pages": []
+        },
+        {
+          "slug": "data",
+          "title": "Data",
+          "icon": "FileSpreadsheet",
+          "pages": []
+        },
+        {
+          "slug": "small-components",
+          "title": "Small Components",
+          "icon": "CircleSmall",
+          "pages": []
+        }
+      ]
+    }
+  ]
+}

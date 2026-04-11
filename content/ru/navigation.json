@@ -1,0 +1,82 @@
+{
+  "items": [
+    {
+      "type": "page",
+      "slug": "getting-started",
+      "title": "Установка и использование",
+      "icon": "PlugZap"
+    },
+    {
+      "type": "page",
+      "slug": "releases",
+      "title": "Релизы",
+      "icon": "Rss"
+    },
+    {
+      "type": "group",
+      "slug": "design-system",
+      "title": "Дизайн-система",
+      "pages": [
+        { "slug": "colors", "title": "Цвета", "icon": "SwatchBook" },
+        { "slug": "dark-theme", "title": "Темная тема", "icon": "SunMoon" },
+        { "slug": "typography", "title": "Типографика", "icon": "Ligature" },
+        {
+          "slug": "responsiveness",
+          "title": "Адаптивность",
+          "icon": "MonitorSmartphone"
+        },
+        {
+          "slug": "border-radius",
+          "title": "Скругления",
+          "icon": "SquareRoundCorner"
+        },
+        { "slug": "shadows", "title": "Тени", "icon": "SolarPanel" }
+      ]
+    },
+    {
+      "type": "nested-group",
+      "slug": "components",
+      "title": "Компоненты",
+      "groups": [
+        {
+          "slug": "typography",
+          "title": "Типографика",
+          "icon": "CaseSensitive",
+          "pages": []
+        },
+        {
+          "slug": "containers",
+          "title": "Контейнеры",
+          "icon": "LayoutPanelLeft",
+          "pages": []
+        },
+        {
+          "slug": "forms",
+          "title": "Формы",
+          "icon": "Form",
+          "pages": [
+            { "slug": "button", "title": "Button" }
+          ]
+        },
+        {
+          "slug": "navigation",
+          "title": "Навигация",
+          "icon": "Signpost",
+          "pages": []
+        },
+        {
+          "slug": "data",
+          "title": "Данные",
+          "icon": "FileSpreadsheet",
+          "pages": []
+        },
+        {
+          "slug": "small-components",
+          "title": "Маленькие компоненты",
+          "icon": "CircleSmall",
+          "pages": []
+        }
+      ]
+    }
+  ]
+}

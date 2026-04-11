@@ -1,0 +1,68 @@
+{
+  "title": "Getting Started",
+  "description": "How to install and use Altrone UI in your project",
+  "document": [
+    {
+      "type": "heading-one",
+      "children": [{ "text": "Getting Started" }]
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        { "text": "Altrone UI is a React component library built for modern web applications. It provides a set of accessible, customizable components with built-in dark mode support." }
+      ]
+    },
+    {
+      "type": "heading-two",
+      "children": [{ "text": "Installation" }]
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        { "text": "Install the package using npm or yarn:" }
+      ]
+    },
+    {
+      "type": "code-block",
+      "children": [{ "text": "npm install altrone-ui" }]
+    },
+    {
+      "type": "heading-two",
+      "children": [{ "text": "Setup" }]
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        { "text": "Wrap your application with " },
+        { "text": "AltroneApplication", "code": true },
+        { "text": " and import the stylesheet:" }
+      ]
+    },
+    {
+      "type": "code-block",
+      "children": [{ "text": "import 'altrone-ui/dist/style.css'\nimport { AltroneApplication } from 'altrone-ui'\n\nexport default function App({ children }) {\n  return (\n    <AltroneApplication accent=\"blue\">\n      {children}\n    </AltroneApplication>\n  )\n}" }]
+    },
+    {
+      "type": "heading-two",
+      "children": [{ "text": "Accent Colors" }]
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        { "text": "The " },
+        { "text": "accent", "code": true },
+        { "text": " prop controls the primary color used across all components. Available values: " },
+        { "text": "blue", "code": true },
+        { "text": ", " },
+        { "text": "purple", "code": true },
+        { "text": ", " },
+        { "text": "red", "code": true },
+        { "text": ", " },
+        { "text": "green", "code": true },
+        { "text": ", " },
+        { "text": "orange", "code": true },
+        { "text": "." }
+      ]
+    }
+  ]
+}
