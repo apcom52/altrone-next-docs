@@ -17,12 +17,36 @@
       "slug": "design-system",
       "title": "Design System",
       "pages": [
-        { "slug": "colors", "title": "Colors", "icon": "SwatchBook" },
-        { "slug": "dark-theme", "title": "Dark Theme", "icon": "SunMoon" },
-        { "slug": "typography", "title": "Typography", "icon": "Ligature" },
-        { "slug": "responsiveness", "title": "Responsiveness", "icon": "MonitorSmartphone" },
-        { "slug": "border-radius", "title": "Border Radius", "icon": "SquareRoundCorner" },
-        { "slug": "shadows", "title": "Shadows", "icon": "SolarPanel" }
+        {
+          "slug": "typography",
+          "title": "Typography",
+          "icon": "Ligature"
+        },
+        {
+          "slug": "colors",
+          "title": "Colors",
+          "icon": "SwatchBook"
+        },
+        {
+          "slug": "dark-theme",
+          "title": "Dark Theme",
+          "icon": "SunMoon"
+        },
+        {
+          "slug": "responsiveness",
+          "title": "Responsiveness",
+          "icon": "MonitorSmartphone"
+        },
+        {
+          "slug": "border-radius",
+          "title": "Border Radius",
+          "icon": "SquareRoundCorner"
+        },
+        {
+          "slug": "shadows",
+          "title": "Shadows",
+          "icon": "SolarPanel"
+        }
       ]
     },
     {
@@ -47,7 +71,10 @@
           "title": "Forms",
           "icon": "Form",
           "pages": [
-            { "slug": "button", "title": "Button" }
+            {
+              "slug": "button",
+              "title": "Button"
+            }
           ]
         },
         {

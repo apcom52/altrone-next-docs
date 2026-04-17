@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "altrone-mcp": {
+      "command": "node",
+      "args": ["/Users/apcom/projects/altrone-mcp/dist/index.js"]
+    }
+  }
+}

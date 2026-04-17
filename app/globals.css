@@ -24,3 +24,65 @@ body {
   width: 100vw;
   min-height: 100vh;
 }
+
+/* ── Slate content renderer ─────────────────────────────────────────────── */
+
+.slate-content {
+  line-height: 1.6;
+}
+
+.slate-paragraph {
+  margin: 4px 0;
+  font-size: var(--font-size-6, 14px);
+}
+
+.slate-lead {
+  margin: 6px 0;
+  font-size: var(--font-size-4, 20px);
+}
+
+/* Message block — mirrors altrone-ui Message severity tokens */
+.slate-message {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-radius: var(--border-radius-m, 8px);
+  border-left: 4px solid transparent;
+}
+
+.slate-message__header {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.slate-message__body {
+  font-size: 14px;
+}
+
+.slate-message--primary {
+  background: var(--primary-tint-color, #e8f0fe);
+  border-left-color: var(--primary-color, #4285f4);
+  color: var(--primary-text-color, #1a3a6b);
+}
+
+.slate-message--warning {
+  background: var(--warning-tint-color, #fef9e7);
+  border-left-color: var(--warning-color, #f4b400);
+  color: var(--warning-text-color, #7a5800);
+}
+
+.slate-message--danger {
+  background: var(--danger-tint-color, #fce8e6);
+  border-left-color: var(--danger-color, #ea4335);
+  color: var(--danger-text-color, #7a1c15);
+}
+
+.slate-inline-code {
+  font-family: monospace;
+  background: var(--tint-color, #f5f5f5);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}

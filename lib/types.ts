@@ -59,6 +59,9 @@ export interface SlateElementNode {
   type: string
   children: SlateNode[]
   url?: string
+  // message block
+  severity?: string
+  header?: string
 }
 
 export type SlateNode = SlateTextNode | SlateElementNode

@@ -9,11 +9,17 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "altrone-ui": "file:altrone-ui-3.5.0.tgz",
     "lucide-react": "^1.7.0",
     "next": "16.2.2",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "slate": "^0.124.0",
+    "slate-history": "^0.113.1",
+    "slate-react": "^0.124.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

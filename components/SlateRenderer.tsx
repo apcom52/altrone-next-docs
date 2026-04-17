@@ -22,7 +22,18 @@ function renderElement(node: SlateElementNode, key: number): React.ReactNode {
 
   switch (node.type) {
     case 'paragraph':
-      return <p key={key} className="slate-p">{children}</p>
+      return <p key={key} className="slate-paragraph">{children}</p>
+
+    case 'lead':
+      return <p key={key} className="slate-lead">{children}</p>
+
+    case 'message':
+      return (
+        <div key={key} className={`slate-message slate-message--${node.severity ?? 'primary'}`}>
+          {node.header && <div className="slate-message__header">{node.header}</div>}
+          <div className="slate-message__body">{children}</div>
+        </div>
+      )
 
     case 'heading-one':
       return <h1 key={key} className="slate-h1">{children}</h1>

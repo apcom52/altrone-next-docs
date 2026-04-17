@@ -17,9 +17,21 @@
       "slug": "design-system",
       "title": "Дизайн-система",
       "pages": [
-        { "slug": "colors", "title": "Цвета", "icon": "SwatchBook" },
-        { "slug": "dark-theme", "title": "Темная тема", "icon": "SunMoon" },
-        { "slug": "typography", "title": "Типографика", "icon": "Ligature" },
+        {
+          "slug": "typography",
+          "title": "Типографика",
+          "icon": "Ligature"
+        },
+        {
+          "slug": "colors",
+          "title": "Цвета",
+          "icon": "SwatchBook"
+        },
+        {
+          "slug": "dark-theme",
+          "title": "Темная тема",
+          "icon": "SunMoon"
+        },
         {
           "slug": "responsiveness",
           "title": "Адаптивность",
@@ -30,7 +42,11 @@
           "title": "Скругления",
           "icon": "SquareRoundCorner"
         },
-        { "slug": "shadows", "title": "Тени", "icon": "SolarPanel" }
+        {
+          "slug": "shadows",
+          "title": "Тени",
+          "icon": "SolarPanel"
+        }
       ]
     },
     {
@@ -55,7 +71,10 @@
           "title": "Формы",
           "icon": "Form",
           "pages": [
-            { "slug": "button", "title": "Button" }
+            {
+              "slug": "button",
+              "title": "Button"
+            }
           ]
         },
         {

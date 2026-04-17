@@ -1,0 +1,33 @@
+.content {
+  height: calc(100vh - 16px);
+}
+
+.toolbar {
+  padding: 8px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-right: 4px;
+  padding-block: 3px;
+  border-radius: var(--a-border-radius-m);
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.15s;
+  border-radius: 24px;
+}
+
+.row:hover {
+  background: var(--a-surface-2);
+}
+
+.row.active {
+  background: var(--accent-a3);
+  color: var(--accent-12);
+}
+
+.row.dragging {
+  opacity: 0.3;
+}
