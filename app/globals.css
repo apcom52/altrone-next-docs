@@ -25,64 +25,41 @@ body {
   min-height: 100vh;
 }
 
-/* ── Slate content renderer ─────────────────────────────────────────────── */
+/* ── Syntax highlight token colors ──────────────────────────────────────── */
 
-.slate-content {
-  line-height: 1.6;
+[data-altrone-root="true"] {
+  --font-family-base:
+    var(--font-inter), -apple-system, Roboto, "Helvetica Neue", system-ui,
+    sans-serif;
+  --font-family-code: var(--font-jetbrains-mono), monospace;
+
+  --token-keyword: var(--pink-11);
+  --token-string: var(--teal-9);
+  --token-comment: var(--text-1);
+  --token-number: var(--blue-10);
+  --token-function: var(--violet-11);
+  --token-class-name: var(--amber-11);
+  --token-operator: var(--blue-10);
+  --token-punctuation: var(--text-2);
+  --token-builtin: var(--red-11);
+  --token-tag: var(--red-11);
+  --token-attr-name: var(--amber-10);
+  --token-attr-value: var(--teal-9);
+  --token-boolean: var(--red-11);
+  --token-regex: var(--teal-9);
+  --token-selector: var(--red-11);
+  --token-property: var(--blue-11);
+  --token-unit: var(--amber-11);
 }
 
-.slate-paragraph {
-  margin: 4px 0;
-  font-size: var(--font-size-6, 14px);
-}
+/* ── Markdown doc content ───────────────────────────────────────────────── */
 
-.slate-lead {
-  margin: 6px 0;
-  font-size: var(--font-size-4, 20px);
-}
-
-/* Message block — mirrors altrone-ui Message severity tokens */
-.slate-message {
+.doc-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin: 8px 0;
-  padding: 12px 16px;
-  border-radius: var(--border-radius-m, 8px);
-  border-left: 4px solid transparent;
-}
-
-.slate-message__header {
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.slate-message__body {
-  font-size: 14px;
-}
-
-.slate-message--primary {
-  background: var(--primary-tint-color, #e8f0fe);
-  border-left-color: var(--primary-color, #4285f4);
-  color: var(--primary-text-color, #1a3a6b);
-}
-
-.slate-message--warning {
-  background: var(--warning-tint-color, #fef9e7);
-  border-left-color: var(--warning-color, #f4b400);
-  color: var(--warning-text-color, #7a5800);
-}
-
-.slate-message--danger {
-  background: var(--danger-tint-color, #fce8e6);
-  border-left-color: var(--danger-color, #ea4335);
-  color: var(--danger-text-color, #7a1c15);
-}
-
-.slate-inline-code {
-  font-family: monospace;
-  background: var(--tint-color, #f5f5f5);
-  padding: 1px 4px;
-  border-radius: 3px;
-  font-size: 0.9em;
+  gap: 16px;
+  max-width: 800px;
+  padding: 0 24px;
+  line-height: 1.7;
+  font-size: 15px;
 }

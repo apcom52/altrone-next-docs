@@ -1,0 +1,23 @@
+.columns {
+  display: grid;
+  gap: 24px;
+}
+
+.col2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.col3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.colItem {
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .col2,
+  .col3 {
+    grid-template-columns: 1fr;
+  }
+}

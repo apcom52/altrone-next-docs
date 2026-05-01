@@ -1,0 +1,19 @@
+.playground {
+  margin: 0;
+}
+
+.preview {
+  padding: 16px;
+}
+
+.caption {
+  padding: 8px 16px;
+  font-size: var(--text-size-3);
+  line-height: var(--line-height-3);
+  color: var(--text-1);
+  text-align: center;
+}
+
+.error {
+  padding: 16px 24px;
+}

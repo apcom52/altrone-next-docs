@@ -62,6 +62,8 @@ export interface SlateElementNode {
   // message block
   severity?: string
   header?: string
+  // block-specific settings
+  config?: Record<string, unknown>
 }
 
 export type SlateNode = SlateTextNode | SlateElementNode

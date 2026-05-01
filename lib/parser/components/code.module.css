@@ -1,0 +1,15 @@
+.code {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: var(--background-1);
+  border: 1px solid var(--border-1);
+}
+
+.code pre {
+  background-color: transparent !important;
+}
+
+.code * {
+  font-family: var(--font-family-code) !important;
+}

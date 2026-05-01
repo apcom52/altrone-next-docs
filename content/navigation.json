@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "type": "page",
+      "slug": "getting-started",
+      "title": "Getting Started",
+      "icon": "House"
+    },
+    {
+      "type": "page",
+      "slug": "installation",
+      "title": "Installation",
+      "icon": "PlugZap"
+    }
+  ]
+}
