@@ -18,6 +18,7 @@ import { Callout } from "./Callout";
 import { CodeBlock } from "./CodeBlock";
 import { ColumnsBlock, ColumnItem } from "./Columns";
 import { Playground } from "./Playground";
+import { PropBlock } from "./PropBlock";
 
 export const components: Record<string, ElementType> = {
   h1: H1,
@@ -38,4 +39,5 @@ export const components: Record<string, ElementType> = {
   "columns-block": ColumnsBlock,
   "col-item": ColumnItem,
   "playground-block": Playground,
+  "prop-block": PropBlock,
 };

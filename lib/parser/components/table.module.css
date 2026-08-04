@@ -1,0 +1,29 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.table th,
+.table td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid var(--border-color, #e0e0e0);
+  vertical-align: top;
+}
+
+.table thead th {
+  background-color: var(--float-background, #f5f5f5);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table tbody tr:hover {
+  background-color: var(--hover-background, rgba(0, 0, 0, 0.03));
+}

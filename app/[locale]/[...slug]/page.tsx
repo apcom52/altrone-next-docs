@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import { getDocContent } from '@/lib/content'
 import { parseDoc } from '@/lib/parser'
+import { parseHeadings } from '@/lib/headings'
+import { DocSideNav } from './DocSideNav'
 
 export default async function DocPage({
   params,
@@ -17,11 +19,17 @@ export default async function DocPage({
     notFound()
   }
 
-  const rendered = await parseDoc(content!)
+  const [rendered, headings] = await Promise.all([
+    parseDoc(content!),
+    parseHeadings(content!),
+  ])
 
   return (
-    <article className="doc-content">
-      {rendered}
-    </article>
+    <div className="doc-layout">
+      <article className="doc-content">
+        {rendered}
+      </article>
+      <DocSideNav headings={headings} />
+    </div>
   )
 }

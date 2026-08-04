@@ -1,0 +1,91 @@
+.Property {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.PropertyHeader {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 8px;
+}
+
+.PropertyName {
+  font-family: "JetBrains Mono Variable", monospace;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 650;
+  color: var(--text-2);
+}
+
+.PropertyMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: var(--font-family-code);
+  font-size: var(--text-size-3);
+  line-height: var(--text-size-3);
+  font-weight: 400;
+  color: var(--text-1);
+  margin: 0 -4px;
+  gap: 4px;
+}
+
+.PropertyMeta * {
+  font-family: var(--font-family-code);
+}
+
+.PropertyMetaItem {
+  display: inline;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: "JetBrains Mono Variable", monospace;
+  font-size: 12px;
+}
+
+.PropertyType {
+  background-color: var(--interactive-1);
+  color: var(--text-1);
+}
+
+.PropertyRequired {
+  background-color: var(--red-9);
+  color: white;
+}
+
+.PropertyVersion {
+  background-color: var(--interactive-1);
+  color: var(--text-1);
+  font-weight: 400;
+}
+
+.PropertyDefault {
+  background-color: var(--interactive-1);
+  color: var(--text-1);
+  font-weight: 400;
+}
+
+.PropertyDeprecated {
+  background-color: var(--red-3);
+  color: var(--red-12);
+  font-weight: 400;
+}
+
+.PropertyValue {
+  font-weight: 600;
+  color: var(--accent-12);
+}
+
+.PropertyDescription {
+  font-family: "Inter Variable", sans-serif;
+  flex: 1;
+  color: var(--property-description-color);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.PropertyNameDeprecated {
+  text-decoration: line-through;
+  color: var(--text-1);
+}

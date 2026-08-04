@@ -1,7 +1,5 @@
-import { readFile } from 'fs/promises'
-import path from 'path'
 import { AltroneWrapper } from '../AltroneWrapper'
-import type { Navigation } from '@/lib/types'
+import { getNavigation } from '@/lib/navigation'
 
 export default async function LocaleLayout({
   children,
@@ -10,8 +8,8 @@ export default async function LocaleLayout({
   children: React.ReactNode
   params: Promise<{ locale: string }>
 }) {
-  const navPath = path.join(process.cwd(), 'content', 'navigation.json')
-  const nav: Navigation = JSON.parse(await readFile(navPath, 'utf-8'))
+  const { locale } = await params
+  const nav = await getNavigation(locale)
 
   return <AltroneWrapper nav={nav}>{children}</AltroneWrapper>
 }

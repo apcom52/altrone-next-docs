@@ -57,7 +57,9 @@ export function Playground({
           </Suspense>
         </ErrorBoundary>
       </div>
-      {caption && <div className={s.caption}>{caption}</div>}
+      <div className={s.captionWrapper}>
+        {caption && <div className={s.caption}>{caption}</div>}
+      </div>
     </div>
   );
 }

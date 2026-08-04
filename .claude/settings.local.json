@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "mcp__altrone__get_component_docs"
+      "mcp__altrone__get_component_docs",
+      "mcp__altrone__list_components",
+      "mcp__altrone__get_guidelines",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npx eslint *)"
     ]
   }
 }

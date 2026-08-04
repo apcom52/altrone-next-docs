@@ -23,6 +23,8 @@ export interface NavFlatGroupItem {
   type: 'group'
   slug: string
   title: string
+  // when set, overrides slug for URL generation; "" means no prefix (flat URLs)
+  urlBase?: string
   pages: NavPage[]
 }
 
@@ -42,6 +44,51 @@ export type NavItem = NavFlatGroupItem | NavNestedGroupItem | NavPageItem
 
 export interface Navigation {
   items: NavItem[]
+}
+
+// Raw navigation (from navigation.json — titles are localized objects)
+
+export type LocalizedTitle = Record<string, string>
+
+export interface NavPageRaw {
+  slug: string
+  title: LocalizedTitle
+  icon?: string
+}
+
+export interface NavSubGroupRaw {
+  slug: string
+  title: LocalizedTitle
+  icon?: string
+  pages: NavPageRaw[]
+}
+
+export interface NavFlatGroupItemRaw {
+  type: 'group'
+  slug: string
+  title: LocalizedTitle
+  urlBase?: string
+  pages: NavPageRaw[]
+}
+
+export interface NavNestedGroupItemRaw {
+  type: 'nested-group'
+  slug: string
+  title: LocalizedTitle
+  groups: NavSubGroupRaw[]
+}
+
+export interface NavPageItemRaw {
+  type: 'page'
+  slug: string
+  title: LocalizedTitle
+  icon?: string
+}
+
+export type NavItemRaw = NavFlatGroupItemRaw | NavNestedGroupItemRaw | NavPageItemRaw
+
+export interface NavigationRaw {
+  items: NavItemRaw[]
 }
 
 // Slate content

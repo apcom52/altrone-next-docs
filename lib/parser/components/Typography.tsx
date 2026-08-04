@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { Text, Divider } from "altrone-ui";
 import s from "./typography.module.css";
 
@@ -10,21 +10,21 @@ export const H1 = ({ children }: { children?: ReactNode }) => (
   </Text>
 );
 
-export const H2 = ({ children }: { children?: ReactNode }) => (
+export const H2 = ({ children, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
   <Text size={6} weight="bold" asChild className={s.h2}>
-    <h2>{children}</h2>
+    <h2 {...props}>{children}</h2>
   </Text>
 );
 
-export const H3 = ({ children }: { children?: ReactNode }) => (
+export const H3 = ({ children, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
   <Text size={5} weight="medium" asChild className={s.h3}>
-    <h3>{children}</h3>
+    <h3 {...props}>{children}</h3>
   </Text>
 );
 
-export const H4 = ({ children }: { children?: ReactNode }) => (
+export const H4 = ({ children, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
   <Text size={5} weight="medium" asChild>
-    <h4>{children}</h4>
+    <h4 {...props}>{children}</h4>
   </Text>
 );
 

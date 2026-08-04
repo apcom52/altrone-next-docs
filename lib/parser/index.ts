@@ -9,6 +9,8 @@ import { calloutPlugin } from './plugins/callout'
 import { codePlugin } from './plugins/code'
 import { columnsPlugin } from './plugins/columns'
 import { playgroundPlugin } from './plugins/playground'
+import { headingIdsPlugin } from './plugins/headingIds'
+import { propPlugin } from './plugins/prop'
 import { components } from './components'
 
 export async function parseDoc(markdown: string): Promise<ReactNode> {
@@ -18,8 +20,10 @@ export async function parseDoc(markdown: string): Promise<ReactNode> {
     .use(calloutPlugin)
     .use(columnsPlugin)
     .use(playgroundPlugin)
+    .use(propPlugin)
     .use(codePlugin)
     .use(remarkRehype, { allowDangerousHtml: false })
+    .use(headingIdsPlugin)
     .use(rehypeReact, {
       jsx,
       jsxs,

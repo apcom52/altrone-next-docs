@@ -42,6 +42,7 @@ Head to [Installation](installation) to add Altrone UI to your project and confi
 ## Two columns
 
 :::col-2
+
 ### Before
 
 Use raw HTML, hand-write class names, and manage your own responsive breakpoints.
@@ -62,13 +63,15 @@ Just import a component and pass your content. Altrone UI handles layout, spacin
 ```tsx
 import { Button } from "altrone-ui";
 
-<Button label="Click me" />
+<Button label="Click me" />;
 ```
+
 :::
 
 ## Three columns
 
 :::col-3
+
 ### Install
 
 Add the package to your project with a single command.
@@ -96,6 +99,7 @@ Import any component and start building. All 50+ components are ready to go.
 ```tsx
 import { Button, Input } from "altrone-ui";
 ```
+
 :::
 
 :::tip
@@ -105,3 +109,17 @@ Columns can contain any standard Markdown — paragraphs, **bold text**, `inline
 ## Playground
 
 ::playground{src=CounterDemo caption="Click the buttons to update the counter"}
+
+## Props
+
+:::prop[disabled*]{type="boolean" version=41}
+Disables the component, making it non-interactive. When `true`, the element receives the `disabled` HTML attribute and a muted visual style.
+:::
+
+:::prop[label]{type="string" default="Submit"}
+Visible label text. Also used as the accessible name. When `showLabel={false}`, the label is hidden visually but still used for screen readers and tooltips.
+:::
+
+:::prop[variant]{type="'default' | 'submit' | 'danger'" default="'default'" deprecated=true version=38}
+Visual style of the button. `submit` renders a filled primary-color button; `danger` applies red treatment. **Deprecated since v4.0** — use the `danger` boolean prop instead.
+:::

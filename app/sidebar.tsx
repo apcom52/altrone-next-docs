@@ -83,18 +83,19 @@ export const Sidebar = ({ nav }: { nav: Navigation }) => {
     </NavigationList.Link>
   );
 
-  const renderGroup = (item: NavFlatGroupItem) => (
-    <NavigationList.Group key={item.slug} title={item.title}>
-      {item.pages.map((page) =>
-        renderPageLink(
-          page.slug,
-          page.title,
-          `/${locale}/${item.slug}/${page.slug}`,
-          page.icon
-        )
-      )}
-    </NavigationList.Group>
-  );
+  const renderGroup = (item: NavFlatGroupItem) => {
+    const prefix = item.urlBase !== undefined ? item.urlBase : item.slug;
+    return (
+      <NavigationList.Group key={item.slug} title={item.title}>
+        {item.pages.map((page) => {
+          const href = prefix
+            ? `/${locale}/${prefix}/${page.slug}`
+            : `/${locale}/${page.slug}`;
+          return renderPageLink(page.slug, page.title, href, page.icon);
+        })}
+      </NavigationList.Group>
+    );
+  };
 
   const renderNestedGroup = (item: NavNestedGroupItem) => (
     <NavigationList.Group key={item.slug} title={item.title}>

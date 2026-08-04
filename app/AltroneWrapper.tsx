@@ -17,6 +17,7 @@ export const AltroneWrapper = ({
       accent="purple"
       header={<Header />}
       sidebar={<Sidebar nav={nav} />}
+      className="abcd"
     >
       {children}
     </AltroneApplication>

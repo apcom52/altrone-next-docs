@@ -2,6 +2,7 @@
 
 import { Highlight, themes } from "prism-react-renderer";
 import s from "./code.module.css";
+import { Scrollable } from "altrone-ui";
 
 export function CodeBlock({
   lang = "",
@@ -13,7 +14,7 @@ export function CodeBlock({
   filename?: string;
 }) {
   return (
-    <div className={s.code}>
+    <Scrollable className={s.code}>
       {filename && <div className="code-block__filename">{filename}</div>}
       <Highlight
         theme={themes.github}
@@ -32,6 +33,6 @@ export function CodeBlock({
           </pre>
         )}
       </Highlight>
-    </div>
+    </Scrollable>
   );
 }
