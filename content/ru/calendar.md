@@ -1,10 +1,31 @@
 # Calendar
 
-`Calendar` — это низкоуровневый компонент-сетка для одного месяца. Он берёт на себя расчёт дней, множественный выбор и подсветку диапазона, но не решает за вас, как выглядит навигация между месяцами — переключение месяца реализуется в родительском компоненте. Это делает `Calendar` строительным блоком для `DatePicker`, инлайн-выбора дат в формах и любых кастомных сценариев с датами.
+`Calendar` показывает один месяц на фиксированной сетке из шести строк (42 ячейки), поэтому его высота не меняется при переключении месяцев. У компонента два уровня API:
+
+- **Высокоуровневый** — задайте `mode`, и `Calendar` сам хранит выбор (`value` / `defaultValue` / `onSelect`), рисует шапку с навигацией и строку дней недели, а также подсвечивает диапазон при наведении.
+- **Низкоуровневый** — не указывайте `mode` и управляйте сеткой через `selectedDates` + `DateComponent`. Шапка и строка дней недели по умолчанию скрыты; навигация и хранение выбора — на стороне вызывающего кода. На этом уровне построен `DatePicker`.
 
 Требует `dayjs` как peer-зависимость.
 
-## Базовое использование
+## Высокоуровневый API
+
+```tsx
+const [value, setValue] = useState<Dayjs>();
+
+<Calendar mode="single" value={value} onSelect={setValue} />
+```
+
+`mode` определяет форму значения: `Dayjs` для `single`, `Dayjs[]` для `multiple`, `{ from, to }` для `range`. Первый клик по диапазону задаёт `from`, второй — закрывает диапазон (границы автоматически упорядочиваются). Пока выбран только `from`, наведение на день показывает предпросмотр полосы — та же логика, что в `DatePicker.Range`.
+
+```tsx
+const [range, setRange] = useState<{ from?: Dayjs; to?: Dayjs }>({});
+
+<Calendar mode="range" value={range} onSelect={setRange} />
+```
+
+Отображаемый месяц управляется через `month` / `defaultMonth` / `onMonthChange`. Ограничить выбор можно через `minDate`, `maxDate` и предикат `isDateDisabled`.
+
+## Базовое использование (низкоуровневый API)
 
 ```tsx
 import dayjs from "dayjs";
@@ -56,12 +77,13 @@ const handleSelect = (date: Dayjs) => {
 `cursorDate` нужно обновлять на `onMouseEnter` (или аналогичном событии) отдельных дней — сам `Calendar` его не отслеживает. Это осознанное решение: подсветка курсора — забота вызывающего кода, не компонента.
 :::
 
-## Первый день недели
+## Локали и первый день недели
 
-По умолчанию неделя начинается с воскресенья. `firstDayOfWeek="monday"` сдвигает сетку под европейский календарь.
+Подпись месяца и названия дней недели берутся из активной локали приложения (или из пропа `locale` в формате BCP-47). Первый день недели по умолчанию вычисляется из локали (`firstDayOfWeek="auto"`): воскресенье для `en-US`, понедельник для `ru-RU`. Его можно зафиксировать явно.
 
 ```tsx
-<Calendar month={dayjs()} firstDayOfWeek="monday" />
+<Calendar mode="single" locale="ru-RU" />          {/* auto → понедельник */}
+<Calendar month={dayjs()} firstDayOfWeek="monday" /> {/* зафиксировано */}
 ```
 
 ::playground{src=CalendarMondayDemo caption="Неделя начинается с понедельника"}
@@ -116,32 +138,72 @@ const CustomDay: React.FC<CalendarRenderDateProps> = ({
 
 ## Свойства
 
-:::prop[month]{type="Dayjs" default="dayjs()"}
-Отображаемый месяц. Используется только год и месяц — день игнорируется.
+:::prop[mode]{type="'single' | 'multiple' | 'range'"}
+Включает высокоуровневый API. Когда задан, `Calendar` сам хранит выбор и показывает шапку и строку дней недели.
 :::
 
-:::prop[selectedDates]{type="Dayjs[]" default="[dayjs()]"}
-Массив выбранных дат. Каждый совпадающий день рендерится в выбранном состоянии.
+:::prop[value / defaultValue]{type="Dayjs | Dayjs[] | { from?: Dayjs; to?: Dayjs }"}
+Управляемое / начальное значение. Форма зависит от `mode`.
 :::
 
-:::prop[cursorDate]{type="Dayjs"}
-Дата наведения для предпросмотра диапазона. Когда задана, все даты между `selectedDates[0]` и `cursorDate` подсвечиваются в обе стороны.
+:::prop[onSelect]{type="(value, event: MouseEvent) => void"}
+Вызывается на каждый клик по дню со следующим значением (той же формы, что `value`).
 :::
 
-:::prop[onDateChange]{type="(date: Dayjs, event: MouseEvent) => void"}
-Вызывается при клике на ячейку дня.
+:::prop[month / defaultMonth]{type="Dayjs" default="dayjs()"}
+Отображаемый месяц (управляемый / начальный). Используется только год и месяц.
 :::
 
-:::prop[DateComponent]{type="React.FC<CalendarRenderDateProps>" default="CalendarDate"}
-Кастомный компонент ячейки дня. Заменяет рендерер по умолчанию.
+:::prop[onMonthChange]{type="(month: Dayjs) => void"}
+Вызывается, когда навигация в шапке меняет месяц.
+:::
+
+:::prop[locale]{type="string" default="язык приложения"}
+Локаль BCP-47 для подписи месяца и названий дней недели.
+:::
+
+:::prop[firstDayOfWeek]{type="'monday' | 'sunday' | 'auto'" default="'auto'"}
+`'auto'` вычисляет первый день недели из локали.
+:::
+
+:::prop[minDate / maxDate]{type="Dayjs"}
+Дни за пределами диапазона отключаются.
+:::
+
+:::prop[isDateDisabled]{type="(date: Dayjs) => boolean"}
+Предикат для отключения отдельных дней.
 :::
 
 :::prop[disabled]{type="boolean" default="false"}
 Блокирует все ячейки календаря.
 :::
 
-:::prop[firstDayOfWeek]{type="'monday' | 'sunday'" default="'sunday'"}
-Определяет, с какого дня начинается каждая строка недели.
+:::prop[showHeader / showWeekdays]{type="boolean"}
+Шапка и строка дней недели. По умолчанию видимы, если задан `mode`.
+:::
+
+:::prop[showNavigation]{type="boolean" default="true"}
+Кнопки `‹` / `›` в шапке.
+:::
+
+:::prop[showOutsideDays]{type="boolean" default="true"}
+Рисовать дни соседних месяцев (приглушённо) вместо пустых ячеек.
+:::
+
+:::prop[selectedDates]{type="Dayjs[]"}
+Низкоуровневый API: дни в выбранном состоянии (когда `mode` не задан).
+:::
+
+:::prop[cursorDate]{type="Dayjs"}
+Низкоуровневый API: дата наведения для предпросмотра диапазона между `selectedDates[0]` и `cursorDate` (в обе стороны).
+:::
+
+:::prop[onDateChange]{type="(date: Dayjs, event: MouseEvent) => void"}
+Низкоуровневый API: вызывается при клике на ячейку дня; `Calendar` не хранит состояние.
+:::
+
+:::prop[DateComponent]{type="React.FC<CalendarRenderDateProps>" default="Calendar.Date"}
+Кастомный компонент ячейки дня. Заменяет рендерер по умолчанию.
 :::
 
 ## CalendarRenderDateProps
@@ -154,10 +216,15 @@ const CustomDay: React.FC<CalendarRenderDateProps> = ({
 | `weekDay` | `number` | День недели (0 — воскресенье … 6 — суббота) |
 | `fromAnotherMonth` | `boolean` | `true` для дней-заполнителей из соседнего месяца |
 | `today` | `boolean` | `true`, если дата — сегодняшний день |
-| `selected` | `boolean` | `true`, если дата входит в `selectedDates` |
-| `disabled` | `boolean` | `true`, если весь календарь отключён |
-| `cursorHighlighted` | `boolean` | `true`, если дата попадает в диапазон между `selectedDates[0]` и `cursorDate` |
-| `onSelect` | `(date, event) => void` | Вызовите внутри кастомного компонента, чтобы запустить `onDateChange` |
+| `selected` | `boolean` | `true`, если дата выбрана |
+| `disabled` | `boolean` | `true`, если этот день отключён |
+| `cursorHighlighted` | `boolean` | `true` для предпросмотра диапазона через `cursorDate` |
+| `inRange` | `boolean` | `true`, если день внутри диапазона (с учётом предпросмотра при наведении) |
+| `rangeStart` / `rangeEnd` | `boolean` | `true` на границах диапазона |
+| `startOfWeek` / `endOfWeek` | `boolean` | Первая / последняя отрисованная колонка строки недели |
+| `inRangeAbove` / `inRangeBelow` | `boolean` | `true`, если подложка накрывает ячейку прямо сверху / снизу — чтобы скруглять только внешние углы подложки |
+| `onSelect` | `(date, event) => void` | Сообщить о выборе даты |
+| `onHover` | `(date?: Dayjs) => void` | Управлять предпросмотром диапазона при наведении |
 
 ## Рекомендации
 

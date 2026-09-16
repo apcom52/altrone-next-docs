@@ -17,10 +17,10 @@
 
 ## Вертикальный стек
 
-`direction="vertical"` — вертикальный стек. Главный сценарий: поля формы, карточки, секции страницы.
+`orientation="vertical"` — вертикальный стек. Главный сценарий: поля формы, карточки, секции страницы.
 
 ```tsx
-<Flex direction="vertical" gap="m">
+<Flex orientation="vertical" gap="m">
   <TextInput placeholder="Электронная почта" />
   <PasswordInput placeholder="Пароль" />
   <Button label="Войти" variant="submit" />
@@ -59,12 +59,12 @@
 `Flex` хорошо вкладывается сам в себя. Типичный паттерн — список карточек пользователей: внешний стек по вертикали, внутри каждой карточки горизонтальный ряд с аватаром и текстом.
 
 ```tsx
-<Flex direction="vertical" gap="s">
+<Flex orientation="vertical" gap="s">
   {users.map((user) => (
     <Flex key={user.id} justify="between" align="center">
       <Flex gap="m" align="center">
         <Avatar firstName={user.name} />
-        <Flex direction="vertical" gap="xxs">
+        <Flex orientation="vertical" gap="xxs">
           <Text weight="medium">{user.name}</Text>
           <Text size={3} color="muted">{user.role}</Text>
         </Flex>
@@ -79,17 +79,22 @@
 
 ## Семантический тег
 
-По умолчанию `Flex` рендерит `<div>`. Проп `tagName` позволяет использовать любой HTML-элемент, не теряя flex-поведения.
+По умолчанию `Flex` рендерит `<div>`. Проп `asChild` переносит вычисленные className/style на единственный
+дочерний элемент вместо рендера `<div>` — так можно использовать любой HTML-элемент, не теряя flex-поведения.
 
 ```tsx
-<Flex tagName="ul" direction="vertical" gap="s">
-  <li>Первый пункт</li>
-  <li>Второй пункт</li>
+<Flex asChild orientation="vertical" gap="s">
+  <ul>
+    <li>Первый пункт</li>
+    <li>Второй пункт</li>
+  </ul>
 </Flex>
 
-<Flex tagName="nav" gap="m" align="center">
-  <a href="/">Главная</a>
-  <a href="/docs">Документация</a>
+<Flex asChild gap="m" align="center">
+  <nav>
+    <a href="/">Главная</a>
+    <a href="/docs">Документация</a>
+  </nav>
 </Flex>
 ```
 
@@ -110,16 +115,16 @@
 
 ## Свойства
 
-:::prop[direction]{type="'horizontal' | 'vertical'" default="'horizontal'"}
-Направление flex-оси.
+:::prop[orientation]{type="'horizontal' | 'vertical'" default="'horizontal'"}
+Ось расположения элементов.
 :::
 
 :::prop[gap]{type="Gap" default="'none'"}
 Расстояние между дочерними элементами из шкалы дизайн-токенов.
 :::
 
-:::prop[align]{type="'start' | 'center' | 'end' | 'between'"}
-Выравнивание по поперечной оси (`align-items`).
+:::prop[align]{type="'start' | 'center' | 'end'"}
+Выравнивание по поперечной оси (`align-items`). Для разнесения по краям — `justify`.
 :::
 
 :::prop[justify]{type="'start' | 'center' | 'end' | 'between'"}
@@ -134,8 +139,8 @@
 Убирает внешние отступы у прямых дочерних элементов, чтобы не конфликтовать с `gap`.
 :::
 
-:::prop[tagName]{type="keyof JSX.IntrinsicElements" default="'div'"}
-HTML-элемент для рендеринга.
+:::prop[asChild]{type="boolean" default="false"}
+Перенести вычисленные className/style на единственный дочерний элемент вместо рендера `<div>`.
 :::
 
 ## Рекомендации

@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-full flex flex-col">
+      <body>
         {children}
       </body>
     </html>

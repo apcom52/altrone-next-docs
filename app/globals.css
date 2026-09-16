@@ -1,28 +1,35 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 html,
 body {
   min-height: 100vh;
-  overflow-x: hidden;
+  /**
+   * `clip`, not `hidden`: `hidden` forces the paired overflow-y to compute as
+   * `auto` (CSS Overflow spec), turning `body` into a non-scrolling "phantom"
+   * scroll container that breaks `position: sticky` for every descendant
+   * (the actual page scroll happens above it, but sticky elements resolve
+   * their containing block to `body`, which never itself scrolls). `clip`
+   * blocks horizontal overflow the same way without establishing that box.
+   */
+  overflow-x: clip;
+}
+
+body {
+  /* The browser's default 8px `body` margin — Tailwind's preflight used to
+     zero this along with the anchor reset below; removing Tailwind dropped
+     this half of it too. */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/**
+ * Altrone's own components don't reset anchor defaults themselves (`Text`'s
+ * `href` variant does, but a bare `<a>`/`next/link` merged onto `Box` via
+ * `asChild` — as the homepage cards do — isn't a `Text`, so it falls back to
+ * the browser's blue-and-underlined default without this).
+ */
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 /* ── Syntax highlight token colors ──────────────────────────────────────── */
@@ -53,36 +60,30 @@ body {
 }
 
 /* ── Markdown doc content ───────────────────────────────────────────────── */
+/* Layout (sidebar/aside columns) comes from Screen — this only styles the
+   rendered markdown itself, inside Screen.Content. */
 
-.doc-layout {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.doc-content {
+.doc-article {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex: 1;
-  min-width: 0;
-  max-width: 800px;
-  padding: 0 24px;
-  padding-bottom: 48px;
   line-height: 1.7;
   font-size: 15px;
+  padding-bottom: 120px;
 }
 
-.doc-sidenav {
-  flex-shrink: 0;
-  width: 220px;
+.doc-article table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.doc-sidenav-inner {
-  position: fixed;
-  width: 220px;
-  top: 80px;
-  max-height: calc(100vh - 104px);
-  overflow-y: auto;
+.doc-article th,
+.doc-article td {
+  padding: 8px 12px;
+  border: 1px solid var(--border-1);
+  text-align: left;
+}
+
+.doc-article th {
+  background: var(--background-2);
 }

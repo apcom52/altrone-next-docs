@@ -6,10 +6,10 @@ import { Home, Bell, Wallet, User } from "lucide-react";
 export default function BottomNavigationBadgesDemo() {
   return (
     <BottomNavigation>
-      <BottomNavigation.Item icon={<Home />} label="Home" selected />
-      <BottomNavigation.Item icon={<Bell />} label="Alerts" badge="3" />
-      <BottomNavigation.Item icon={<Wallet />} label="Wallet" badge="NEW" />
-      <BottomNavigation.Item icon={<User />} label="Profile" />
+      <BottomNavigation.Link icon={<Home />} label="Home" selected />
+      <BottomNavigation.Link icon={<Bell />} label="Alerts" badge="3" />
+      <BottomNavigation.Link icon={<Wallet />} label="Wallet" badge="NEW" />
+      <BottomNavigation.Link icon={<User />} label="Profile" />
     </BottomNavigation>
   );
 }

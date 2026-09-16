@@ -9,6 +9,7 @@ import type {
   NavSubGroupRaw,
   NavPage,
   NavSubGroup,
+  NavFlatGroupItem,
   LocalizedTitle,
 } from './types'
 
@@ -39,6 +40,7 @@ function resolveItem(item: NavItemRaw, locale: string): NavItem {
       slug: item.slug,
       title: t(item.title, locale),
       urlBase: item.urlBase,
+      icon: item.icon,
       pages: item.pages.map((p) => resolvePage(p, locale)),
     }
   }
@@ -54,4 +56,25 @@ export async function getNavigation(locale: string): Promise<Navigation> {
   const navPath = path.join(process.cwd(), 'content', 'navigation.json')
   const raw: NavigationRaw = JSON.parse(await readFile(navPath, 'utf-8'))
   return { items: raw.items.map((item) => resolveItem(item, locale)) }
+}
+
+/** The flat groups that back `/components/[category]` — the component doc taxonomy. `foundations` lives at its own top-level route, not under `/components`. */
+export async function getComponentCategories(locale: string) {
+  const nav = await getNavigation(locale)
+  return nav.items.filter(
+    (item): item is NavFlatGroupItem => item.type === 'group' && item.slug !== 'foundations'
+  )
+}
+
+export async function getComponentCategory(locale: string, category: string) {
+  const categories = await getComponentCategories(locale)
+  return categories.find((item) => item.slug === category)
+}
+
+/** The `foundations` group — backs `/foundations` and `/foundations/[article]`. */
+export async function getFoundationsGroup(locale: string) {
+  const nav = await getNavigation(locale)
+  return nav.items.find(
+    (item): item is NavFlatGroupItem => item.type === 'group' && item.slug === 'foundations'
+  )
 }

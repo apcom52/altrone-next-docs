@@ -23,13 +23,13 @@ const [password, setPassword] = useState('');
 ## Форма входа
 
 ```tsx
-<Flex direction="vertical" gap="m">
+<Flex orientation="vertical" gap="m">
   <TextInput
     value={email}
     onChange={setEmail}
     placeholder="Электронная почта"
   >
-    <TextInput.IconIsland icon={<Mail size={16} />} placement="left" />
+    <TextInput.IconIsland icon={<Mail size={16} />} placement="start" />
   </TextInput>
   <PasswordInput
     value={password}

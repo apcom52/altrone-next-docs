@@ -1,0 +1,33 @@
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoLink .logoMark {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: color(display-p3 0.125 0.125 0.125);
+  border: 1px solid color(display-p3 0 0 0 / 0.153);
+}
+
+.logoLink .logoMark svg {
+  width: 48px;
+  height: 48px;
+}
+
+.logoText {
+  font-weight: 600;
+  color: var(--text-12);
+  transition: color 0.2s ease;
+}
+
+.logoLink:hover .logoText {
+  color: var(--accent-12);
+}

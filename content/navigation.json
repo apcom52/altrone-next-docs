@@ -14,80 +14,132 @@
     },
     {
       "type": "group",
-      "slug": "forms",
-      "title": { "en": "Forms", "ru": "Формы" },
-      "urlBase": "",
+      "slug": "foundations",
+      "title": { "en": "Foundations", "ru": "Основы" },
+      "urlBase": "foundations",
+      "pages": [
+        { "slug": "accessibility", "title": { "en": "Accessibility", "ru": "Доступность" } },
+        { "slug": "color", "title": { "en": "Color", "ru": "Цвет" } },
+        { "slug": "darkTheme", "title": { "en": "Dark theme", "ru": "Тёмная тема" } },
+        { "slug": "icons", "title": { "en": "Icons", "ru": "Иконки" } },
+        { "slug": "layout", "title": { "en": "Layout & responsiveness", "ru": "Макеты и адаптивность" } },
+        { "slug": "materials", "title": { "en": "Materials", "ru": "Материалы" } },
+        { "slug": "motion", "title": { "en": "Motion", "ru": "Анимация" } },
+        { "slug": "typography", "title": { "en": "Typography", "ru": "Типографика" } },
+        { "slug": "enteringData", "title": { "en": "Entering data", "ru": "Ввод данных" } },
+        { "slug": "feedback", "title": { "en": "Feedback", "ru": "Обратная связь" } },
+        { "slug": "loading", "title": { "en": "Loading", "ru": "Загрузка" } },
+        { "slug": "actions", "title": { "en": "Actions", "ru": "Действия" } },
+        { "slug": "keyboard", "title": { "en": "Keyboard", "ru": "Клавиатура" } },
+        { "slug": "touchDevices", "title": { "en": "Touch devices", "ru": "Сенсорные устройства" } },
+        { "slug": "mcp", "title": { "en": "MCP", "ru": "MCP" } }
+      ]
+    },
+    {
+      "type": "group",
+      "slug": "core",
+      "title": { "en": "Core components", "ru": "Основные компоненты" },
+      "urlBase": "components/core",
+      "icon": "Layers",
+      "pages": [
+        { "slug": "application", "title": { "en": "Application", "ru": "Application" } },
+        { "slug": "screen", "title": { "en": "Screen", "ru": "Screen" } },
+        { "slug": "box", "title": { "en": "Box", "ru": "Box" } },
+        { "slug": "text", "title": { "en": "Text", "ru": "Text" } },
+        { "slug": "image", "title": { "en": "Image", "ru": "Image" } }
+      ]
+    },
+    {
+      "type": "group",
+      "slug": "containers",
+      "title": { "en": "Containers", "ru": "Контейнеры" },
+      "urlBase": "components/containers",
+      "icon": "Boxes",
+      "pages": [
+        { "slug": "grid", "title": { "en": "Grid", "ru": "Grid" } },
+        { "slug": "flex", "title": { "en": "Flex", "ru": "Flex" } },
+        { "slug": "drawer", "title": { "en": "Drawer", "ru": "Drawer" } },
+        { "slug": "popover", "title": { "en": "Popover", "ru": "Popover" } },
+        { "slug": "dropdown", "title": { "en": "Dropdown", "ru": "Dropdown" } },
+        { "slug": "tooltip", "title": { "en": "Tooltip", "ru": "Tooltip" } },
+        { "slug": "modal", "title": { "en": "Modal", "ru": "Modal" } },
+        { "slug": "scrollable", "title": { "en": "Scrollable", "ru": "Scrollable" } },
+        { "slug": "collapsedList", "title": { "en": "Collapsed List", "ru": "Collapsed List" } },
+        { "slug": "form", "title": { "en": "Form", "ru": "Form" } },
+        { "slug": "splitter", "title": { "en": "Splitter", "ru": "Splitter" } },
+        { "slug": "spoiler", "title": { "en": "Spoiler", "ru": "Spoiler" } },
+        { "slug": "toolbar", "title": { "en": "Toolbar", "ru": "Toolbar" } }
+      ]
+    },
+    {
+      "type": "group",
+      "slug": "controls",
+      "title": { "en": "Controls", "ru": "Элементы управления" },
+      "urlBase": "components/controls",
+      "icon": "SlidersHorizontal",
       "pages": [
         { "slug": "button", "title": { "en": "Button", "ru": "Button" } },
-        { "slug": "checkbox", "title": { "en": "Checkbox", "ru": "Checkbox" } },
-        { "slug": "radio", "title": { "en": "Radio", "ru": "Radio" } },
-        { "slug": "switcher", "title": { "en": "Switcher", "ru": "Switcher" } },
         { "slug": "textInput", "title": { "en": "Text Input", "ru": "Text Input" } },
         { "slug": "passwordInput", "title": { "en": "Password Input", "ru": "Password Input" } },
         { "slug": "numberInput", "title": { "en": "Number Input", "ru": "Number Input" } },
         { "slug": "autocompleteInput", "title": { "en": "Autocomplete Input", "ru": "Autocomplete Input" } },
         { "slug": "search", "title": { "en": "Search", "ru": "Search" } },
-        { "slug": "form", "title": { "en": "Form", "ru": "Form" } }
-      ]
-    },
-    {
-      "type": "group",
-      "slug": "layout",
-      "title": { "en": "Layout", "ru": "Лэйаут" },
-      "urlBase": "",
-      "pages": [
-        { "slug": "flex", "title": { "en": "Flex", "ru": "Flex" } },
-        { "slug": "grid", "title": { "en": "Grid", "ru": "Grid" } },
-        { "slug": "screen", "title": { "en": "Screen", "ru": "Screen" } },
-        { "slug": "splitter", "title": { "en": "Splitter", "ru": "Splitter" } },
-        { "slug": "scrollable", "title": { "en": "Scrollable", "ru": "Scrollable" } }
-      ]
-    },
-    {
-      "type": "group",
-      "slug": "overlays",
-      "title": { "en": "Overlays", "ru": "Оверлеи" },
-      "urlBase": "",
-      "pages": [
-        { "slug": "modal", "title": { "en": "Modal", "ru": "Modal" } },
-        { "slug": "drawer", "title": { "en": "Drawer", "ru": "Drawer" } },
-        { "slug": "dropdown", "title": { "en": "Dropdown", "ru": "Dropdown" } },
-        { "slug": "popover", "title": { "en": "Popover", "ru": "Popover" } },
-        { "slug": "tooltip", "title": { "en": "Tooltip", "ru": "Tooltip" } },
-        { "slug": "closeButton", "title": { "en": "Close Button", "ru": "Close Button" } }
-      ]
-    },
-    {
-      "type": "group",
-      "slug": "navigation",
-      "title": { "en": "Navigation", "ru": "Навигация" },
-      "urlBase": "",
-      "pages": [
-        { "slug": "breadcrumbs", "title": { "en": "Breadcrumbs", "ru": "Breadcrumbs" } },
-        { "slug": "bottomNavigation", "title": { "en": "Bottom Navigation", "ru": "Bottom Navigation" } }
+        { "slug": "textArea", "title": { "en": "TextArea", "ru": "TextArea" } },
+        { "slug": "select", "title": { "en": "Select", "ru": "Select" } },
+        { "slug": "checkbox", "title": { "en": "Checkbox", "ru": "Checkbox" } },
+        { "slug": "switch", "title": { "en": "Switch", "ru": "Switch" } },
+        { "slug": "radio", "title": { "en": "Radio", "ru": "Radio" } },
+        { "slug": "colorPicker", "title": { "en": "Color Picker", "ru": "Color Picker" } },
+        { "slug": "datePicker", "title": { "en": "Date Picker", "ru": "Date Picker" } },
+        { "slug": "filePicker", "title": { "en": "File Picker", "ru": "File Picker" } },
+        { "slug": "slider", "title": { "en": "Slider", "ru": "Slider" } }
       ]
     },
     {
       "type": "group",
       "slug": "display",
       "title": { "en": "Display", "ru": "Отображение" },
-      "urlBase": "",
+      "urlBase": "components/display",
+      "icon": "LayoutGrid",
       "pages": [
-        { "slug": "typography", "title": { "en": "Typography", "ru": "Typography" } },
-        { "slug": "avatar", "title": { "en": "Avatar", "ru": "Avatar" } },
-        { "slug": "collapsedList", "title": { "en": "Collapsed List", "ru": "Collapsed List" } },
-        { "slug": "spoiler", "title": { "en": "Spoiler", "ru": "Spoiler" } },
-        { "slug": "toolbar", "title": { "en": "Toolbar", "ru": "Toolbar" } },
-        { "slug": "calendar", "title": { "en": "Calendar", "ru": "Calendar" } }
+        { "slug": "calendar", "title": { "en": "Calendar", "ru": "Calendar" } },
+        { "slug": "dataTable", "title": { "en": "Data Table", "ru": "Data Table" } },
+        { "slug": "dialog", "title": { "en": "Dialogs", "ru": "Dialogs" } },
+        { "slug": "message", "title": { "en": "Message", "ru": "Message" } },
+        { "slug": "progress", "title": { "en": "Progress", "ru": "Progress" } },
+        { "slug": "tags", "title": { "en": "Tags", "ru": "Tags" } },
+        { "slug": "notifications", "title": { "en": "Notifications", "ru": "Notifications" } },
+        { "slug": "result", "title": { "en": "Result", "ru": "Result" } }
       ]
     },
     {
       "type": "group",
-      "slug": "general",
-      "title": { "en": "General", "ru": "Общее" },
-      "urlBase": "",
+      "slug": "navigation",
+      "title": { "en": "Navigation", "ru": "Навигация" },
+      "urlBase": "components/navigation",
+      "icon": "Compass",
       "pages": [
-        { "slug": "application", "title": { "en": "Application", "ru": "Application" } }
+        { "slug": "navigationList", "title": { "en": "Navigation List", "ru": "Navigation List" } },
+        { "slug": "bottomNavigation", "title": { "en": "Bottom Navigation", "ru": "Bottom Navigation" } },
+        { "slug": "sideNavigation", "title": { "en": "Side Navigation", "ru": "Side Navigation" } },
+        { "slug": "tabs", "title": { "en": "Tabs", "ru": "Tabs" } },
+        { "slug": "breadcrumbs", "title": { "en": "Breadcrumbs", "ru": "Breadcrumbs" } },
+        { "slug": "pagination", "title": { "en": "Pagination", "ru": "Pagination" } }
+      ]
+    },
+    {
+      "type": "group",
+      "slug": "atoms",
+      "title": { "en": "Atoms", "ru": "Атомы" },
+      "urlBase": "components/atoms",
+      "icon": "Atom",
+      "pages": [
+        { "slug": "avatar", "title": { "en": "Avatar", "ru": "Avatar" } },
+        { "slug": "divider", "title": { "en": "Divider", "ru": "Divider" } },
+        { "slug": "label", "title": { "en": "Label", "ru": "Label" } },
+        { "slug": "loading", "title": { "en": "Loading", "ru": "Loading" } },
+        { "slug": "skeleton", "title": { "en": "Skeleton", "ru": "Skeleton" } },
+        { "slug": "closeButton", "title": { "en": "Close Button", "ru": "Close Button" } }
       ]
     }
   ]

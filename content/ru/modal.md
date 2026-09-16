@@ -4,18 +4,21 @@
 
 ## Базовое использование
 
-Передайте триггер как `children`, содержимое в `content`, кнопки действий в `actions`. `Modal` управляет состоянием открытия самостоятельно.
+`Modal` не привязан к элементу-триггеру, в отличие от `Popover`/`Dropdown`/`Tooltip` — открывайте его явно через `open`, закрывайте через `onClose`. Содержимое передаётся в `content`, кнопки действий — в `actions`.
 
 ```tsx
+const [open, setOpen] = useState(false);
+
+<Button label="О версии" icon={<Info />} onClick={() => setOpen(true)} />
 <Modal
+  open={open}
+  onClose={() => setOpen(false)}
   title="О версии"
   content={<Text>Altrone UI 3.5.0 — стабильный выпуск.</Text>}
   actions={({ closeModal }) => (
     <Button label="Закрыть" onClick={closeModal} />
   )}
->
-  <Button label="О версии" icon={<Info />} />
-</Modal>
+/>
 ```
 
 ::playground{src=ModalBasicDemo caption="Закрыть можно кнопкой ✕, клавишей Escape или кликом по фону"}
@@ -25,7 +28,10 @@
 Самый частый сценарий для `Modal` — подтверждение необратимого действия. Деструктивная кнопка должна быть в `actions` справа; кнопка отмены — рядом с ней.
 
 ```tsx
+<Button label="Удалить проект" danger onClick={() => setOpen(true)} />
 <Modal
+  open={open}
+  onClose={() => setOpen(false)}
   title="Удалить проект?"
   content={
     <Text>
@@ -33,20 +39,17 @@
       Это действие нельзя отменить.
     </Text>
   }
-  actions={({ closeModal }) => (
-    <>
-      <Button label="Отмена" onClick={closeModal} />
-      <Button
-        label="Удалить"
-        variant="submit"
-        danger
-        onClick={() => { handleDelete(); closeModal(); }}
-      />
-    </>
-  )}
->
-  <Button label="Удалить проект" danger />
-</Modal>
+  actions={({ closeModal }) => [
+    <Button key="cancel" label="Отмена" onClick={closeModal} />,
+    <Button
+      key="delete"
+      label="Удалить"
+      variant="submit"
+      danger
+      onClick={() => { handleDelete(); closeModal(); }}
+    />,
+  ]}
+/>
 ```
 
 ::playground{src=ModalConfirmDemo caption="Называйте деструктивную кнопку действием, а не «Да»"}
@@ -60,17 +63,9 @@
 Три размера позволяют подобрать диалог под количество содержимого.
 
 ```tsx
-<Modal title="Подтверждение" size="s" content={<Text>Краткий вопрос.</Text>}>
-  <Button label="S" />
-</Modal>
-
-<Modal title="Редактировать профиль" size="m" content={<ProfileForm />}>
-  <Button label="M" />
-</Modal>
-
-<Modal title="Предварительный просмотр" size="l" content={<PreviewPanel />}>
-  <Button label="L" />
-</Modal>
+<Modal open={open} onClose={close} title="Подтверждение" size="s" content={<Text>Краткий вопрос.</Text>} />
+<Modal open={open} onClose={close} title="Редактировать профиль" size="m" content={<ProfileForm />} />
+<Modal open={open} onClose={close} title="Предварительный просмотр" size="l" content={<PreviewPanel />} />
 ```
 
 ::playground{src=ModalSizesDemo caption="s — для коротких вопросов, m — для форм, l — для просмотра данных"}
@@ -80,7 +75,14 @@
 `Modal` хорошо работает для небольших форм создания или редактирования, когда нужно запросить данные, не покидая текущий контекст.
 
 ```tsx
+<Button label="Новая папка" icon={<FolderPlus />} onClick={() => setOpen(true)} />
 <Modal
+  open={open}
+  onClose={() => {
+    setOpen(false);
+    setName("");
+    setErrors({});
+  }}
   title="Новая папка"
   content={
     <Form errorMessages={errors}>
@@ -99,10 +101,7 @@
       />
     </Flex>
   )}
-  onClose={() => { setName(""); setErrors({}); }}
->
-  <Button label="Новая папка" icon={<FolderPlus />} />
-</Modal>
+/>
 ```
 
 ::playground{src=ModalWithFormDemo caption="Попробуйте нажать «Создать» с пустым полем"}
@@ -113,30 +112,33 @@
 
 ## Деструктивное действие слева
 
-Если у диалога есть основное действие и отдельное деструктивное — разместите деструктивное в `leftActions`. Это визуально отделяет опасное действие от безопасного.
+Если у диалога есть основное действие и отдельное деструктивное — разместите деструктивное в `additionalActions`. Это визуально отделяет опасное действие от безопасного.
 
 ```tsx
+<Button label="Редактировать" onClick={() => setOpen(true)} />
 <Modal
+  open={open}
+  onClose={() => setOpen(false)}
   title="Редактировать запись"
   content={<EditForm />}
-  leftActions={({ closeModal }) => (
+  additionalActions={({ closeModal }) => (
     <Button label="Удалить" danger onClick={() => { handleDelete(); closeModal(); }} />
   )}
-  actions={({ closeModal }) => (
-    <>
-      <Button label="Отмена" onClick={closeModal} />
-      <Button label="Сохранить" variant="submit" onClick={handleSave} />
-    </>
-  )}
->
-  <Button label="Редактировать" />
-</Modal>
+  actions={({ closeModal }) => [
+    <Button key="cancel" label="Отмена" onClick={closeModal} />,
+    <Button key="save" label="Сохранить" variant="submit" onClick={handleSave} />,
+  ]}
+/>
 ```
 
 ## Свойства
 
-:::prop[children*]{type="ReactElement"}
-Элемент-триггер. Должен принимать `onClick`. `Modal` клонирует его и добавляет обработчик.
+:::prop[open]{type="boolean"}
+Управляемое состояние открытия. Без этого пропа `Modal` неуправляемый — см. `defaultOpen`.
+:::
+
+:::prop[defaultOpen]{type="boolean" default="false"}
+Начальное состояние открытия для неуправляемого `Modal`. Игнорируется, если передан `open`.
 :::
 
 :::prop[title*]{type="string"}
@@ -147,24 +149,24 @@
 Основное содержимое. Может быть функцией — тогда получает `closeModal`.
 :::
 
-:::prop[actions]{type="ReactNode | ((ctx: { closeModal: () => void }) => ReactNode)"}
-Кнопки действий справа в футере. Может быть функцией с `closeModal`.
+:::prop[actions]{type="StrictReactElements | ((ctx: { closeModal: () => void }) => StrictReactElements)"}
+Основные кнопки действий справа в футере. Может быть функцией с `closeModal`.
 :::
 
-:::prop[leftActions]{type="ReactNode | ((ctx: { closeModal: () => void }) => ReactNode)"}
-Кнопки слева в футере — для деструктивных действий.
+:::prop[additionalActions]{type="StrictReactElements | ((ctx: { closeModal: () => void }) => StrictReactElements)"}
+Дополнительные кнопки слева в футере — для деструктивных действий.
 :::
 
 :::prop[size]{type="'s' | 'm' | 'l'" default="'m'"}
 Ширина диалога.
 :::
 
-:::prop[showCancelButton]{type="boolean" default="false"}
-Автоматически добавляет кнопку «Отмена» слева в футере.
+:::prop[showCancelButton]{type="boolean" default="true"}
+Встроенная кнопка «Отмена» перед `actions` в футере. Передайте `false`, чтобы убрать её.
 :::
 
 :::prop[onClose]{type="() => void"}
-Вызывается при закрытии диалога: кнопкой ✕, клавишей Escape или кликом по фону.
+Вызывается при закрытии диалога: кнопкой ✕, клавишей Escape, кликом по фону или вызовом `closeModal()`. Для управляемого `Modal` это единственное место, где нужно перевести `open` обратно в `false` — сам компонент себя не закрывает.
 :::
 
 ## Рекомендации

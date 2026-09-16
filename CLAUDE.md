@@ -1,21 +1,17 @@
 # CLAUDE.md — Custom Markdown Documentation Site
 
-## Обзор проекта
+## Overview
 
-Сайт-документация на Next.js (App Router, SSG/SSR), страницы которого написаны на кастомном Markdown-диалекте. Контент хранится в `.md`-файлах на сервере, парсится через `unified` / `remark` стек и рендерится в React-компоненты.
+The Altrone documentation site: a Next.js site (App Router, SSG/SSR) whose pages are written in a custom Markdown dialect. Content lives as `.md` files on the server, is parsed through the `unified`/`remark` stack, and rendered as React components.
 
----
+## Stack
 
-## Стек
+- Next.js (App Router, SSG via `generateStaticParams`)
+- TypeScript
+- `unified` + `remark` + `rehype` — content parsing and transformation
+- `remark-directive` — foundation for the custom block syntax
 
-- **Next.js** (App Router, SSG через `generateStaticParams`)
-- **TypeScript**
-- **unified + remark + rehype** — парсинг и трансформация контента
-- **remark-directive** — основа для кастомного синтаксиса блоков
-
----
-
-## Структура проекта
+## Structure
 
 ```
 .
@@ -23,242 +19,50 @@
 │   └── [locale]/
 │       └── docs/
 │           └── [slug]/
-│               └── page.tsx          # страница документации
-├── content/                      # .md-файлы с контентом
+│               └── page.tsx          # docs page
+├── content/                      # .md content files
 │   ├── en/
 │   │   └── getting-started.md
 │   └── ru/
 │       └── getting-started.md
 ├── lib/
-│   ├── content.ts                # чтение .md-файлов с учётом локали
+│   ├── content.ts                # reads .md files per locale
 │   └── parser/
-│       ├── index.ts              # точка входа: parseDoc(markdown) → ReactNode
-│       ├── plugins/              # remark/rehype плагины
-│       │   ├── callout.ts        # обработка :::note / :::warning блоков
-│       │   └── code.ts           # обработка фрагментов кода
-│       └── components/           # React-компоненты рендерера
+│       ├── index.ts              # entry point: parseDoc(markdown) → ReactNode
+│       ├── plugins/              # remark/rehype plugins
+│       │   ├── callout.ts        # :::note / :::warning blocks
+│       │   └── code.ts           # code fence handling
+│       └── components/           # renderer React components
 │           ├── Callout.tsx
 │           ├── CodeBlock.tsx
-│           └── index.ts          # маппинг hast-тегов → компоненты
-├── i18n.ts                       # конфигурация локалей (next-intl)
-├── middleware.ts                 # определение локали из URL
-├── CLAUDE.md
+│           └── index.ts          # hast-tag → component mapping
+├── i18n.ts                       # locale config (next-intl)
+├── middleware.ts                 # locale detection from URL
 └── package.json
 ```
 
----
-
-## Команды
+## Commands
 
 ```bash
-npm run dev        # локальный dev-сервер
-npm run build      # production-сборка (SSG)
-npm run start      # запуск production-сборки
+npm run dev        # local dev server
+npm run build      # production build (SSG)
+npm run start      # run production build
 npm run lint       # ESLint
 npm run typecheck  # tsc --noEmit
 ```
 
----
-
-## Кастомный синтаксис (DSL)
-
-Диалект основан на стандартном Markdown с расширениями через `remark-directive`.
-
-### Параграфы
-
-Стандартные параграфы — разделяются пустой строкой. Никакого специального синтаксиса.
-
-```md
-Это первый параграф.
-
-Это второй параграф.
-```
-
-### Заголовки
-
-Стандартный синтаксис `#`. Используются уровни `h1`–`h4`. `h5` и `h6` не используются — если нужна более глубокая вложенность, это сигнал переструктурировать контент.
-
-```md
-# Заголовок страницы (h1, один на страницу)
-
-## Раздел (h2)
-
-### Подраздел (h3)
-
-#### Уточнение (h4)
-```
-
-### Сообщения (Callout-блоки)
-
-Блоки-выноски для акцентирования информации. Используют синтаксис директив `:::type`.
-
-Доступные типы:
-
-| Тип       | Назначение                                     |
-| --------- | ---------------------------------------------- |
-| `note`    | Нейтральная заметка, дополнительный контекст   |
-| `warning` | Предупреждение, осторожность                   |
-| `danger`  | Критическая информация, деструктивные действия |
-| `tip`     | Совет, лучшая практика                         |
-
-```md
-:::note Заголовок заметки
-Текст заметки. Поддерживает **жирный**, _курсив_ и `инлайн-код`.
-:::
-
-:::warning
-Заголовок необязателен — можно писать только текст.
-:::
-
-:::danger Деструктивное действие
-Это действие нельзя отменить.
-:::
-
-:::tip
-Используй `generateStaticParams` для SSG.
-:::
-```
-
-> Заголовок блока — опциональный. Текст внутри блока поддерживает инлайн-Markdown.
-
-### Фрагменты кода
-
-Стандартные code fence с указанием языка. Дополнительно поддерживается мета-строка.
-
-````md
-```tsx
-const x: number = 42;
-```
-````
-
-````
-
-Мета-строка (опционально) — передаётся как атрибуты в компонент `CodeBlock`:
-
-```md
-```tsx filename="app/page.tsx" highlight="3,5"
-export default function Page() {
-  return <main>Hello</main>
-}
-````
-
-```
-
-Поддерживаемые мета-атрибуты:
-
-| Атрибут | Тип | Описание |
-|---|---|---|
-| `filename` | string | Имя файла, отображается над блоком |
-| `highlight` | string | Строки для подсветки, через запятую |
-
----
-
-## Соглашения по коду
-
-### Общее
-
-- Язык: **TypeScript**, strict mode включён
-- Форматирование: **Prettier** (настройки в `.prettierrc`)
-- Линтинг: **ESLint** с конфигом Next.js
-
-### Парсер (`lib/parser/`)
-
-- Каждый кастомный элемент синтаксиса — отдельный remark/rehype плагин в `plugins/`
-- Плагин экспортирует одну функцию-фабрику: `() => (tree) => void`
-- Трансформации AST делаются через `unist-util-visit`
-- Финальный рендеринг — через `rehype-react` с маппингом в `components/index.ts`
-
-### Компоненты рендерера
-
-- Живут в `lib/parser/components/`
-- Это обычные React-компоненты, принимают `children` и атрибуты из hast
-- Не используют внешнее состояние — чистые презентационные компоненты
-
-### Контент (`.md`-файлы)
-
-- Хранится в `content/` в корне проекта
-- Один файл = одна страница документации
-- Имя файла = slug страницы (`getting-started.md` → `/docs/getting-started`)
-- Кодировка: UTF-8, окончания строк: LF
-
----
-
-## Интернационализация (i18n)
-
-Документация доступна на двух языках: **английском** (`en`) и **русском** (`ru`).
-
-### Организация контента
-
-```
-
-content/
-├── en/
-│ └── getting-started.md
-└── ru/
-└── getting-started.md
-
-```
-
-Каждая страница должна существовать на обоих языках. Если перевод отсутствует — фолбэк на `en`.
-
-### Роутинг
-
-Используется **next-intl** с локалью в URL-префиксе:
-
-```
-
-/en/docs/getting-started
-/ru/docs/getting-started
-
-```
-
-Конфигурация локалей — в `i18n.ts` в корне проекта. Middleware для определения локали — в `middleware.ts`.
-
-### Структура приложения
-
-```
-
-app/
-└── [locale]/
-└── docs/
-└── [slug]/
-└── page.tsx
-
-````
-
-### Чтение контента с учётом локали
-
-```ts
-// lib/content.ts
-export async function getDocContent(slug: string, locale: string) {
-  const filePath = path.join(process.cwd(), 'content', locale, `${slug}.md`)
-
-  try {
-    return await fs.readFile(filePath, 'utf-8')
-  } catch {
-    // фолбэк на английский
-    const fallback = path.join(process.cwd(), 'content', 'en', `${slug}.md`)
-    return await fs.readFile(fallback, 'utf-8')
-  }
-}
-````
-
-### Соглашения по контенту
-
-- Файлы на обоих языках должны иметь **одинаковую структуру** (те же заголовки, те же блоки кода)
-- Кастомные элементы синтаксиса (callout-блоки, code fence) — одинаковые на обоих языках, переводится только текст внутри
-- Имена файлов — всегда на **английском**, независимо от языка (`content/ru/getting-started.md`, не `nachalo-raboty.md`)
-
----
-
-## Добавление нового элемента синтаксиса
-
-1. Описать синтаксис в этом файле (раздел «Кастомный синтаксис»)
-2. Создать плагин в `lib/parser/plugins/<name>.ts`
-3. Подключить плагин в `lib/parser/index.ts`
-4. Создать React-компонент в `lib/parser/components/<Name>.tsx`
-5. Добавить маппинг в `lib/parser/components/index.ts`
-
-# Важные моменты
-
-- вся верстка и компоненты должны работать через компоненты altrone-ui
+## Content
+
+- Content lives in `content/` at the project root
+- One file = one docs page
+- File name = page slug (`getting-started.md` → `/docs/getting-started`)
+- Encoding: UTF-8, line endings: LF
+
+## Rules
+
+@../.claude/rules/typescript.md
+@../.claude/rules/comments.md
+@../.claude/rules/communication.md
+@../.claude/rules/altrone-ui-usage.md
+@../.claude/rules/docs-dsl.md
+@../.claude/rules/docs-i18n.md

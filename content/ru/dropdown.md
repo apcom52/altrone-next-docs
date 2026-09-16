@@ -23,14 +23,14 @@
 
 ## Состояние открытия в триггере
 
-`children` может быть функцией — она получает `opened`. Используйте для переключения иконки шеврона.
+`children` может быть функцией — она получает `open`. Используйте для переключения иконки шеврона.
 
 ```tsx
 <Dropdown content={<Dropdown.Menu>…</Dropdown.Menu>}>
-  {({ opened }) => (
+  {({ open }) => (
     <Button
       label="Экспорт"
-      additionalIcon={opened ? <ChevronUp /> : <ChevronDown />}
+      additionalIcon={open ? <ChevronUp /> : <ChevronDown />}
     />
   )}
 </Dropdown>
@@ -128,7 +128,7 @@ const [compact, setCompact] = useState(false);
 
 ## Свойства Dropdown
 
-:::prop[children*]{type="ReactNode | ((ctx: { opened: boolean; closePopup: () => void }) => ReactNode)"}
+:::prop[children*]{type="ReactNode | ((ctx: { open: boolean; closePopup: () => void }) => ReactNode)"}
 Триггер. Функция получает текущее состояние и колбэк закрытия.
 :::
 

@@ -1,6 +1,6 @@
 # TextInput
 
-Поле ввода — первое место, где пользователь говорит приложению что-то о себе. `TextInput` строится вокруг системы «островков»: иконки, кнопки, префиксы и индикаторы размещаются прямо внутри поля как дочерние компоненты. Поле автоматически адаптирует отступы через `ResizeObserver` — текст никогда не перекрывает элементы внутри.
+Поле ввода — первое место, где пользователь говорит приложению что-то о себе. `TextInput` строится вокруг системы «островков»: иконки, кнопки, префиксы и индикаторы размещаются прямо внутри поля как дочерние компоненты. Каждый остров встаёт в общий flex-ряд рядом с `<input>` — по краю `start` (по умолчанию) или `end`. Визуальная рамка поля — это примитив `Box`, поэтому `TextInput` использует ту же систему материалов, что и `Button`.
 
 ## Базовый пример
 
@@ -28,7 +28,7 @@ const [value, setValue] = useState('');
 import { Mail, Lock } from 'lucide-react';
 
 <TextInput value={email} onChange={setEmail} placeholder="Электронная почта">
-  <TextInput.IconIsland icon={<Mail size={16} />} placement="left" />
+  <TextInput.IconIsland icon={<Mail size={16} />} placement="start" />
 </TextInput>
 ```
 
@@ -42,13 +42,13 @@ import { Mail, Lock } from 'lucide-react';
 import { Search, X } from 'lucide-react';
 
 <TextInput value={search} onChange={setSearch} placeholder="Поиск">
-  <TextInput.IconIsland icon={<Search size={16} />} placement="left" />
+  <TextInput.IconIsland icon={<Search size={16} />} placement="start" />
   {search && (
     <TextInput.ActionIsland
       label="Очистить"
       icon={<X size={16} />}
       showLabel={false}
-      placement="right"
+      placement="end"
       onClick={() => setSearch('')}
     />
   )}
@@ -58,7 +58,7 @@ import { Search, X } from 'lucide-react';
 ::playground{src=TextInputClearDemo caption="Кнопка появляется только когда поле не пустое"}
 
 :::tip
-`label` в `ActionIsland` обязателен — он становится `title` для тултипа и именем для скринридера, даже если визуально скрыт через `showLabel={false}`.
+`label` в `ActionIsland` обязателен — при `showLabel={false}` он становится `aria-label` и всплывающей подсказкой (`ActionIsland` — это `Button variant="default"`, так что иконочный вариант получает тултип автоматически).
 :::
 
 ## Текстовые префиксы и суффиксы
@@ -68,13 +68,13 @@ import { Search, X } from 'lucide-react';
 ```tsx
 {/* Валюта */}
 <TextInput value={amount} onChange={setAmount} placeholder="0.00">
-  <TextInput.TextIsland label="$" placement="left" />
+  <TextInput.TextIsland label="$" placement="start" />
 </TextInput>
 
 {/* URL */}
 <TextInput value={domain} onChange={setDomain} placeholder="mysite">
-  <TextInput.TextIsland label="https://" placement="left" />
-  <TextInput.TextIsland label=".com" placement="right" />
+  <TextInput.TextIsland label="https://" placement="start" />
+  <TextInput.TextIsland label=".com" placement="end" />
 </TextInput>
 ```
 
@@ -86,8 +86,8 @@ import { Search, X } from 'lucide-react';
 
 ```tsx
 <TextInput value={query} onChange={setQuery}>
-  <TextInput.IconIsland icon={<Search size={16} />} placement="left" />
-  {isLoading && <TextInput.LoadingIsland placement="right" />}
+  <TextInput.IconIsland icon={<Search size={16} />} placement="start" />
+  {isLoading && <TextInput.LoadingIsland placement="end" />}
 </TextInput>
 ```
 
@@ -104,7 +104,7 @@ import { Search, X } from 'lucide-react';
   maxLength={160}
   placeholder="Расскажите о себе..."
 >
-  <TextInput.CharCounterIsland placement="right" />
+  <TextInput.CharCounterIsland placement="end" />
 </TextInput>
 ```
 
@@ -163,7 +163,7 @@ import { Search, X } from 'lucide-react';
       onChange={(v) => setForm({ ...form, email: v })}
       placeholder="user@example.com"
     >
-      <TextInput.IconIsland icon={<Mail size={16} />} placement="left" />
+      <TextInput.IconIsland icon={<Mail size={16} />} placement="start" />
     </TextInput>
   </Form.Field>
 </Form>
@@ -171,7 +171,7 @@ import { Search, X } from 'lucide-react';
 
 ## Острова
 
-Острова — это дочерние компоненты, которые размещаются внутри поля. Они не конкурируют за место с текстом: поле автоматически корректирует внутренние отступы под каждый остров через `ResizeObserver`.
+Острова — это дочерние компоненты, которые размещаются внутри поля. Они не конкурируют за место с текстом: `<input>` и острова лежат в одном flex-ряду, поэтому текст не перекрывает элементы внутри. `placement="start"` (по умолчанию) ставит остров перед полем, `placement="end"` — после. Пассивные острова — простые inline-чипы; `ActionIsland` — это `Button`.
 
 :::col-2
 
@@ -192,8 +192,8 @@ import { Search, X } from 'lucide-react';
 
 Каждый остров принимает проп `placement`:
 
-- `"left"` — слева от текста (по умолчанию)
-- `"right"` — справа от текста
+- `"start"` — перед полем (по умолчанию)
+- `"end"` — после поля
 
 Несколько островков с одной стороны выстраиваются в порядке объявления. Конфликтов нет — поле само пересчитывает отступы.
 
@@ -210,7 +210,7 @@ import { Search, X } from 'lucide-react';
 :::
 
 :::prop[variant]{type="'default' | 'transparent'" default="'default'"}
-Визуальный стиль. `transparent` убирает рамку и фон — для встроенного редактирования.
+Визуальный стиль. `default` — матовая подложка `plate` с тонкой обводкой; `transparent` без заливки и рамки в покое, одинаково подсвечивает фон при наведении и фокусе (как `text`-кнопка) — для встроенного редактирования.
 :::
 
 :::prop[invalid]{type="boolean" default="false"}
@@ -233,12 +233,24 @@ import { Search, X } from 'lucide-react';
 Применять ли визуальный стиль для `readOnly`. Отключите, если хотите, чтобы поле выглядело обычным при запрете редактирования.
 :::
 
-:::prop[wrapperClassName]{type="string"}
-Дополнительный CSS-класс для внешней обёртки `<div>`.
+:::prop[className]{type="string"}
+Класс для корневого DOM-элемента (визуальной обёртки `Box`) — как и у любого другого компонента библиотеки.
 :::
 
-:::prop[wrapperStyle]{type="CSSProperties"}
-Инлайн-стили для внешней обёртки. Используйте для задания ширины — стили на самом `<input>` растягивают только внутренний элемент.
+:::prop[style]{type="CSSProperties"}
+Инлайн-стили для корневого DOM-элемента (визуальной обёртки). Используйте для задания ширины.
+:::
+
+:::prop[inputClassName]{type="string"}
+Дополнительный CSS-класс для самого `<input>` (или элемента из `asChild`).
+:::
+
+:::prop[inputStyle]{type="CSSProperties"}
+Инлайн-стили для самого `<input>` (или элемента из `asChild`).
+:::
+
+:::prop[inputRef]{type="Ref<HTMLInputElement>"}
+Ссылка на сам `<input>` (или на элемент из `asChild`). `ref` указывает на корневой элемент (визуальную обёртку).
 :::
 
 :::prop[asChild]{type="boolean" default="false"}

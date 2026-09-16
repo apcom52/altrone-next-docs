@@ -25,6 +25,7 @@ export interface NavFlatGroupItem {
   title: string
   // when set, overrides slug for URL generation; "" means no prefix (flat URLs)
   urlBase?: string
+  icon?: string
   pages: NavPage[]
 }
 
@@ -68,6 +69,7 @@ export interface NavFlatGroupItemRaw {
   slug: string
   title: LocalizedTitle
   urlBase?: string
+  icon?: string
   pages: NavPageRaw[]
 }
 

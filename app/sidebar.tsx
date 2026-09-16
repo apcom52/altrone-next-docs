@@ -1,37 +1,36 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import type { ComponentType, SVGProps } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { NavigationList } from "altrone-ui";
+import { Flex, NavigationList } from "altrone-ui";
+import * as Logos from "altrone-ui/logos";
+import { LogoMark } from "./LogoMark";
+import badgeStyles from "./FoundationsIcon.module.css";
 import {
+  Atom,
+  Boxes,
   CaseSensitive,
   CircleSmall,
-  Cog,
+  Compass,
   FileSpreadsheet,
-  FolderCog,
   Form,
   House,
+  Layers,
+  LayoutGrid,
   LayoutPanelLeft,
   Ligature,
   MonitorSmartphone,
   PlugZap,
   Rss,
   Signpost,
+  SlidersHorizontal,
   SolarPanel,
   SquareRoundCorner,
   SunMoon,
   SwatchBook,
 } from "lucide-react";
-import Image from "next/image";
-import s from "./sidebar.module.css";
-import type {
-  Navigation,
-  NavItem,
-  NavPageItem,
-  NavFlatGroupItem,
-  NavNestedGroupItem,
-} from "@/lib/types";
+import type { Navigation, NavPageItem, NavFlatGroupItem } from "@/lib/types";
 
 const ICON_MAP: Record<string, React.ReactElement> = {
   House: <House />,
@@ -49,20 +48,51 @@ const ICON_MAP: Record<string, React.ReactElement> = {
   FileSpreadsheet: <FileSpreadsheet />,
   Signpost: <Signpost />,
   CircleSmall: <CircleSmall />,
+  Layers: <Layers />,
+  Boxes: <Boxes />,
+  SlidersHorizontal: <SlidersHorizontal />,
+  LayoutGrid: <LayoutGrid />,
+  Compass: <Compass />,
+  Atom: <Atom />,
+};
+
+const COMPONENTS_GROUP_LABEL: Record<string, string> = {
+  en: "Components",
+  ru: "Компоненты",
 };
 
 function getIcon(name?: string): React.ReactElement | undefined {
   return name ? ICON_MAP[name] : undefined;
 }
 
+/** `slug` is camelCase and matches a logo export 1:1 once capitalized — except these overrides. */
+const FOUNDATIONS_ICON_OVERRIDES: Record<string, keyof typeof Logos> = {
+  layout: "Layouts",
+  loading: "DataLoading",
+};
+
+const COMPONENT_ICON_OVERRIDES: Record<string, keyof typeof Logos> = {};
+
+function resolveLogoIcon(
+  slug: string,
+  overrides: Record<string, keyof typeof Logos>
+): React.ReactElement | undefined {
+  const name =
+    overrides[slug] ?? ((slug.charAt(0).toUpperCase() + slug.slice(1)) as keyof typeof Logos);
+  const Icon = Logos[name] as ComponentType<SVGProps<SVGSVGElement>> | undefined;
+  return Icon ? (
+    <span className={badgeStyles.badge}>
+      <Icon width={28} height={28} />
+    </span>
+  ) : undefined;
+}
+
+const getFoundationsIcon = (slug: string) => resolveLogoIcon(slug, FOUNDATIONS_ICON_OVERRIDES);
+const getComponentIcon = (slug: string) => resolveLogoIcon(slug, COMPONENT_ICON_OVERRIDES);
+
 export const Sidebar = ({ nav }: { nav: Navigation }) => {
   const pathname = usePathname();
   const locale = pathname.split("/")[1] ?? "en";
-
-  const [isAdmin, setIsAdmin] = useState(false);
-  useEffect(() => {
-    setIsAdmin(localStorage.getItem("admin") === "true");
-  }, []);
 
   const isSelected = (href: string) => pathname === href;
 
@@ -70,81 +100,34 @@ export const Sidebar = ({ nav }: { nav: Navigation }) => {
     slug: string,
     title: string,
     href: string,
-    icon?: string
+    icon?: React.ReactElement
   ) => (
     <NavigationList.Link
       key={slug}
       asChild
       label={title}
-      icon={getIcon(icon)}
+      icon={icon}
       selected={isSelected(href)}
     >
       <Link href={href} />
     </NavigationList.Link>
   );
 
-  const renderGroup = (item: NavFlatGroupItem) => {
-    const prefix = item.urlBase !== undefined ? item.urlBase : item.slug;
-    return (
-      <NavigationList.Group key={item.slug} title={item.title}>
-        {item.pages.map((page) => {
-          const href = prefix
-            ? `/${locale}/${prefix}/${page.slug}`
-            : `/${locale}/${page.slug}`;
-          return renderPageLink(page.slug, page.title, href, page.icon);
-        })}
-      </NavigationList.Group>
-    );
-  };
-
-  const renderNestedGroup = (item: NavNestedGroupItem) => (
-    <NavigationList.Group key={item.slug} title={item.title}>
-      {item.groups.map((subGroup) => {
-        const isSubGroupActive = subGroup.pages.some(
-          (page) =>
-            pathname ===
-            `/${locale}/${item.slug}/${subGroup.slug}/${page.slug}`
-        );
-        return (
-          <NavigationList.Link
-            key={subGroup.slug}
-            label={subGroup.title}
-            icon={getIcon(subGroup.icon)}
-            selected={isSubGroupActive}
-          >
-            {subGroup.pages.map((page) =>
-              renderPageLink(
-                page.slug,
-                page.title,
-                `/${locale}/${item.slug}/${subGroup.slug}/${page.slug}`,
-                page.icon
-              )
-            )}
-          </NavigationList.Link>
-        );
-      })}
-    </NavigationList.Group>
-  );
-
   const topLevelPages = nav.items.filter(
     (item): item is NavPageItem => item.type === "page"
   );
   const groups = nav.items.filter(
-    (item): item is NavFlatGroupItem | NavNestedGroupItem =>
-      item.type === "group" || item.type === "nested-group"
+    (item): item is NavFlatGroupItem => item.type === "group"
   );
+  const foundations = groups.find((item) => item.slug === "foundations");
+  const componentCategories = groups.filter((item) => item.slug !== "foundations");
 
   return (
     <NavigationList>
       <NavigationList.Header>
-        <div className={s.logo}>
-          <Image
-            src="/altrone-light.png"
-            alt="Altrone logo"
-            width={120.6}
-            height={24}
-          />
-        </div>
+        <Flex justify="center">
+          <LogoMark locale={locale} />
+        </Flex>
       </NavigationList.Header>
 
       {topLevelPages.length > 0 && (
@@ -154,22 +137,53 @@ export const Sidebar = ({ nav }: { nav: Navigation }) => {
               item.slug,
               item.title,
               `/${locale}/${item.slug}`,
-              item.icon
+              getIcon(item.icon)
             )
           )}
         </NavigationList.Group>
       )}
 
-      {groups.map((item) =>
-        item.type === "group"
-          ? renderGroup(item)
-          : renderNestedGroup(item)
+      {foundations && (
+        <NavigationList.Group title={foundations.title}>
+          {foundations.pages.map((page) => {
+            const prefix = foundations.urlBase ?? foundations.slug;
+            return renderPageLink(
+              page.slug,
+              page.title,
+              `/${locale}/${prefix}/${page.slug}`,
+              getFoundationsIcon(page.slug)
+            );
+          })}
+        </NavigationList.Group>
       )}
 
-      {isAdmin && (
-        <NavigationList.Group title="Администрирование">
-          <NavigationList.Link icon={<Cog />} label="Основное" />
-          <NavigationList.Link icon={<FolderCog />} label="Редактор" />
+      {componentCategories.length > 0 && (
+        <NavigationList.Group title={COMPONENTS_GROUP_LABEL[locale] ?? COMPONENTS_GROUP_LABEL.en}>
+          {componentCategories.map((category) => {
+            const prefix = category.urlBase ?? category.slug;
+            const href = `/${locale}/${prefix}`;
+            return (
+              <NavigationList.Link
+                key={category.slug}
+                asChild
+                label={category.title}
+                icon={getIcon(category.icon)}
+                selected={isSelected(href) || pathname.startsWith(`${href}/`)}
+              >
+                {[
+                  <Link key="index" href={href} />,
+                  ...category.pages.map((page) =>
+                    renderPageLink(
+                      page.slug,
+                      page.title,
+                      `/${locale}/${prefix}/${page.slug}`,
+                      getComponentIcon(page.slug)
+                    )
+                  ),
+                ]}
+              </NavigationList.Link>
+            );
+          })}
         </NavigationList.Group>
       )}
     </NavigationList>

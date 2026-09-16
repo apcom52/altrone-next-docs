@@ -2,7 +2,7 @@
 
 import { Highlight, themes } from "prism-react-renderer";
 import s from "./code.module.css";
-import { Scrollable } from "altrone-ui";
+import { Scrollable, useAltroneTheme, useMediaMatch } from "altrone-ui";
 
 export function CodeBlock({
   lang = "",
@@ -13,11 +13,15 @@ export function CodeBlock({
   code?: string;
   filename?: string;
 }) {
+  const { theme } = useAltroneTheme();
+  const prefersDark = useMediaMatch("(prefers-color-scheme: dark)");
+  const isDark = theme === "dark" || (theme === "auto" && prefersDark);
+
   return (
     <Scrollable className={s.code}>
       {filename && <div className="code-block__filename">{filename}</div>}
       <Highlight
-        theme={themes.github}
+        theme={isDark ? themes.vsDark : themes.github}
         code={code.trim()}
         language={lang || "text"}
       >

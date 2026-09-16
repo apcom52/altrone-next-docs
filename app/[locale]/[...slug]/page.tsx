@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import { getDocContent } from '@/lib/content'
 import { parseDoc } from '@/lib/parser'
 import { parseHeadings } from '@/lib/headings'
-import { DocSideNav } from './DocSideNav'
+import { DocSideNav } from '@/components/DocSideNav'
+import { PageAside } from '../../AsideContext'
 
 export default async function DocPage({
   params,
@@ -25,11 +26,9 @@ export default async function DocPage({
   ])
 
   return (
-    <div className="doc-layout">
-      <article className="doc-content">
-        {rendered}
-      </article>
-      <DocSideNav headings={headings} />
-    </div>
+    <>
+      <PageAside>{headings.length > 0 ? <DocSideNav headings={headings} locale={locale} /> : null}</PageAside>
+      <article className="doc-article">{rendered}</article>
+    </>
   )
 }

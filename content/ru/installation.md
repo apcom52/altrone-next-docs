@@ -27,19 +27,19 @@ import 'altrone-ui/dist/style.css'
 
 ## Настройка провайдера
 
-Оберните приложение компонентом `AltroneApplication` для включения темизации:
+Оберните приложение компонентом `Application` для включения темизации:
 
 ```tsx filename="app/layout.tsx"
-import { AltroneApplication } from 'altrone-ui'
+import { Application } from 'altrone-ui'
 import 'altrone-ui/dist/style.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <body>
-        <AltroneApplication accent="purple">
+        <Application accent="purple">
           {children}
-        </AltroneApplication>
+        </Application>
       </body>
     </html>
   )
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ## Доступные акцентные цвета
 
-Параметр `accent` компонента `AltroneApplication` управляет основным цветом всех компонентов:
+Параметр `accent` компонента `Application` управляет основным цветом всех компонентов:
 
 | Значение | Описание |
 |----------|----------|
@@ -70,5 +70,5 @@ export default function Page() {
 ```
 
 :::note
-Если стили не применяются, убедитесь, что `AltroneApplication` оборачивает компонент и импорт CSS присутствует.
+Если стили не применяются, убедитесь, что `Application` оборачивает компонент и импорт CSS присутствует.
 :::

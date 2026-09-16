@@ -6,8 +6,8 @@ import { Home, Search } from "lucide-react";
 export default function BottomNavigationFlushDemo() {
   return (
     <BottomNavigation floating={false}>
-      <BottomNavigation.Item icon={<Home />} label="Home" selected />
-      <BottomNavigation.Item icon={<Search />} label="Search" />
+      <BottomNavigation.Link icon={<Home />} label="Home" selected />
+      <BottomNavigation.Link icon={<Search />} label="Search" />
     </BottomNavigation>
   );
 }

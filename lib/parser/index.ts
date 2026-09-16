@@ -1,5 +1,6 @@
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
+import remarkGfm from 'remark-gfm'
 import remarkDirective from 'remark-directive'
 import remarkRehype from 'remark-rehype'
 import rehypeReact from 'rehype-react'
@@ -16,6 +17,7 @@ import { components } from './components'
 export async function parseDoc(markdown: string): Promise<ReactNode> {
   const file = await unified()
     .use(remarkParse)
+    .use(remarkGfm)
     .use(remarkDirective)
     .use(calloutPlugin)
     .use(columnsPlugin)

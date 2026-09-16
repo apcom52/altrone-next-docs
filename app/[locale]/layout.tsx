@@ -1,4 +1,6 @@
 import { AltroneWrapper } from '../AltroneWrapper'
+import { AsideProvider } from '../AsideContext'
+import { ScreenShell } from '../ScreenShell'
 import { getNavigation } from '@/lib/navigation'
 
 export default async function LocaleLayout({
@@ -11,5 +13,13 @@ export default async function LocaleLayout({
   const { locale } = await params
   const nav = await getNavigation(locale)
 
-  return <AltroneWrapper nav={nav}>{children}</AltroneWrapper>
+  return (
+    <AltroneWrapper>
+      <AsideProvider>
+        <ScreenShell locale={locale} nav={nav}>
+          {children}
+        </ScreenShell>
+      </AsideProvider>
+    </AltroneWrapper>
+  )
 }

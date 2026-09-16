@@ -1,23 +1,23 @@
-# AltroneApplication
+# Application
 
-`AltroneApplication` — корневой компонент каждого приложения на Altrone UI. Он устанавливает тему, акцентный цвет, язык интерфейса, систему диалогов и уведомлений. Все остальные компоненты должны находиться внутри него — без этой обёртки они не получат нужных CSS-переменных и контекстов.
+`Application` — корневой компонент каждого приложения на Altrone UI. Он устанавливает тему, акцентный цвет, язык интерфейса, систему диалогов и уведомлений. Все остальные компоненты должны находиться внутри него — без этой обёртки они не получат нужных CSS-переменных и контекстов.
 
 ## Минимальная настройка
 
 ```tsx
-import { AltroneApplication } from 'altrone-ui';
+import { Application } from 'altrone-ui';
 import 'altrone-ui/dist/style.css';
 
 export default function App() {
   return (
-    <AltroneApplication>
+    <Application>
       {/* ваше приложение */}
-    </AltroneApplication>
+    </Application>
   );
 }
 ```
 
-Без пропов компонент работает с разумными значениями по умолчанию: тема `auto`, акцент `blue`, язык `en`. Для большинства проектов достаточно сразу добавить локаль.
+Без пропов компонент работает с разумными значениями по умолчанию: тема `auto`, акцент `blue`, язык `en`.
 
 ## Тема
 
@@ -25,17 +25,21 @@ export default function App() {
 
 ```tsx
 {/* Следит за системной темой — поведение по умолчанию */}
-<AltroneApplication theme="auto">
+<Application theme="auto">
 
 {/* Всегда светлая */}
-<AltroneApplication theme="light">
+<Application theme="light">
 
 {/* Всегда тёмная */}
-<AltroneApplication theme="dark">
+<Application theme="dark">
 ```
 
 :::note
-При тёмной теме Altrone добавляет класс `AltroneDark` одновременно на `<html>` и на корневой элемент. Это нужно, чтобы порталы (диалоги, тултипы, дропдауны), которые рендерятся вне основного дерева, тоже получили правильные CSS-переменные.
+При смене темы Altrone выставляет атрибут `data-altrone-theme` одновременно на `<html>` и на корневой элемент. Это нужно, чтобы порталы (диалоги, тултипы, дропдауны), которые рендерятся вне основного дерева, тоже получили правильные CSS-переменные.
+:::
+
+:::note
+`Application` также зеркалит фон приложения на `<body>` и `<html>` (инлайн-стилем, с восстановлением при размонтировании) и обновляет его при смене темы. Без этого зона overscroll (rubber-band при скролле, особенно в Safari) мигала бы белым — цветовые токены объявлены на корневом элементе, а не на `<html>`.
 :::
 
 ## Акцентный цвет
@@ -43,7 +47,7 @@ export default function App() {
 `accent` задаёт первичный цвет, который используется во всех компонентах: кнопки `submit`, фокус-кольца, индикаторы, переключатели. Выбирайте его один раз — смешивать акценты в рамках одного приложения не стоит.
 
 ```tsx
-<AltroneApplication accent="indigo">
+<Application accent="indigo">
 ```
 
 Доступные значения: `red`, `pink`, `purple`, `indigo`, `blue`, `teal`, `amber`, `brown`.
@@ -55,42 +59,21 @@ export default function App() {
 Проп `language` задаёт язык встроенных строк: пустые состояния, сообщения об ошибках валидации, подписи в пагинации и других компонентах. Он не влияет на ваш контент — только на тексты внутри самой библиотеки.
 
 ```tsx
-<AltroneApplication language="ru">
+<Application language="ru">
 ```
 
-Доступные языки: `en`, `ru`, `fr`, `ge`, `sp`.
-
-### Форматирование дат и чисел
-
-Отдельно от `language` идёт `config.locale.locale` — BCP 47-тег локали для форматирования дат, чисел и валют через стандартный `Intl` API браузера. Без него в консоли появится предупреждение в режиме разработки.
-
-```tsx
-<AltroneApplication
-  language="ru"
-  config={{ locale: { locale: 'ru-RU' } }}
->
-```
-
-Это разделение намеренное: язык интерфейса и формат локали — разные вещи. Приложение с интерфейсом на английском может работать с русской локалью для форматирования данных.
-
-```tsx
-{/* Интерфейс на английском, данные форматируются по американским стандартам */}
-<AltroneApplication
-  language="en"
-  config={{ locale: { locale: 'en-US' } }}
->
-```
+Доступные языки: `en`, `ru`, `fr`, `de`, `es`, `zh`, `pt`, `tr`.
 
 ### Переопределение отдельных строк
 
 Если нужно заменить конкретную фразу без создания полного перевода, используйте `customLabels`. Ключи соответствуют формату `<компонент>.<строка>`.
 
 ```tsx
-<AltroneApplication
+<Application
   language="en"
   customLabels={{
     'autocompleteInput.loadError': 'Failed to load suggestions',
-    'dataTable.noData': 'Nothing here yet',
+    'dataTable.empty': 'Nothing here yet',
   }}
 >
 ```
@@ -98,44 +81,45 @@ export default function App() {
 ## Полная конфигурация
 
 ```tsx
-<AltroneApplication
-  theme="auto"
-  accent="blue"
-  language="ru"
-  config={{ locale: { locale: 'ru-RU' } }}
->
+<Application theme="auto" accent="blue" language="ru">
   <App />
-</AltroneApplication>
+</Application>
+```
+
+## Рендер в собственный корневой элемент (asChild)
+
+По умолчанию `Application` рендерит собственный `<div>`. Проп `asChild` переносит его атрибуты и классы на единственный переданный дочерний элемент вместо этого — например, чтобы использовать в качестве корня ваш собственный `<body>`.
+
+```tsx
+<Application asChild theme="auto" language="ru">
+  <body>
+    <App />
+  </body>
+</Application>
 ```
 
 ## Использование в Next.js
 
-В Next.js App Router `AltroneApplication` должен находиться в клиентском компоненте. Обычно это корневой layout.
+В Next.js App Router `Application` должен находиться в клиентском компоненте. Обычно это корневой layout.
 
 ```tsx
 // app/layout.tsx
-import { AltroneApplication } from 'altrone-ui';
+import { Application } from 'altrone-ui';
 import 'altrone-ui/dist/style.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body>
-        <AltroneApplication
-          theme="auto"
-          language="ru"
-          config={{ locale: { locale: 'ru-RU' } }}
-        >
-          {children}
-        </AltroneApplication>
-      </body>
+      <Application asChild theme="auto" language="ru">
+        <body>{children}</body>
+      </Application>
     </html>
   );
 }
 ```
 
 :::warning
-Если вы используете серверные компоненты, не импортируйте `AltroneApplication` напрямую в серверный модуль — оберните его в отдельный клиентский компонент с директивой `'use client'`.
+Если вы используете серверные компоненты, не импортируйте `Application` напрямую в серверный модуль — оберните его в отдельный клиентский компонент с директивой `'use client'`.
 :::
 
 ## Свойства
@@ -148,7 +132,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 Акцентный цвет дизайн-системы. Применяется глобально ко всем компонентам через CSS-переменные.
 :::
 
-:::prop[language]{type="'en' | 'ru' | 'fr' | 'ge' | 'sp'" default="'en'"}
+:::prop[language]{type="'en' | 'ru' | 'fr' | 'de' | 'es' | 'zh' | 'pt' | 'tr'" default="'en'"}
 Язык встроенных строк компонентов. Не влияет на пользовательский контент.
 :::
 
@@ -156,23 +140,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 Переопределение отдельных строк локализации. Дополняет, а не заменяет выбранный `language`.
 :::
 
-:::prop[config]{type="Partial<ConsumerConfigurationContext>"}
-Низкоуровневая конфигурация компонентов. Наиболее частый параметр — `config.locale.locale`: BCP 47-тег для `Intl`-форматирования дат и чисел.
-:::
-
-:::prop[sidebar]{type="ScreenProps['sidebar']"}
-Конфигурация боковой панели верхнего уровня, передаётся во внутренний `Screen`.
-:::
-
-:::prop[header]{type="ScreenProps['header']"}
-Конфигурация шапки верхнего уровня, передаётся во внутренний `Screen`.
+:::prop[asChild]{type="boolean" default="false"}
+Переносит атрибуты и классы корня на единственный дочерний элемент вместо рендера собственного `<div>` — например, для использования вашего `<body>` в качестве корня.
 :::
 
 ## Рекомендации
 
-**Один экземпляр на всё приложение.** `AltroneApplication` не предназначен для вложения или использования несколько раз. Один корневой экземпляр устанавливает единую среду для всего дерева компонентов.
-
-**Задавайте локаль явно.** Предупреждение в консоли при отсутствии `config.locale.locale` — не формальность. Без неё даты и числа будут форматироваться по дефолтной системной локали пользователя, что может давать непредсказуемый результат.
+**Один экземпляр на всё приложение.** `Application` не предназначен для вложения или использования несколько раз. Один корневой экземпляр устанавливает единую среду для всего дерева компонентов.
 
 **`theme="auto"` — правильный дефолт.** Пользователи, выбравшие тёмную тему в системе, ожидают её везде. Не лишайте их этого без причины.
 

@@ -1,6 +1,6 @@
 # Bottom Navigation
 
-Нижняя навигация — основной способ переключения между разделами в мобильных интерфейсах: она всегда на виду и не требует прокрутки к верху экрана. `BottomNavigation` — контейнер, `BottomNavigation.Item` — отдельная вкладка. Выбранный элемент подсвечивается анимированной подложкой, которая плавно перемещается между вкладками с помощью `framer-motion`.
+Нижняя навигация — основной способ переключения между разделами в мобильных интерфейсах: она всегда на виду и не требует прокрутки к верху экрана. `BottomNavigation` — контейнер, `BottomNavigation.Link` — отдельная вкладка (рендерит `<a>`). Выбранный элемент помечается `aria-current="page"` и подсвечивается приподнятой подложкой, которая плавно перемещается между вкладками. Размеры компактные — иконка 24px над подписью 12px, чтобы панель не перетягивала внимание с контента.
 
 ## Базовое использование
 
@@ -8,13 +8,13 @@
 const [active, setActive] = useState("home");
 
 <BottomNavigation>
-  <BottomNavigation.Item
+  <BottomNavigation.Link
     icon={<Home />}
     label="Home"
     selected={active === "home"}
     onClick={() => setActive("home")}
   />
-  <BottomNavigation.Item
+  <BottomNavigation.Link
     icon={<Wallet />}
     label="Wallet"
     selected={active === "wallet"}
@@ -27,14 +27,14 @@ const [active, setActive] = useState("home");
 
 ## Бейджи
 
-`badge` показывает счётчик уведомлений или короткую метку статуса поверх иконки.
+`badge` показывает счётчик уведомлений или короткую метку статуса в правом верхнем углу вкладки — тем же чипом (`plate`-пилюля со смещением в угол), что и бейдж кнопки с одной иконкой.
 
 ```tsx
 <BottomNavigation>
-  <BottomNavigation.Item icon={<Home />} label="Home" selected />
-  <BottomNavigation.Item icon={<Bell />} label="Alerts" badge="3" />
-  <BottomNavigation.Item icon={<Wallet />} label="Wallet" badge="NEW" />
-  <BottomNavigation.Item icon={<User />} label="Profile" />
+  <BottomNavigation.Link icon={<Home />} label="Home" selected />
+  <BottomNavigation.Link icon={<Bell />} label="Alerts" badge="3" />
+  <BottomNavigation.Link icon={<Wallet />} label="Wallet" badge="NEW" />
+  <BottomNavigation.Link icon={<User />} label="Profile" />
 </BottomNavigation>
 ```
 
@@ -46,8 +46,8 @@ const [active, setActive] = useState("home");
 
 ```tsx
 <BottomNavigation floating={false}>
-  <BottomNavigation.Item icon={<Home />} label="Home" selected />
-  <BottomNavigation.Item icon={<Search />} label="Search" />
+  <BottomNavigation.Link icon={<Home />} label="Home" selected />
+  <BottomNavigation.Link icon={<Search />} label="Search" />
 </BottomNavigation>
 ```
 
@@ -55,34 +55,22 @@ const [active, setActive] = useState("home");
 
 ## Интеграция с роутером
 
-По умолчанию `BottomNavigation.Item` рендерит `<a>`. Используйте `renderFunc`, чтобы подставить компонент роутера вместо стандартной ссылки, сохранив стили и анимацию подложки.
+По умолчанию `BottomNavigation.Link` рендерит `<a>`. Задайте `asChild` и передайте единственным потомком `<Link>` вашего роутера — элемент перенесёт на него свои стили, `ref` и обработчики, а иконку, подпись, бейдж и подложку по-прежнему возьмёт из пропсов.
 
 ```tsx
 import { Link, useLocation } from "react-router-dom";
 
-const renderLink = (ref, props) => <Link ref={ref} {...props} />;
+const { pathname } = useLocation();
 
 <BottomNavigation>
-  <BottomNavigation.Item
-    icon={<Home />}
-    label="Home"
-    href="/home"
-    selected={location.pathname === "/home"}
-    renderFunc={renderLink}
-  />
-  <BottomNavigation.Item
-    icon={<User />}
-    label="Profile"
-    href="/profile"
-    selected={location.pathname === "/profile"}
-    renderFunc={renderLink}
-  />
+  <BottomNavigation.Link icon={<Home />} label="Home" asChild selected={pathname === "/home"}>
+    <Link to="/home" />
+  </BottomNavigation.Link>
+  <BottomNavigation.Link icon={<User />} label="Profile" asChild selected={pathname === "/profile"}>
+    <Link to="/profile" />
+  </BottomNavigation.Link>
 </BottomNavigation>
 ```
-
-:::note
-`renderFunc` получает `(ref, props)` и должна вернуть готовый React-элемент — это позволяет заменить `<a>` на `Link` из любого роутера, не теряя доступность и анимацию.
-:::
 
 ## Свойства BottomNavigation
 
@@ -90,7 +78,7 @@ const renderLink = (ref, props) => <Link ref={ref} {...props} />;
 Приподнятый визуальный стиль (карточка с тенью). При `false` — плоская панель, прижатая к краю экрана.
 :::
 
-## Свойства BottomNavigation.Item
+## Свойства BottomNavigation.Link
 
 :::prop[icon*]{type="ReactElement"}
 Иконка над подписью. Обязательный проп.
@@ -105,11 +93,11 @@ const renderLink = (ref, props) => <Link ref={ref} {...props} />;
 :::
 
 :::prop[badge]{type="string | number | ReactElement"}
-Бейдж в верхнем правом углу элемента: счётчик уведомлений или короткая метка.
+Бейдж-чип в правом верхнем углу элемента: счётчик уведомлений или короткая метка.
 :::
 
-:::prop[renderFunc]{type="(ref, props) => ReactElement"}
-Кастомная функция рендера. Позволяет заменить `<a>` на компонент роутера или любой другой элемент.
+:::prop[asChild]{type="boolean" default="false"}
+Перенести стили, `ref` и обработчики на единственный дочерний элемент (`<Link>` роутера) вместо рендера `<a>`.
 :::
 
 ## Рекомендации
@@ -120,4 +108,4 @@ const renderLink = (ref, props) => <Link ref={ref} {...props} />;
 
 **Бейдж — для того, что требует внимания прямо сейчас.** Постоянный счётчик на вкладке, где он никогда не обнуляется, быстро теряет смысл как сигнал.
 
-**Используйте `renderFunc` вместо оборачивания `Item` в `Link`.** Оборачивание сломает подложку и клик-зону; `renderFunc` сохраняет их, просто подставляя другой элемент.
+**Используйте `asChild` вместо оборачивания `BottomNavigation.Link` в `<Link>` роутера.** Оборачивание сломает подложку и клик-зону; `asChild` переносит их на элемент роутера.

@@ -28,7 +28,7 @@ export default function App() {
 ```
 
 :::tip
-Wrap your app with `AltroneApplication` to enable theming and consistent styling across all components.
+Wrap your app with `Application` to enable theming and consistent styling across all components.
 :::
 
 ## Next steps

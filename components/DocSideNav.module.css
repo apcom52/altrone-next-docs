@@ -1,0 +1,9 @@
+.sticky {
+  position: sticky;
+  top: calc(var(--screen-content-padding-block) + var(--screen-header-height));
+  max-height: calc(
+    100vh - var(--screen-content-padding-block) - var(--screen-header-height) -
+      var(--screen-content-padding-block)
+  );
+  overflow-y: auto;
+}

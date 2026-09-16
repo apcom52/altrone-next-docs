@@ -4,12 +4,18 @@
 
 ## Базовое использование
 
-Передайте триггер как `children`, а содержимое панели — в `content`. `Drawer` управляет состоянием открытия самостоятельно.
+`Drawer` не привязан к элементу-триггеру, в отличие от `Popover`/`Dropdown`/`Tooltip` — открывайте его явно через `open`, закрывайте через `onClose`. Содержимое панели передаётся в `content`.
 
 ```tsx
-<Drawer title="Настройки профиля" content={<ProfileForm />}>
-  <Button label="Открыть настройки" icon={<Settings />} />
-</Drawer>
+const [open, setOpen] = useState(false);
+
+<Button label="Открыть настройки" icon={<Settings />} onClick={() => setOpen(true)} />
+<Drawer
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Настройки профиля"
+  content={<ProfileForm />}
+/>
 ```
 
 ::playground{src=DrawerBasicDemo caption="Закрыть можно кнопкой ✕, клавишей Escape или кликом по фону"}
@@ -19,7 +25,10 @@
 Разместите кнопки в `footer`, если панель требует явного подтверждения. Футер остаётся видимым при прокрутке содержимого.
 
 ```tsx
+<Button label="Фильтры" icon={<Filter />} onClick={() => setOpen(true)} />
 <Drawer
+  open={open}
+  onClose={() => setOpen(false)}
   title="Фильтры"
   content={<FilterPanel />}
   footer={
@@ -28,9 +37,7 @@
       <Button label="Применить" variant="submit" style={{ flex: 1 }} />
     </Flex>
   }
->
-  <Button label="Фильтры" icon={<Filter />} />
-</Drawer>
+/>
 ```
 
 ::playground{src=DrawerFooterDemo caption="Футер закреплён внизу и не прокручивается вместе с содержимым"}
@@ -40,9 +47,14 @@
 По умолчанию панель выдвигается слева. `placement="end"` — справа. Выбор зависит от того, в какой части интерфейса находится триггер и откуда пользователь ожидает появления панели.
 
 ```tsx
-<Drawer title="Уведомления" placement="end" content={<NotificationList />}>
-  <Button label="Уведомления" icon={<Bell />} badge={4} />
-</Drawer>
+<Button label="Уведомления" icon={<Bell />} badge={4} onClick={() => setOpen(true)} />
+<Drawer
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Уведомления"
+  placement="end"
+  content={<NotificationList />}
+/>
 ```
 
 ::playground{src=DrawerEndDemo caption="Панель появляется справа — placement=end"}
@@ -52,29 +64,33 @@
 `onDone` принимает асинхронную функцию. Пока она выполняется, кнопка показывает состояние загрузки. Если вернуть `false` — панель остаётся открытой. Используйте для форм с валидацией на стороне сервера или клиента.
 
 ```tsx
+<Button label="Создать задачу" variant="submit" onClick={() => setOpen(true)} />
 <Drawer
+  open={open}
+  onClose={() => setOpen(false)}
   title="Новая задача"
   content={<TaskForm ref={formRef} />}
   onDone={async () => {
     const ok = await formRef.current.submit();
     return ok ? undefined : false;
   }}
->
-  <Button label="Создать задачу" variant="submit" />
-</Drawer>
+/>
 ```
 
 ::playground{src=DrawerDoneDemo caption="Нажмите «Готово» с пустым полем — панель останется открытой"}
 
-## Кастомная кнопка в заголовке
+## Кастомные действия в заголовке
 
-`renderActionButton` полностью заменяет кнопку «Готово» в шапке. Получает `closeDrawer` для закрытия панели из кода.
+`actions` полностью заменяет кнопку «Готово» в шапке; `additionalActions` добавляет элементы после кнопки закрытия. Обе принимают один элемент, массив или функцию, получающую `closeDrawer`.
 
 ```tsx
+<Button label="Поделиться" icon={<Share />} onClick={() => setOpen(true)} />
 <Drawer
+  open={open}
+  onClose={() => setOpen(false)}
   title="Поделиться"
   content={<SharePanel />}
-  renderActionButton={({ closeDrawer }) => (
+  actions={({ closeDrawer }) => (
     <Button
       label="Скопировать ссылку"
       icon={<Link />}
@@ -84,15 +100,17 @@
       }}
     />
   )}
->
-  <Button label="Поделиться" icon={<Share />} />
-</Drawer>
+/>
 ```
 
 ## Свойства
 
-:::prop[children*]{type="ReactElement"}
-Элемент-триггер. Должен принимать `onClick`. `Drawer` клонирует его и добавляет обработчик.
+:::prop[open]{type="boolean"}
+Управляемое состояние открытия. Без этого пропа `Drawer` неуправляемый — см. `defaultOpen`.
+:::
+
+:::prop[defaultOpen]{type="boolean" default="false"}
+Начальное состояние открытия для неуправляемого `Drawer`. Игнорируется, если передан `open`.
 :::
 
 :::prop[title]{type="string"}
@@ -120,11 +138,15 @@
 :::
 
 :::prop[onClose]{type="() => void"}
-Вызывается при закрытии панели — кнопкой ✕, фоном или после `onDone`.
+Вызывается при закрытии панели — кнопкой ✕, фоном, Escape или после `onDone`. Для управляемого `Drawer` это единственное место, где нужно перевести `open` обратно в `false` — сам компонент себя не закрывает.
 :::
 
-:::prop[renderActionButton]{type="(ctx: { closeDrawer: () => void }) => ReactElement"}
-Кастомная кнопка в шапке вместо «Готово».
+:::prop[additionalActions]{type="StrictReactElements | ((ctx: { closeDrawer: () => void }) => StrictReactElements)"}
+Дополнительные элементы после кнопки закрытия в шапке.
+:::
+
+:::prop[actions]{type="StrictReactElements | ((ctx: { closeDrawer: () => void }) => StrictReactElements)"}
+Основные элементы в конце шапки. Заменяет кнопку «Готово», если передан.
 :::
 
 ## Рекомендации

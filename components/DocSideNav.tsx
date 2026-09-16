@@ -3,6 +3,7 @@
 import { SideNavigation } from "altrone-ui";
 import type { Heading } from "@/lib/headings";
 import type { ReactNode } from "react";
+import s from "./DocSideNav.module.css";
 
 type HeadingNode = Heading & { children: HeadingNode[] };
 
@@ -31,24 +32,24 @@ function buildTree(headings: Heading[]): HeadingNode[] {
 
 function renderTree(nodes: HeadingNode[]): ReactNode {
   return nodes.map((node) => (
-    <SideNavigation.Item key={node.id} href={`#${node.id}`} label={node.text}>
+    <SideNavigation.Link key={node.id} href={`#${node.id}`} label={node.text}>
       {node.children.length > 0 ? renderTree(node.children) : undefined}
-    </SideNavigation.Item>
+    </SideNavigation.Link>
   ));
 }
 
-export function DocSideNav({ headings }: { headings: Heading[] }) {
-  if (headings.length === 0) return null;
+const TITLE: Record<string, string> = {
+  en: "On this page",
+  ru: "Содержание",
+};
 
+export function DocSideNav({ headings, locale }: { headings: Heading[]; locale: string }) {
   const tree = buildTree(headings.filter((h) => h.id !== ""));
+  if (tree.length === 0) return null;
 
   return (
-    <div className="doc-sidenav">
-      <nav className="doc-sidenav-inner">
-        <SideNavigation title="On this page">
-          {renderTree(tree)}
-        </SideNavigation>
-      </nav>
+    <div className={s.sticky}>
+      <SideNavigation title={TITLE[locale] ?? TITLE.en}>{renderTree(tree)}</SideNavigation>
     </div>
   );
 }

@@ -9,25 +9,25 @@ export default function BottomNavigationBasicDemo() {
 
   return (
     <BottomNavigation>
-      <BottomNavigation.Item
+      <BottomNavigation.Link
         icon={<Home />}
         label="Home"
         selected={active === "home"}
         onClick={() => setActive("home")}
       />
-      <BottomNavigation.Item
+      <BottomNavigation.Link
         icon={<Wallet />}
         label="Wallet"
         selected={active === "wallet"}
         onClick={() => setActive("wallet")}
       />
-      <BottomNavigation.Item
+      <BottomNavigation.Link
         icon={<Settings />}
         label="Settings"
         selected={active === "settings"}
         onClick={() => setActive("settings")}
       />
-      <BottomNavigation.Item
+      <BottomNavigation.Link
         icon={<User />}
         label="Profile"
         selected={active === "profile"}

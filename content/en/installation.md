@@ -27,19 +27,19 @@ The CSS import must come before any custom styles to allow proper overrides.
 
 ## Set up the provider
 
-Wrap your application with `AltroneApplication` to enable theming:
+Wrap your application with `Application` to enable theming:
 
 ```tsx filename="app/layout.tsx"
-import { AltroneApplication } from 'altrone-ui'
+import { Application } from 'altrone-ui'
 import 'altrone-ui/dist/style.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <body>
-        <AltroneApplication accent="purple">
+        <Application accent="purple">
           {children}
-        </AltroneApplication>
+        </Application>
       </body>
     </html>
   )
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ## Available accent colors
 
-The `accent` prop on `AltroneApplication` controls the primary color used across all components:
+The `accent` prop on `Application` controls the primary color used across all components:
 
 | Value | Description |
 |-------|-------------|
@@ -70,5 +70,5 @@ export default function Page() {
 ```
 
 :::note
-If styles aren't applying, check that `AltroneApplication` wraps the component and the CSS import is present.
+If styles aren't applying, check that `Application` wraps the component and the CSS import is present.
 :::

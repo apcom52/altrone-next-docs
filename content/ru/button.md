@@ -115,7 +115,9 @@ import { X, Settings } from 'lucide-react';
 <Button label="Настройки" showLabel={false} icon={<Settings />} />
 ```
 
-Если нужна подсказка с другим текстом — используйте `tooltip`:
+Если нужна подсказка с другим текстом — используйте `tooltip`. Сочетание клавиш
+добавляется пропом `kbd` — оборачивать кнопку в `Tooltip` вручную не нужно (иначе
+получится две подсказки, открывающиеся одновременно).
 
 ```tsx
 <Button
@@ -124,6 +126,8 @@ import { X, Settings } from 'lucide-react';
   icon={<AArrowUp />}
   tooltip="Сортировка А → Я"
 />
+
+<Button label="Сохранить" showLabel={false} icon={<Save />} kbd="⌘S" />
 ```
 
 ::playground{src=ButtonIconOnlyDemo caption="Наведите на кнопку, чтобы увидеть подсказку"}
@@ -269,6 +273,10 @@ import { Link } from "react-router-dom";
 
 :::prop[tooltip]{type="string | ReactElement"}
 Текст всплывающей подсказки. Используется только при `showLabel={false}`, переопределяет `label`.
+:::
+
+:::prop[kbd]{type="string"}
+Бейдж сочетания клавиш в автоматической подсказке (например `"⌘S"`). Используется только при `showLabel={false}`.
 :::
 
 :::prop[badge]{type="number | string | ReactElement"}

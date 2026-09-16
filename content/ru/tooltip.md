@@ -69,7 +69,7 @@
 ```tsx
 <Tooltip
   content={
-    <Flex direction="vertical" gap="xs">
+    <Flex orientation="vertical" gap="xs">
       <strong>Лимиты тарифа</strong>
       <span>5 проектов · 3 участника · 10 ГБ</span>
     </Flex>

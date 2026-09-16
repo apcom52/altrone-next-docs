@@ -14,14 +14,14 @@
 
 ## Состояние открытия в триггере
 
-`children` может быть функцией — она получает `{ opened, closePopup }`. Используйте для переключения иконки или стиля кнопки-триггера.
+`children` может быть функцией — она получает `{ open, closePopup }`. Используйте для переключения иконки или стиля кнопки-триггера.
 
 ```tsx
 <Popover content={<FilterPanel />}>
-  {({ opened }) => (
+  {({ open }) => (
     <Button
       label="Фильтры"
-      additionalIcon={opened ? <ChevronUp /> : <ChevronDown />}
+      additionalIcon={open ? <ChevronUp /> : <ChevronDown />}
     />
   )}
 </Popover>
@@ -83,12 +83,13 @@
 
 ## Программное управление
 
-Передайте `ref` для доступа к императивному API: открыть, закрыть, узнать текущее состояние.
+Передайте `controlRef` для доступа к императивному API: открыть, закрыть, узнать текущее состояние.
+Обычный `ref` при этом указывает на DOM-элемент триггера, как и у любого другого компонента.
 
 ```tsx
 const popoverRef = useRef<PopoverRef>(null);
 
-<Popover ref={popoverRef} content={<Panel />}>
+<Popover controlRef={popoverRef} content={<Panel />}>
   <Button label="Открыть" />
 </Popover>
 
@@ -120,7 +121,7 @@ const popoverRef = useRef<PopoverRef>(null);
 
 ## Свойства
 
-:::prop[children*]{type="ReactNode | ((ctx: { opened: boolean; closePopup: () => void }) => ReactNode)"}
+:::prop[children*]{type="ReactNode | ((ctx: { open: boolean; closePopup: () => void }) => ReactNode)"}
 Элемент-триггер. Функция получает текущее состояние и колбэк закрытия.
 :::
 
@@ -128,11 +129,11 @@ const popoverRef = useRef<PopoverRef>(null);
 Содержимое панели. Функция получает колбэки закрытия текущего поповера и всей цепочки.
 :::
 
-:::prop[placement]{type="Placement | 'auto'" default="'bottom'"}
+:::prop[placement]{type="Placement | 'auto'" default="'auto'"}
 Позиция панели. `auto` — автоматический выбор лучшего места.
 :::
 
-:::prop[trigger]{type="'click' | 'focus' | 'hover' | Array" default="['click']"}
+:::prop[trigger]{type="'click' | 'focus' | 'hover' | Array" default="'click'"}
 Что открывает поповер.
 :::
 
@@ -141,7 +142,27 @@ const popoverRef = useRef<PopoverRef>(null);
 :::
 
 :::prop[overlap]{type="boolean" default="false"}
-Разрешить панели перекрывать триггер.
+Панель перекрывает триггер вместо того, чтобы стоять рядом.
+:::
+
+:::prop[title]{type="string"}
+Заголовок в шапке. Делает панель озаглавленным `role="dialog"`.
+:::
+
+:::prop[showCloseButton]{type="boolean" default="false"}
+Кнопка закрытия в шапке.
+:::
+
+:::prop[onOpenChange]{type="(open: boolean, event?: Event, reason?: OpenChangeReason) => void"}
+Вызывается при каждой смене состояния. `reason` говорит, *как* оно изменилось: `escape-key`, `outside-press`, `reference-press`, `hover`…
+:::
+
+:::prop[open]{type="boolean"}
+Управляемое состояние открытия. Без этого пропа `Popover` неуправляемый — см. `defaultOpen`.
+:::
+
+:::prop[defaultOpen]{type="boolean" default="false"}
+Начальное состояние для неуправляемого поповера. Игнорируется, если передан `open`.
 :::
 
 ## Рекомендации

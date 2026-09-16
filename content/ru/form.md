@@ -8,7 +8,7 @@
 
 ```tsx
 <Form onSubmit={handleSubmit}>
-  <Flex direction="column" gap="m">
+  <Flex orientation="vertical" gap="m">
     <Form.Field name="email" label="Email" required>
       <TextInput value={email} onChange={setEmail} placeholder="you@example.com" />
     </Form.Field>

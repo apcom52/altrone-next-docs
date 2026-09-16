@@ -32,7 +32,7 @@ export default function App() {
 ```
 
 :::tip{icon=circle-alert compact=true}
-Wrap your app with `AltroneApplication` to enable theming and consistent styling across all components.
+Wrap your app with `Application` to enable theming and consistent styling across all components.
 :::
 
 ## Next steps
@@ -84,10 +84,10 @@ npm install altrone-ui
 
 ### Configure
 
-Wrap your application with `AltroneApplication` to enable theming.
+Wrap your application with `Application` to enable theming.
 
 ```tsx
-import { AltroneApplication } from "altrone-ui";
+import { Application } from "altrone-ui";
 ```
 
 ---

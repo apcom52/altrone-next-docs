@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Toolbar, Search } from "altrone-ui";
+import { Toolbar, Search, Dropdown } from "altrone-ui";
 import { Settings, Bell, Plus } from "lucide-react";
 
 export default function ToolbarSectionsDemo() {
@@ -11,7 +11,17 @@ export default function ToolbarSectionsDemo() {
     <div style={{ width: "100%" }}>
       <Toolbar>
         <Toolbar.Leading>
-          <Toolbar.Title label="Мой воркспейс" clickable />
+          <Dropdown
+            content={
+              <Dropdown.Menu>
+                <Dropdown.Action label="Мой воркспейс" />
+                <Dropdown.Action label="Личный проект" />
+                <Dropdown.Action label="Добавить воркспейс…" />
+              </Dropdown.Menu>
+            }
+          >
+            <Toolbar.Title label="Мой воркспейс" clickable />
+          </Dropdown>
         </Toolbar.Leading>
         <Toolbar.Center>
           <Search

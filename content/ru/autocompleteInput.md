@@ -85,7 +85,7 @@ const getSuggestions = async ({ value }: { value: string }): Promise<Language[]>
 
 ## Кастомный рендеринг подсказок
 
-`renderSuggestion` позволяет полностью управлять отображением каждого элемента. Контекст содержит текущее значение ввода, объект подсказки и функцию выбора.
+`renderSuggestion` управляет **содержимым** строки подсказки. Саму интерактивную строку — цель клика, навигацию с клавиатуры и скользящую подложку выделения — создаёт компонент, поэтому рендерер возвращает только внутренние элементы. Контекст содержит текущее значение ввода и объект подсказки.
 
 ```tsx
 <AutocompleteInput<Language>
@@ -93,15 +93,17 @@ const getSuggestions = async ({ value }: { value: string }): Promise<Language[]>
   onChange={setValue}
   getSuggestions={getSuggestions}
   getSuggestionValue={(lang) => lang.name}
-  renderSuggestion={({ suggestion, inputValue, onSelect }) => (
-    <button onClick={(e) => onSelect(suggestion.name, e)}>
+  renderSuggestion={({ suggestion, inputValue }) => (
+    <>
       <strong>{suggestion.name.slice(0, inputValue.length)}</strong>
       {suggestion.name.slice(inputValue.length)}
       <span style={{ color: 'var(--altrone-text-muted)' }}>{suggestion.year}</span>
-    </button>
+    </>
   )}
 />
 ```
+
+Выбор обрабатывает обёртка строки: клик или `Enter` на выделенной строке записывает `getSuggestionValue(suggestion)` в поле и вызывает `onSelect`.
 
 ## Обработка ошибок
 
@@ -132,7 +134,7 @@ import { Globe } from 'lucide-react';
   onChange={setValue}
   getSuggestions={getSuggestions}
 >
-  <TextInput.IconIsland icon={<Globe size={16} />} placement="left" />
+  <TextInput.IconIsland icon={<Globe size={16} />} placement="start" />
 </AutocompleteInput>
 ```
 
@@ -146,8 +148,8 @@ import { Globe } from 'lucide-react';
 Извлекает строку для записи в поле при выборе подсказки. Обязателен, когда `T` не является `string`.
 :::
 
-:::prop[renderSuggestion]{type="(ctx: AutocompleteRenderSuggestionContext<T>) => ReactElement"}
-Кастомный рендерер строки подсказки. По умолчанию рендерится `Dropdown.Action`.
+:::prop[renderSuggestion]{type="(ctx: AutocompleteRenderSuggestionContext<T>) => ReactNode"}
+Рендерер содержимого строки подсказки. Интерактивную обёртку (клик, навигация, подложка выделения) создаёт компонент. По умолчанию показывается строка из `getSuggestionValue`.
 :::
 
 :::prop[onSelect]{type="(suggestion: T, inputValue: string, event) => void"}
