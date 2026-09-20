@@ -8,12 +8,12 @@ export default function PopoverOpenStateDemo() {
     <Flex gap="m">
       <Popover
         placement="bottom-start"
-        content={({ closePopup }) => (
+        content={({ hide }) => (
           <div style={{ padding: 16, maxWidth: 240 }}>
             <Text block size={3} style={{ marginBottom: 12 }}>
               Поповер открыт. Кнопка триггера отреагировала на состояние.
             </Text>
-            <Button label="Закрыть" size="s" onClick={closePopup} />
+            <Button label="Закрыть" size="s" onClick={hide} />
           </div>
         )}
       >

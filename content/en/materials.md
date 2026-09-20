@@ -8,7 +8,7 @@ Almost every styled surface in Altrone — buttons, cards, chips, placeholder st
 </Box>
 ```
 
-## The eight materials
+## The nine materials
 
 Each material differs only in what's actually present *at rest* — the interaction model on top (below) is identical across all of them.
 
@@ -18,10 +18,11 @@ Each material differs only in what's actually present *at rest* — the interact
 | `glass` | A translucent tone fill plus backdrop blur — frosted |
 | `plate` | A fixed frosted fill, a hairline edge, and a resting shadow, so it reads as raised off the page |
 | `translucent` | A flat translucent tone fill, no blur |
+| `pale` | The same tint as `translucent`, made opaque — a quiet, pale surface that won't blend with whatever sits behind it |
 | `transparent` | Nothing at rest |
 | `outline` | A static, always-visible border |
 | `ghost` | Nothing at rest — a border only appears once you interact with it |
-| `hatch` | A faint tinted wash, a hairline edge, and diagonal hatch lines — a placeholder surface for "content goes here" stubs and empty drop targets |
+| `dotted` | A faint tinted wash, a hairline edge, and a tone-driven dot pattern — a placeholder surface for "content goes here" stubs and empty drop targets |
 
 `transparent` and `ghost` look identical sitting still — the difference only shows up once you hover, press, or focus one: `ghost` draws a border at that point, `transparent` never does. That's a real, deliberate distinction, not two names for the same thing:
 

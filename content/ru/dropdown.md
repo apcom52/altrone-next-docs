@@ -128,11 +128,11 @@ const [compact, setCompact] = useState(false);
 
 ## Свойства Dropdown
 
-:::prop[children*]{type="ReactNode | ((ctx: { open: boolean; closePopup: () => void }) => ReactNode)"}
+:::prop[children*]{type="ReactNode | ((ctx: { open: boolean; hide: () => void }) => ReactNode)"}
 Триггер. Функция получает текущее состояние и колбэк закрытия.
 :::
 
-:::prop[content*]{type="ReactNode | ((ctx: { closePopup: () => void; closeAllSequence: () => void }) => ReactNode)"}
+:::prop[content*]{type="ReactNode | ((ctx: { hide: () => void; hideAllSequence: () => void }) => ReactNode)"}
 Содержимое меню.
 :::
 

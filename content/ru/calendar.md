@@ -154,7 +154,7 @@ const CustomDay: React.FC<CalendarRenderDateProps> = ({
 Отображаемый месяц (управляемый / начальный). Используется только год и месяц.
 :::
 
-:::prop[onMonthChange]{type="(month: Dayjs) => void"}
+:::prop[onMonthChange]{type="(month: Dayjs, event: MouseEvent) => void"}
 Вызывается, когда навигация в шапке меняет месяц.
 :::
 
@@ -224,7 +224,7 @@ const CustomDay: React.FC<CalendarRenderDateProps> = ({
 | `startOfWeek` / `endOfWeek` | `boolean` | Первая / последняя отрисованная колонка строки недели |
 | `inRangeAbove` / `inRangeBelow` | `boolean` | `true`, если подложка накрывает ячейку прямо сверху / снизу — чтобы скруглять только внешние углы подложки |
 | `onSelect` | `(date, event) => void` | Сообщить о выборе даты |
-| `onHover` | `(date?: Dayjs) => void` | Управлять предпросмотром диапазона при наведении |
+| `onHover` | `(date: Dayjs \| undefined, event: MouseEvent) => void` | Управлять предпросмотром диапазона при наведении |
 
 ## Рекомендации
 

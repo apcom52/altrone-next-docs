@@ -14,7 +14,7 @@
 
 ## Состояние открытия в триггере
 
-`children` может быть функцией — она получает `{ open, closePopup }`. Используйте для переключения иконки или стиля кнопки-триггера.
+`children` может быть функцией — она получает `{ open, hide }`. Используйте для переключения иконки или стиля кнопки-триггера.
 
 ```tsx
 <Popover content={<FilterPanel />}>
@@ -31,15 +31,15 @@
 
 ## Закрытие изнутри
 
-`content` тоже может быть функцией — она получает `closePopup` и `closeAllSequence`. Передайте `closePopup` в кнопки внутри панели.
+`content` тоже может быть функцией — она получает `hide` и `hideAllSequence`. Передайте `hide` в кнопки внутри панели.
 
 ```tsx
 <Popover
-  content={({ closePopup }) => (
+  content={({ hide }) => (
     <div style={{ padding: 16 }}>
       <p>Удалить запись?</p>
-      <Button label="Удалить" danger onClick={() => { handleDelete(); closePopup(); }} />
-      <Button label="Отмена" variant="text" onClick={closePopup} />
+      <Button label="Удалить" danger onClick={() => { handleDelete(); hide(); }} />
+      <Button label="Отмена" variant="text" onClick={hide} />
     </div>
   )}
 >
@@ -95,20 +95,20 @@ const popoverRef = useRef<PopoverRef>(null);
 
 <Button
   label="Закрыть снаружи"
-  onClick={() => popoverRef.current?.closePopup()}
+  onClick={() => popoverRef.current?.hide()}
 />
 ```
 
 ## Вложенные поповеры
 
-`closeAllSequence` закрывает всю цепочку вложенных поповеров разом — полезно в сценариях с подтверждением внутри меню.
+`hideAllSequence` закрывает всю цепочку вложенных поповеров разом — полезно в сценариях с подтверждением внутри меню.
 
 ```tsx
 <Popover
-  content={({ closeAllSequence }) => (
+  content={({ hideAllSequence }) => (
     <Popover
-      content={({ closeAllSequence: closeAll }) => (
-        <Button label="Закрыть всё" onClick={closeAll} />
+      content={({ hideAllSequence: hideAll }) => (
+        <Button label="Закрыть всё" onClick={hideAll} />
       )}
     >
       <Button label="Вложенный поповер" />
@@ -121,11 +121,11 @@ const popoverRef = useRef<PopoverRef>(null);
 
 ## Свойства
 
-:::prop[children*]{type="ReactNode | ((ctx: { open: boolean; closePopup: () => void }) => ReactNode)"}
+:::prop[children*]{type="ReactNode | ((ctx: { open: boolean; hide: () => void }) => ReactNode)"}
 Элемент-триггер. Функция получает текущее состояние и колбэк закрытия.
 :::
 
-:::prop[content*]{type="ReactNode | ((ctx: { closePopup: () => void; closeAllSequence: () => void }) => ReactNode)"}
+:::prop[content*]{type="ReactNode | ((ctx: { hide: () => void; hideAllSequence: () => void }) => ReactNode)"}
 Содержимое панели. Функция получает колбэки закрытия текущего поповера и всей цепочки.
 :::
 

@@ -69,7 +69,7 @@ Switch наследует все свойства `Checkbox`, за исключ�
 Состояние переключателя. Управляется извне.
 :::
 
-:::prop[onChange]{type="(state: boolean, event: ChangeEvent<HTMLInputElement>) => void"}
+:::prop[onChange*]{type="(checked: boolean, event: ChangeEvent<HTMLInputElement>) => void"}
 Вызывается при переключении. Первый аргумент — новое значение `boolean`.
 :::
 

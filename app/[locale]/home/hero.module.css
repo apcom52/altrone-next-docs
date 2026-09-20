@@ -1,0 +1,16 @@
+/**
+ * Bleeds out of Screen.Content's own padding and reaches up under the fixed
+ * Screen.Header — both insets come from Screen's CSS custom properties,
+ * inherited down from the ancestor .Screen/.Content elements.
+ */
+.Hero {
+  position: relative;
+  overflow: hidden;
+  height: 700px;
+  width: calc(100% + 2 * var(--space-content));
+  margin-inline: calc(-1 * var(--space-content));
+  margin-block-start: calc(
+    -1 * (var(--screen-content-padding-block) + var(--screen-header-height))
+  );
+  background-image: radial-gradient(circle at bottom center, #6e45e2 0%, #88d3ce 100%);
+}

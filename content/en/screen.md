@@ -35,9 +35,11 @@ import { Inbox, Send, Search } from 'lucide-react';
 
 ## Screen.Header
 
-**A fixed, full-width zone, but transparent** — it carries no fill of its own. The visible bar is drawn by the `Toolbar` you place inside it: for the frosted, accent-tinted header surface use **`<Toolbar variant="solid" size="m">`** (the `solid` variant's fill points at the `--color-header-backdrop` token; `m` matches the 56px zone). The toolbar spans the full viewport width — its fill runs edge to edge — and only its *content padding* is inset: the header, `Screen.Content` and the footer line their content up on one shared vertical line (`--screen-content-inset-start`, which sits `2 × --space-content` past the sidebar). The zone's height is `--screen-header-height` (default `56px`); content below it is automatically offset by that height.
+**A full-width zone, but transparent** — it carries no fill of its own. The visible bar is drawn by the `Toolbar` you place inside it: for the frosted, accent-tinted header surface use **`<Toolbar variant="solid" size="m">`** (the `solid` variant's fill points at the `--color-header-backdrop` token; `m` matches the 56px zone). The toolbar spans the full viewport width — its fill runs edge to edge — and only its *content padding* is inset: the header, `Screen.Content` and the footer line their content up on one shared vertical line (`--screen-content-inset-start`, which sits `2 × --space-content` past the sidebar). The zone's height is `--screen-header-height` (default `56px`). By default the header is `position: fixed` and content below it is automatically offset by that height.
 
 The `insetStart` prop (`number | string`) overrides the header toolbar's leading content padding (via `--toolbar-inset-start`; the fill still runs full width, and by default the line matches `Screen.Content` and the footer). `0` starts the content right at the edge.
+
+The `fixed` prop (`boolean`, default `true`) controls whether the header is pinned. `true` sticks it to the top of the viewport; `Screen.Content`/`Screen.Aside` reserve clearance for it, and `DataTable`'s sticky column header/footer inside the content are offset by `--top-safe-area` so they clear it too. With `fixed={false}` the header goes back into normal flow and scrolls away with the page — no clearance is reserved, `--top-safe-area` stays `0px`, and `DataTable`'s sticky header sticks flush to the true viewport top once the header scrolls out of view.
 
 ## Screen.Footer
 
@@ -272,7 +274,7 @@ Initial state for an uncontrolled sidebar. Ignored once `collapsed` is passed. A
 Fires on any request to change the state — the scrim, `Escape`, a toggle click. Pairs with `collapsed`; in uncontrolled mode it's just a notification, the sidebar already updated itself.
 :::
 
-:::prop[onClose]{type="() => void"}
+:::prop[onClose]{type="(event: MouseEvent | KeyboardEvent) => void"}
 Narrower than `onCollapsedChange` — specifically a scrim click or `Escape` in overlay mode. In controlled mode, set `collapsed = true` here. Even without it, the scrim / `Escape` still visually close the overlay — it's never a trap.
 :::
 

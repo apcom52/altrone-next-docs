@@ -15,8 +15,8 @@ const [open, setOpen] = useState(false);
   onClose={() => setOpen(false)}
   title="О версии"
   content={<Text>Altrone UI 3.5.0 — стабильный выпуск.</Text>}
-  actions={({ closeModal }) => (
-    <Button label="Закрыть" onClick={closeModal} />
+  actions={({ hide }) => (
+    <Button label="Закрыть" onClick={hide} />
   )}
 />
 ```
@@ -39,14 +39,14 @@ const [open, setOpen] = useState(false);
       Это действие нельзя отменить.
     </Text>
   }
-  actions={({ closeModal }) => [
-    <Button key="cancel" label="Отмена" onClick={closeModal} />,
+  actions={({ hide }) => [
+    <Button key="cancel" label="Отмена" onClick={hide} />,
     <Button
       key="delete"
       label="Удалить"
       variant="submit"
       danger
-      onClick={() => { handleDelete(); closeModal(); }}
+      onClick={() => { handleDelete(); hide(); }}
     />,
   ]}
 />
@@ -91,13 +91,13 @@ const [open, setOpen] = useState(false);
       </Form.Field>
     </Form>
   }
-  actions={({ closeModal }) => (
+  actions={({ hide }) => (
     <Flex gap="s">
-      <Button label="Отмена" onClick={closeModal} />
+      <Button label="Отмена" onClick={hide} />
       <Button
         label="Создать"
         variant="submit"
-        onClick={() => handleSave(closeModal)}
+        onClick={() => handleSave(hide)}
       />
     </Flex>
   )}
@@ -121,11 +121,11 @@ const [open, setOpen] = useState(false);
   onClose={() => setOpen(false)}
   title="Редактировать запись"
   content={<EditForm />}
-  additionalActions={({ closeModal }) => (
-    <Button label="Удалить" danger onClick={() => { handleDelete(); closeModal(); }} />
+  additionalActions={({ hide }) => (
+    <Button label="Удалить" danger onClick={() => { handleDelete(); hide(); }} />
   )}
-  actions={({ closeModal }) => [
-    <Button key="cancel" label="Отмена" onClick={closeModal} />,
+  actions={({ hide }) => [
+    <Button key="cancel" label="Отмена" onClick={hide} />,
     <Button key="save" label="Сохранить" variant="submit" onClick={handleSave} />,
   ]}
 />
@@ -145,15 +145,15 @@ const [open, setOpen] = useState(false);
 Заголовок диалога, отображается в шапке.
 :::
 
-:::prop[content]{type="ReactNode | ((ctx: { closeModal: () => void }) => ReactNode)"}
-Основное содержимое. Может быть функцией — тогда получает `closeModal`.
+:::prop[content]{type="ReactNode | ((ctx: { hide: () => void }) => ReactNode)"}
+Основное содержимое. Может быть функцией — тогда получает `hide`.
 :::
 
-:::prop[actions]{type="StrictReactElements | ((ctx: { closeModal: () => void }) => StrictReactElements)"}
-Основные кнопки действий справа в футере. Может быть функцией с `closeModal`.
+:::prop[actions]{type="StrictReactElements | ((ctx: { hide: () => void }) => StrictReactElements)"}
+Основные кнопки действий справа в футере. Может быть функцией с `hide`.
 :::
 
-:::prop[additionalActions]{type="StrictReactElements | ((ctx: { closeModal: () => void }) => StrictReactElements)"}
+:::prop[additionalActions]{type="StrictReactElements | ((ctx: { hide: () => void }) => StrictReactElements)"}
 Дополнительные кнопки слева в футере — для деструктивных действий.
 :::
 
@@ -161,12 +161,16 @@ const [open, setOpen] = useState(false);
 Ширина диалога.
 :::
 
+:::prop[showCloseButton]{type="boolean" default="true"}
+Кнопка ✕ в шапке. Передайте `false`, чтобы убрать её — например, когда закрытие возможно только через кнопки футера.
+:::
+
 :::prop[showCancelButton]{type="boolean" default="true"}
 Встроенная кнопка «Отмена» перед `actions` в футере. Передайте `false`, чтобы убрать её.
 :::
 
-:::prop[onClose]{type="() => void"}
-Вызывается при закрытии диалога: кнопкой ✕, клавишей Escape, кликом по фону или вызовом `closeModal()`. Для управляемого `Modal` это единственное место, где нужно перевести `open` обратно в `false` — сам компонент себя не закрывает.
+:::prop[onClose]{type="(event?: MouseEvent | KeyboardEvent) => void"}
+Вызывается при закрытии диалога: кнопкой ✕, клавишей Escape, кликом по фону или вызовом `hide()`. Для управляемого `Modal` это единственное место, где нужно перевести `open` обратно в `false` — сам компонент себя не закрывает.
 :::
 
 ## Рекомендации

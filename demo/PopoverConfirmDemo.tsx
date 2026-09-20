@@ -14,7 +14,7 @@ export default function PopoverConfirmDemo() {
   return (
     <Popover
       placement="bottom-start"
-      content={({ closePopup }) => (
+      content={({ hide }) => (
         <div style={{ padding: 16, maxWidth: 260 }}>
           <Text block size={4} weight="bold" style={{ marginBottom: 4 }}>Удалить запись?</Text>
           <Text block size={3} color="muted" style={{ marginBottom: 12 }}>
@@ -26,9 +26,9 @@ export default function PopoverConfirmDemo() {
               variant="submit"
               danger
               size="s"
-              onClick={() => { setDeleted(true); closePopup(); }}
+              onClick={() => { setDeleted(true); hide(); }}
             />
-            <Button label="Отмена" size="s" variant="text" onClick={closePopup} />
+            <Button label="Отмена" size="s" variant="text" onClick={hide} />
           </Flex>
         </div>
       )}

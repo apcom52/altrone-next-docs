@@ -81,7 +81,7 @@ const [open, setOpen] = useState(false);
 
 ## Кастомные действия в заголовке
 
-`actions` полностью заменяет кнопку «Готово» в шапке; `additionalActions` добавляет элементы после кнопки закрытия. Обе принимают один элемент, массив или функцию, получающую `closeDrawer`.
+`actions` полностью заменяет кнопку «Готово» в шапке; `additionalActions` добавляет элементы после кнопки закрытия. Обе принимают один элемент, массив или функцию, получающую `hide`.
 
 ```tsx
 <Button label="Поделиться" icon={<Share />} onClick={() => setOpen(true)} />
@@ -90,13 +90,13 @@ const [open, setOpen] = useState(false);
   onClose={() => setOpen(false)}
   title="Поделиться"
   content={<SharePanel />}
-  actions={({ closeDrawer }) => (
+  actions={({ hide }) => (
     <Button
       label="Скопировать ссылку"
       icon={<Link />}
       onClick={() => {
         copyLink();
-        closeDrawer();
+        hide();
       }}
     />
   )}
@@ -133,19 +133,19 @@ const [open, setOpen] = useState(false);
 Ширина панели в пикселях.
 :::
 
-:::prop[onDone]{type="() => Promise<boolean | void>"}
+:::prop[onDone]{type="(event: MouseEvent) => Promise<boolean | void>"}
 Асинхронный обработчик кнопки «Готово». Возврат `false` оставляет панель открытой. Любой другой результат закрывает её.
 :::
 
-:::prop[onClose]{type="() => void"}
+:::prop[onClose]{type="(event?: MouseEvent | KeyboardEvent) => void"}
 Вызывается при закрытии панели — кнопкой ✕, фоном, Escape или после `onDone`. Для управляемого `Drawer` это единственное место, где нужно перевести `open` обратно в `false` — сам компонент себя не закрывает.
 :::
 
-:::prop[additionalActions]{type="StrictReactElements | ((ctx: { closeDrawer: () => void }) => StrictReactElements)"}
+:::prop[additionalActions]{type="StrictReactElements | ((ctx: { hide: () => void }) => StrictReactElements)"}
 Дополнительные элементы после кнопки закрытия в шапке.
 :::
 
-:::prop[actions]{type="StrictReactElements | ((ctx: { closeDrawer: () => void }) => StrictReactElements)"}
+:::prop[actions]{type="StrictReactElements | ((ctx: { hide: () => void }) => StrictReactElements)"}
 Основные элементы в конце шапки. Заменяет кнопку «Готово», если передан.
 :::
 

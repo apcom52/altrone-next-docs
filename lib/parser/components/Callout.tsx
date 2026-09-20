@@ -37,7 +37,7 @@ export function Callout({
   return (
     <Message
       severity={SEVERITY_MAP[type] ?? "primary"}
-      header={title}
+      title={title}
       icon={icon ? <DynamicIcon name={icon} /> : null}
       compact={compact}
     >

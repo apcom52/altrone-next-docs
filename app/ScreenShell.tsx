@@ -44,7 +44,7 @@ export function ScreenShell({
 
   let header: ReactNode;
   if (isHome) header = <HomeHeader locale={locale} />;
-  else if (isDocs) header = <DocsHeader locale={locale} />;
+  else if (isDocs) header = <DocsHeader locale={locale} nav={nav} />;
   else header = <Header />;
 
   return (

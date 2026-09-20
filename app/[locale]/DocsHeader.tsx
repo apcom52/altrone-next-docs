@@ -1,10 +1,11 @@
 "use client";
 
-import { Toolbar, useAltroneTheme } from "altrone-ui";
-import { Moon, Search, Sun, ArrowLeft } from "lucide-react";
+import { Dropdown, Toolbar, useAltroneTheme } from "altrone-ui";
+import { Globe, Moon, Search, Sun, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { LOCALES } from "@/lib/types";
+import { usePathname, useRouter } from "next/navigation";
+import { LOCALES, LOCALE_NAMES, findPageTitle } from "@/lib/types";
+import type { Navigation } from "@/lib/types";
 import { rememberLocale } from "@/lib/localePreference";
 
 const LOCALE_LABELS: Record<string, string> = {
@@ -17,8 +18,9 @@ const BLOG_LABEL: Record<string, string> = {
   ru: "Блог",
 };
 
-export function DocsHeader({ locale }: { locale: string }) {
+export function DocsHeader({ locale, nav }: { locale: string; nav: Navigation }) {
   const pathname = usePathname();
+  const router = useRouter();
   const segments = pathname.split("/").filter(Boolean);
   const [, section, category] = segments;
 
@@ -31,6 +33,12 @@ export function DocsHeader({ locale }: { locale: string }) {
         : undefined;
 
   const restOfPath = segments.slice(1).join("/");
+  const title = findPageTitle(nav, restOfPath);
+
+  const switchLocale = (l: string) => {
+    rememberLocale(l);
+    router.push(`/${l}/${restOfPath}`);
+  };
 
   const { theme, setTheme } = useAltroneTheme();
   const isDark = theme === "dark";
@@ -46,6 +54,7 @@ export function DocsHeader({ locale }: { locale: string }) {
             </Toolbar.Action>
           </Toolbar.Group>
         )}
+        {title && <Toolbar.Title title={title} />}
       </Toolbar.Leading>
       <Toolbar.Trailing>
         <Toolbar.Group>
@@ -54,19 +63,23 @@ export function DocsHeader({ locale }: { locale: string }) {
           </Toolbar.Action>
         </Toolbar.Group>
         <Toolbar.Group>
-          {LOCALES.map((l) => (
+          <Dropdown
+            placement="bottom-end"
+            content={
+              <Dropdown.Menu>
+                <Dropdown.RadioList value={locale} onChange={switchLocale}>
+                  {LOCALES.map((l) => (
+                    <Dropdown.RadioItem key={l} value={l} label={LOCALE_NAMES[l]} />
+                  ))}
+                </Dropdown.RadioList>
+              </Dropdown.Menu>
+            }
+          >
             <Toolbar.Action
-              key={l}
-              asChild
-              label={LOCALE_LABELS[l]}
-              selected={locale === l}
-            >
-              <Link
-                href={`/${l}/${restOfPath}`}
-                onClick={() => rememberLocale(l)}
-              />
-            </Toolbar.Action>
-          ))}
+              label={LOCALE_LABELS[locale] ?? LOCALE_LABELS.en}
+              icon={<Globe />}
+            />
+          </Dropdown>
         </Toolbar.Group>
         <Toolbar.Group>
           <Toolbar.Action

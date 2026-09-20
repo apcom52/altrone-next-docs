@@ -49,7 +49,7 @@
 <Toolbar sticky>
   <Toolbar.Leading>
     <Dropdown content={<Dropdown.Menu>{/* … */}</Dropdown.Menu>}>
-      <Toolbar.Title label="Мой воркспейс" clickable />
+      <Toolbar.Title title="Мой воркспейс" clickable />
     </Dropdown>
   </Toolbar.Leading>
   <Toolbar.Center>
@@ -98,13 +98,45 @@
 </Toolbar>
 ```
 
+## Схлопывание в overflow-меню
+
+Каждая секция (`Toolbar.Leading` / `Center` / `Trailing`, либо плоский `Toolbar` без секций) следит за собственной шириной (высотой — для вертикального тулбара) и, когда её прямые дочерние элементы перестают помещаться, схлопывает часть из них в `Dropdown` — по приоритету, заданному пропом `priority` на `Toolbar.Action` или `Toolbar.Group`:
+
+- **`'low'`** — схлопывается первым.
+- **`'medium'`** (по умолчанию) — схлопывается только тогда, когда все `'low'`-действия в этом же ряду уже схлопнуты.
+- **`'high'`** — не схлопывается никогда; при нехватке места ряд может визуально не помещаться.
+- Внутри одного приоритета действия схлопываются в порядке чтения — сначала самое левое (для вертикального тулбара — самое верхнее).
+
+`Toolbar.Group` схлопывается целиком, одним блоком — при этом её собственные действия разворачиваются в overflow-меню плоским списком, без вложенной группировки. `Toolbar.Title`, `Toolbar.Logo`, `Toolbar.Separator` и произвольные узлы `priority` не поддерживают и никогда не схлопываются.
+
+Кнопка-триггер появляется с той стороны секции, что ближе к центру тулбара, и её стрелки всегда указывают дальше внутрь:
+
+| Секция | Позиция триггера | Иконка (горизонтальный) | Иконка (вертикальный) |
+|--------|-------------------|--------------------------|-------------------------|
+| `Toolbar.Leading` / `Center` (и плоский `Toolbar`) | в конце содержимого секции | `ChevronsRight` | `ChevronsDown` |
+| `Toolbar.Trailing` | в начале содержимого секции | `ChevronsLeft` | `ChevronsUp` |
+
+`Toolbar.Leading` прижат к начальному краю тулбара, поэтому ближе к центру оказывается её последний дочерний элемент. `Toolbar.Trailing`, наоборот, прижат к конечному краю — ближе к центру оказывается первый элемент, туда и ставится триггер.
+
+```tsx
+<Toolbar.Trailing>
+  <Toolbar.Action label="В избранное" icon={<Star />} showLabel={false} priority="high" />
+  <Toolbar.Group priority="medium">
+    <Toolbar.Action label="Поделиться" icon={<Share2 />} showLabel={false} />
+    <Toolbar.Action label="Комментарии" icon={<MessageCircle />} showLabel={false} />
+  </Toolbar.Group>
+  <Toolbar.Action label="Фильтр" icon={<Filter />} showLabel={false} priority="low" />
+  <Toolbar.Action label="Печать" icon={<Printer />} showLabel={false} priority="low" />
+</Toolbar.Trailing>
+```
+
 ## Кликабельный заголовок
 
 `Toolbar.Title` с `clickable` помечает заголовок как триггер поповера/меню: добавляет шеврон рядом с названием и курсор-ладошку. Оберните его в `Dropdown`, чтобы открыть меню — например, переключатель рабочего пространства или проекта. Статический заголовок (по умолчанию) — просто текст.
 
 ```tsx
 <Dropdown content={<Dropdown.Menu>{/* ... */}</Dropdown.Menu>}>
-  <Toolbar.Title label="Acme Corp" clickable />
+  <Toolbar.Title title="Acme Corp" clickable />
 </Dropdown>
 ```
 
@@ -118,7 +150,7 @@
     <Toolbar.Logo>
       <BrandMark />
     </Toolbar.Logo>
-    <Toolbar.Title label="Button" />
+    <Toolbar.Title title="Button" />
   </Toolbar.Leading>
   <Toolbar.Trailing>
     <Toolbar.Group>
@@ -197,11 +229,15 @@
 Переопределяет унаследованный от тулбара размер.
 :::
 
+:::prop[priority]{type="'high' | 'medium' | 'low'" default="'medium'"}
+Приоритет схлопывания, когда ряд не помещается по ширине. `low` схлопывается первым, `medium` — только когда схлопнуты все `low`, `high` — никогда.
+:::
+
 ## Свойства Toolbar.Title
 
 Заголовок рендерится через `Text` с `truncate`: если на него не хватает места в строке, текст обрезается многоточием, а не выталкивает остальные группы за край.
 
-:::prop[label*]{type="string"}
+:::prop[title*]{type="string"}
 Текст заголовка. Обрезается многоточием, когда в строке не хватает места.
 :::
 
@@ -227,6 +263,10 @@
 
 :::prop[variant]{type="'plain' | 'grouped' | 'solid'"}
 Переопределяет `variant` тулбара для этой группы: `plain` убирает стеклянную пилюлю, `grouped`/`solid` — включают. По умолчанию наследуется от тулбара.
+:::
+
+:::prop[priority]{type="'high' | 'medium' | 'low'" default="'medium'"}
+Приоритет схлопывания для всей группы как единого целого. При схлопывании действия группы разворачиваются в overflow-меню плоским списком.
 :::
 
 ## Свойства Toolbar.Separator

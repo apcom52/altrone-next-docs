@@ -1,10 +1,10 @@
 "use client";
 
-import { Toolbar, useAltroneTheme } from "altrone-ui";
-import { Moon, Search, Sun } from "lucide-react";
+import { Dropdown, Toolbar, useAltroneTheme } from "altrone-ui";
+import { Globe, Moon, Search, Sun } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LOCALES } from "@/lib/types";
+import { LOCALES, LOCALE_NAMES } from "@/lib/types";
 import { rememberLocale } from "@/lib/localePreference";
 
 const LOCALE_LABELS: Record<string, string> = {
@@ -67,14 +67,27 @@ export const Header = () => {
       </Toolbar.Leading>
       <Toolbar.Trailing>
         <Toolbar.Group>
-          {LOCALES.map((locale) => (
+          <Dropdown
+            placement="bottom-end"
+            content={
+              <Dropdown.Menu>
+                <Dropdown.RadioList value={currentLocale} onChange={switchLocale}>
+                  {LOCALES.map((locale) => (
+                    <Dropdown.RadioItem
+                      key={locale}
+                      value={locale}
+                      label={LOCALE_NAMES[locale]}
+                    />
+                  ))}
+                </Dropdown.RadioList>
+              </Dropdown.Menu>
+            }
+          >
             <Toolbar.Action
-              key={locale}
-              label={LOCALE_LABELS[locale]}
-              selected={currentLocale === locale}
-              onClick={() => switchLocale(locale)}
+              label={LOCALE_LABELS[currentLocale] ?? LOCALE_LABELS.en}
+              icon={<Globe />}
             />
-          ))}
+          </Dropdown>
         </Toolbar.Group>
         <Toolbar.Group>
           <Toolbar.Action

@@ -8,14 +8,14 @@ export default function ModalWithFormDemo() {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSave = (closeModal: () => void) => {
+  const handleSave = (hide: () => void) => {
     if (!name.trim()) {
       setErrors({ name: "Введите название папки" });
       return;
     }
     setName("");
     setErrors({});
-    closeModal();
+    hide();
   };
 
   return (
@@ -32,13 +32,13 @@ export default function ModalWithFormDemo() {
           </Form.Field>
         </Form>
       }
-      actions={({ closeModal }) => (
+      actions={({ hide }) => (
         <Flex gap="s">
-          <Button label="Отмена" onClick={closeModal} />
+          <Button label="Отмена" onClick={hide} />
           <Button
             label="Создать"
             variant="submit"
-            onClick={() => handleSave(closeModal)}
+            onClick={() => handleSave(hide)}
           />
         </Flex>
       )}

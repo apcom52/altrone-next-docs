@@ -90,8 +90,8 @@ const [value, setValue] = useState("email");
 
 ## Свойства Radio
 
-:::prop[value*]{type="string | number"}
-Значение выбранного варианта. Обязательный.
+:::prop[value]{type="string | number"}
+Значение выбранного варианта. Не передавайте, чтобы отрисовать группу без выбранного варианта.
 :::
 
 :::prop[onChange*]{type="(value: string, event: ChangeEvent<HTMLInputElement>) => void"}

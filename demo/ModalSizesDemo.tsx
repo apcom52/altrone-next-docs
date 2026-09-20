@@ -9,10 +9,10 @@ export default function ModalSizesDemo() {
         title="Подтверждение"
         size="s"
         content={<Text block size={4}>Вы уверены, что хотите продолжить?</Text>}
-        actions={({ closeModal }) => (
+        actions={({ hide }) => (
           <>
-            <Button label="Отмена" onClick={closeModal} />
-            <Button label="Продолжить" variant="submit" onClick={closeModal} />
+            <Button label="Отмена" onClick={hide} />
+            <Button label="Продолжить" variant="submit" onClick={hide} />
           </>
         )}
       >
@@ -23,10 +23,10 @@ export default function ModalSizesDemo() {
         title="Редактировать профиль"
         size="m"
         content={<Text block size={4}>Форма редактирования профиля. Размер по умолчанию — подходит для большинства сценариев.</Text>}
-        actions={({ closeModal }) => (
+        actions={({ hide }) => (
           <>
-            <Button label="Отмена" onClick={closeModal} />
-            <Button label="Сохранить" variant="submit" onClick={closeModal} />
+            <Button label="Отмена" onClick={hide} />
+            <Button label="Сохранить" variant="submit" onClick={hide} />
           </>
         )}
       >
@@ -37,8 +37,8 @@ export default function ModalSizesDemo() {
         title="Предварительный просмотр"
         size="l"
         content={<Text block size={4}>Широкий диалог для отображения таблиц, изображений или расширенных форм, которым нужно больше пространства.</Text>}
-        actions={({ closeModal }) => (
-          <Button label="Закрыть" onClick={closeModal} />
+        actions={({ hide }) => (
+          <Button label="Закрыть" onClick={hide} />
         )}
       >
         <Button label="L" />

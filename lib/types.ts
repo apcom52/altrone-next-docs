@@ -3,6 +3,11 @@ export type Locale = 'en' | 'ru'
 export const LOCALES: Locale[] = ['en', 'ru']
 export const DEFAULT_LOCALE: Locale = 'en'
 
+export const LOCALE_NAMES: Record<Locale, string> = {
+  en: 'English',
+  ru: 'Русский',
+}
+
 // Navigation
 
 export interface NavPage {
@@ -45,6 +50,34 @@ export type NavItem = NavFlatGroupItem | NavNestedGroupItem | NavPageItem
 
 export interface Navigation {
   items: NavItem[]
+}
+
+/**
+ * Title of the current doc page, matched from the URL path (without the
+ * locale segment, e.g. `getting-started` or `components/core/application`).
+ * Returns `undefined` for a category index page (e.g. `components/core`) or
+ * an unrecognized path — the caller decides the fallback.
+ */
+export function findPageTitle(nav: Navigation, restOfPath: string): string | undefined {
+  const topLevelPages = nav.items.filter(
+    (item): item is NavPageItem => item.type === 'page'
+  )
+  const topPage = topLevelPages.find((page) => page.slug === restOfPath)
+  if (topPage) return topPage.title
+
+  const groups = nav.items.filter(
+    (item): item is NavFlatGroupItem => item.type === 'group'
+  )
+  for (const group of groups) {
+    const base = group.urlBase ?? group.slug
+    if (restOfPath.startsWith(`${base}/`)) {
+      const pageSlug = restOfPath.slice(base.length + 1)
+      const page = group.pages.find((p) => p.slug === pageSlug)
+      if (page) return page.title
+    }
+  }
+
+  return undefined
 }
 
 // Raw navigation (from navigation.json — titles are localized objects)

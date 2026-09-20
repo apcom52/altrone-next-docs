@@ -24,14 +24,14 @@ export default function ModalConfirmDemo() {
           безвозвратно. Это действие нельзя отменить.
         </Text>
       }
-      actions={({ closeModal }) => (
+      actions={({ hide }) => (
         <>
-          <Button label="Отмена" onClick={closeModal} />
+          <Button label="Отмена" onClick={hide} />
           <Button
             label="Удалить"
             variant="submit"
             danger
-            onClick={() => { setDeleted(true); closeModal(); }}
+            onClick={() => { setDeleted(true); hide(); }}
           />
         </>
       )}

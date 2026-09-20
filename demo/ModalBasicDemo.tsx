@@ -13,8 +13,8 @@ export default function ModalBasicDemo() {
           исправления доступности и улучшенную поддержку тёмной темы.
         </Text>
       }
-      actions={({ closeModal }) => (
-        <Button label="Закрыть" onClick={closeModal} />
+      actions={({ hide }) => (
+        <Button label="Закрыть" onClick={hide} />
       )}
     >
       <Button label="О версии" icon={<Info size={16} />} />

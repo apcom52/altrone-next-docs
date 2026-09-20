@@ -4,22 +4,20 @@ Altrone splits "telling the user something happened" across a handful of compone
 
 ## Transient, imperative: toasts and notifications
 
-`useNotifications()` gives you two functions that don't require rendering anything yourself — call them, and the stack (mounted once by `<Application>`) handles the rest:
+`showToast` and `showNotification` are plain functions, not a hook — call them from a click handler, a store action, or anywhere else, and the stack (mounted once by `<Application>`) handles the rest:
 
 ```tsx
-const { toast, notification, dismiss } = useNotifications();
-
 // A brief, pill-shaped message — auto-dismisses after 4s by default
-const id = toast("Changes saved", { variant: "success" });
+const id = showToast("Changes saved", { variant: "success" });
 
 // A richer card — title, optional image, action buttons — auto-dismisses after 6s
-notification({
+showNotification({
   title: "Export ready",
   content: "Your file has finished processing.",
   actions: [{ label: "Download", onClick: handleDownload }],
 });
 
-dismiss(id); // close early, if needed
+dismissNotification(id); // close early, if needed
 ```
 
 Both take a `variant`/severity of `'default' | 'success' | 'warning' | 'danger'`. Neither blocks the user or the rest of the UI — that's the point of this quadrant.
@@ -49,7 +47,7 @@ if (confirmed) {
 `Message` is an inline banner living in your own layout — not a stack, not auto-dismissing. Its `severity` (`'default' | 'primary' | 'success' | 'warning' | 'danger'`) picks the accessible announcement role for you: `danger` gets `role="alert"` (assertive — interrupts to announce), everything else gets `role="status"` (polite):
 
 ```tsx
-<Message severity="danger" header="Upload failed">
+<Message severity="danger" title="Upload failed">
   The file exceeds the 10MB limit.
 </Message>
 ```
@@ -64,7 +62,7 @@ if (confirmed) {
 
 | | Transient | Persistent |
 | --- | --- | --- |
-| **Non-blocking** | `toast` / `notification` | `Message`, `Progress` |
+| **Non-blocking** | `showToast` / `showNotification` | `Message`, `Progress` |
 | **Blocking** | `showAlert` / `showConfirm` / `showPrompt` | `Result` (a full-page state the user must act from) |
 
 ## Building your own components

@@ -87,7 +87,7 @@ const someChecked = selected.length > 0 && !allChecked;
 Состояние чекбокса. Управляется извне — компонент не хранит внутреннее состояние.
 :::
 
-:::prop[onChange]{type="(state: boolean, event: ChangeEvent<HTMLInputElement>) => void"}
+:::prop[onChange*]{type="(checked: boolean, event: ChangeEvent<HTMLInputElement>) => void"}
 Вызывается при каждом изменении. Первый аргумент — новое значение `boolean`, второй — оригинальный DOM-ивент.
 :::
 

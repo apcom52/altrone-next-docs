@@ -86,10 +86,10 @@ These collect a smaller value shape than free text — a boolean (`Checkbox`, `S
 
 ```ts
 onChange: (value: number, event) => void; // fires continuously while dragging
-onValueCommit?: (value: number, event) => void; // fires once, when the drag ends
+onChangeEnd?: (value: number, event) => void; // fires once, when the drag ends
 ```
 
-Reach for `onValueCommit` for anything expensive — a network request, a heavy recompute — so it runs once per interaction instead of once per pixel of drag. `onChange` stays for cheap, purely visual updates (like a live label showing the current value).
+Reach for `onChangeEnd` for anything expensive — a network request, a heavy recompute — so it runs once per interaction instead of once per pixel of drag. `onChange` stays for cheap, purely visual updates (like a live label showing the current value).
 
 ## Collections of files: `FilePicker`
 
@@ -111,7 +111,7 @@ It can also handle uploading for you — pass `url`/`method` (and optionally `au
 1. **Follow the `(value, event)` signature** for any callback shaped like `onChange` — value first, native event last, never event-only.
 2. **If your control is text-shaped, build it on `TextInput`** (compose it, don't wrap a raw `<input>`) so you inherit the island system and `Box` chrome for free.
 3. **If your control needs a "click a field, open something to pick a value" pattern** (the way `ColorPicker`/`DatePicker` work), consider building its trigger on `TextInput` too, with `asChild` as the escape hatch for a fully custom trigger.
-4. **Continuous dragging** — split a live `onChange` from a settled `onValueCommit` the way `Slider` does, rather than running expensive work on every drag frame.
+4. **Continuous dragging** — split a live `onChange` from a settled `onChangeEnd` the way `Slider` does, rather than running expensive work on every drag frame.
 5. **Model a file-collecting value as a list, even when only one file is allowed** — it keeps calling code from special-casing cardinality.
 
 ## Related topics

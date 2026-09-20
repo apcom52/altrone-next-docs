@@ -20,7 +20,7 @@ export default function ToolbarSectionsDemo() {
               </Dropdown.Menu>
             }
           >
-            <Toolbar.Title label="Мой воркспейс" clickable />
+            <Toolbar.Title title="Мой воркспейс" clickable />
           </Dropdown>
         </Toolbar.Leading>
         <Toolbar.Center>
