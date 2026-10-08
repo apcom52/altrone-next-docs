@@ -190,6 +190,10 @@ const CustomDay: React.FC<CalendarRenderDateProps> = ({
 Рисовать дни соседних месяцев (приглушённо) вместо пустых ячеек.
 :::
 
+:::prop[prevIcon / nextIcon]{type="ReactElement" default="Application.icons.prev / .next"}
+Переопределяют иконки навигации по месяцам в шапке.
+:::
+
 :::prop[selectedDates]{type="Dayjs[]"}
 Низкоуровневый API: дни в выбранном состоянии (когда `mode` не задан).
 :::

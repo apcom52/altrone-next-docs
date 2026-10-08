@@ -8,7 +8,7 @@ The default home for an action. `variant` carries the weight: `submit` for the o
 
 ## Inside a toolbar: `Toolbar.Action`
 
-`Toolbar.Action` is literally `Button`'s props minus `variant` — the same `danger`, `selected`, `icon`, `badge` all apply, just rendered as a toolbar-chrome button instead of a standalone one. Group related actions in a `Toolbar.Group` (a raised glass pill in `grouped`/`solid` toolbars); use `Toolbar.Separator` with `variant="space"` to push a group to the far edge, or `variant="line"` for a plain hairline between groups.
+`Toolbar.Action` is literally `Button`'s props minus `variant` — the same `danger`, `selected`, `icon`, `badge` all apply, just rendered as a toolbar-chrome button instead of a standalone one. Group related actions in a `Toolbar.Group` (a translucent capsule in `grouped`/`solid` toolbars); use `Toolbar.Separator` with `variant="space"` to push a group to the far edge, or `variant="line"` for a plain hairline between groups.
 
 ```tsx
 <Toolbar variant="solid">

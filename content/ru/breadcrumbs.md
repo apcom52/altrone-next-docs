@@ -89,6 +89,10 @@ import { Link } from "react-router-dom";
 Иконка слева от текста.
 :::
 
+:::prop[separatorIcon]{type="ReactElement" default="ChevronRight"}
+Разделитель после этого элемента (скрывается на последнем элементе через CSS).
+:::
+
 :::prop[current]{type="boolean" default="false"}
 Отмечает элемент как текущую страницу: жирное начертание и `aria-current="page"` на элементе крошки. Не сочетайте с `asChild`.
 :::

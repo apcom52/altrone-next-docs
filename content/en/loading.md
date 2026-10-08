@@ -22,6 +22,14 @@ A spinner, for a wait whose eventual content has no fixed layout to pre-shape, o
 
 Unlike `Skeleton`'s shimmer, the spinner keeps spinning under reduced motion — it's a functional status indicator, the only signal a background operation is still running, not decoration (see [Motion](motion) for the full reasoning).
 
+Pass a `value` (0–100) when you actually know how far along the operation is, and `Loading` becomes a determinate circular indicator instead of an indeterminate spinner:
+
+```tsx
+<Loading value={uploadPercentage} size={40} strokeWidth={3} />
+```
+
+This is the compact, icon-sized alternative to `Progress` (below) — reach for it inline next to a control or in tight spaces where a full-width bar with a label doesn't fit.
+
 ## Wired into the control itself
 
 Several components fold a loading state directly into their own API, instead of you layering a spinner on top by hand:
