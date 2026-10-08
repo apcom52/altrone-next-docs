@@ -8,7 +8,7 @@ import * as Logos from "altrone-ui/logos";
 import { LogoMark } from "./LogoMark";
 import badgeStyles from "./FoundationsIcon.module.css";
 import {
-  Atom,
+  BellRing,
   Boxes,
   CaseSensitive,
   CircleSmall,
@@ -19,6 +19,8 @@ import {
   Layers,
   LayoutGrid,
   LayoutPanelLeft,
+  Map,
+  Newspaper,
   Ligature,
   MonitorSmartphone,
   PlugZap,
@@ -53,7 +55,9 @@ const ICON_MAP: Record<string, React.ReactElement> = {
   SlidersHorizontal: <SlidersHorizontal />,
   LayoutGrid: <LayoutGrid />,
   Compass: <Compass />,
-  Atom: <Atom />,
+  BellRing: <BellRing />,
+  Map: <Map />,
+  Newspaper: <Newspaper />,
 };
 
 const COMPONENTS_GROUP_LABEL: Record<string, string> = {
@@ -107,7 +111,7 @@ export const Sidebar = ({ nav }: { nav: Navigation }) => {
       asChild
       label={title}
       icon={icon}
-      selected={isSelected(href)}
+      selected={isSelected(href) || pathname.startsWith(`${href}/`)}
     >
       <Link href={href} />
     </NavigationList.Link>
@@ -120,7 +124,8 @@ export const Sidebar = ({ nav }: { nav: Navigation }) => {
     (item): item is NavFlatGroupItem => item.type === "group"
   );
   const foundations = groups.find((item) => item.slug === "foundations");
-  const componentCategories = groups.filter((item) => item.slug !== "foundations");
+  const project = groups.find((item) => item.slug === "project");
+  const componentCategories = groups.filter((item) => item.slug !== "foundations" && item.slug !== "project");
 
   return (
     <NavigationList>
@@ -184,6 +189,19 @@ export const Sidebar = ({ nav }: { nav: Navigation }) => {
               </NavigationList.Link>
             );
           })}
+        </NavigationList.Group>
+      )}
+
+      {project && (
+        <NavigationList.Group title={project.title}>
+          {project.pages.map((page) =>
+            renderPageLink(
+              page.slug,
+              page.title,
+              `/${locale}/${project.urlBase ?? project.slug}/${page.slug}`,
+              getIcon(page.icon)
+            )
+          )}
         </NavigationList.Group>
       )}
     </NavigationList>

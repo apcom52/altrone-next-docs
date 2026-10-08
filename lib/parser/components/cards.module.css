@@ -1,0 +1,125 @@
+.Block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.Filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.Grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  padding: 32px 24px;
+  border: 1px solid var(--border-1);
+  border-radius: 16px;
+  background: var(--background-2);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.Card:hover {
+  background: var(--interactive-1);
+}
+
+.Card:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+.Indicator {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 48px;
+  --css-var-outline: var(--gray-a8);
+}
+
+.Dot {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--css-var-color);
+  box-shadow: 0 0 0 1px var(--css-var-outline);
+}
+
+.Dot + .Dot {
+  margin-left: -18px;
+}
+
+.Ring {
+  background: transparent;
+  box-shadow:
+    inset 0 0 0 4px var(--css-var-color),
+    inset 0 0 0 5px var(--css-var-outline),
+    0 0 0 1px var(--css-var-outline);
+}
+
+.Icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--interactive-1);
+  color: var(--text-2);
+  font-size: 24px;
+}
+
+.Body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.Name {
+  font-family: "JetBrains Mono Variable", monospace;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 650;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.Description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-1);
+}
+
+.Type {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-1);
+  opacity: 0.7;
+}
+
+@media (max-width: 960px) {
+  .Grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .Grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

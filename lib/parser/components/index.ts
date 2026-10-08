@@ -19,6 +19,12 @@ import { CodeBlock } from "./CodeBlock";
 import { ColumnsBlock, ColumnItem } from "./Columns";
 import { Playground } from "./Playground";
 import { PropBlock } from "./PropBlock";
+import { SpoilerBlock } from "./Spoiler";
+import { ReleaseBlock, ReleaseList, RemovedText } from "./Release";
+import { CssVarsBlock, CssVarBlock } from "./CssVar";
+import { IconCardsBlock, IconCardBlock } from "./IconCard";
+import { GoodBadBlock, GoodBadItem } from "./GoodBad";
+import { RoadmapBlock, RoadmapItemBlock } from "./Roadmap";
 
 export const components: Record<string, ElementType> = {
   h1: H1,
@@ -40,4 +46,16 @@ export const components: Record<string, ElementType> = {
   "col-item": ColumnItem,
   "playground-block": Playground,
   "prop-block": PropBlock,
+  "spoiler-block": SpoilerBlock,
+  "release-block": ReleaseBlock,
+  "release-list": ReleaseList,
+  "removed-text": RemovedText,
+  "css-vars-block": CssVarsBlock,
+  "css-var-block": CssVarBlock,
+  "icon-cards-block": IconCardsBlock,
+  "icon-card-block": IconCardBlock,
+  "good-bad-block": GoodBadBlock,
+  "good-bad-item": GoodBadItem,
+  "roadmap-block": RoadmapBlock,
+  "roadmap-item-block": RoadmapItemBlock,
 };

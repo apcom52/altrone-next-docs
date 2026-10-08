@@ -3,143 +3,605 @@
     {
       "type": "page",
       "slug": "getting-started",
-      "title": { "en": "Getting Started", "ru": "Начало работы" },
+      "title": {
+        "en": "Getting Started",
+        "ru": "Начало работы"
+      },
       "icon": "House"
     },
     {
       "type": "page",
       "slug": "installation",
-      "title": { "en": "Installation", "ru": "Установка" },
+      "title": {
+        "en": "Installation",
+        "ru": "Установка"
+      },
       "icon": "PlugZap"
     },
     {
       "type": "group",
       "slug": "foundations",
-      "title": { "en": "Foundations", "ru": "Основы" },
+      "title": {
+        "en": "Foundations",
+        "ru": "Основы"
+      },
       "urlBase": "foundations",
       "pages": [
-        { "slug": "accessibility", "title": { "en": "Accessibility", "ru": "Доступность" } },
-        { "slug": "color", "title": { "en": "Color", "ru": "Цвет" } },
-        { "slug": "darkTheme", "title": { "en": "Dark theme", "ru": "Тёмная тема" } },
-        { "slug": "icons", "title": { "en": "Icons", "ru": "Иконки" } },
-        { "slug": "layout", "title": { "en": "Layout & responsiveness", "ru": "Макеты и адаптивность" } },
-        { "slug": "materials", "title": { "en": "Materials", "ru": "Материалы" } },
-        { "slug": "motion", "title": { "en": "Motion", "ru": "Анимация" } },
-        { "slug": "typography", "title": { "en": "Typography", "ru": "Типографика" } },
-        { "slug": "enteringData", "title": { "en": "Entering data", "ru": "Ввод данных" } },
-        { "slug": "feedback", "title": { "en": "Feedback", "ru": "Обратная связь" } },
-        { "slug": "loading", "title": { "en": "Loading", "ru": "Загрузка" } },
-        { "slug": "actions", "title": { "en": "Actions", "ru": "Действия" } },
-        { "slug": "keyboard", "title": { "en": "Keyboard", "ru": "Клавиатура" } },
-        { "slug": "touchDevices", "title": { "en": "Touch devices", "ru": "Сенсорные устройства" } },
-        { "slug": "mcp", "title": { "en": "MCP", "ru": "MCP" } }
+        {
+          "slug": "accessibility",
+          "title": {
+            "en": "Accessibility",
+            "ru": "Доступность"
+          }
+        },
+        {
+          "slug": "color",
+          "title": {
+            "en": "Color",
+            "ru": "Цвет"
+          }
+        },
+        {
+          "slug": "darkTheme",
+          "title": {
+            "en": "Dark theme",
+            "ru": "Тёмная тема"
+          }
+        },
+        {
+          "slug": "icons",
+          "title": {
+            "en": "Icons",
+            "ru": "Иконки"
+          }
+        },
+        {
+          "slug": "layout",
+          "title": {
+            "en": "Layout & responsiveness",
+            "ru": "Макеты и адаптивность"
+          }
+        },
+        {
+          "slug": "materials",
+          "title": {
+            "en": "Materials",
+            "ru": "Материалы"
+          }
+        },
+        {
+          "slug": "motion",
+          "title": {
+            "en": "Motion",
+            "ru": "Анимация"
+          }
+        },
+        {
+          "slug": "typography",
+          "title": {
+            "en": "Typography",
+            "ru": "Типографика"
+          }
+        },
+        {
+          "slug": "enteringData",
+          "title": {
+            "en": "Entering data",
+            "ru": "Ввод данных"
+          }
+        },
+        {
+          "slug": "feedback",
+          "title": {
+            "en": "Feedback",
+            "ru": "Обратная связь"
+          }
+        },
+        {
+          "slug": "loading",
+          "title": {
+            "en": "Loading",
+            "ru": "Загрузка"
+          }
+        },
+        {
+          "slug": "actions",
+          "title": {
+            "en": "Actions",
+            "ru": "Действия"
+          }
+        },
+        {
+          "slug": "keyboard",
+          "title": {
+            "en": "Keyboard",
+            "ru": "Клавиатура"
+          }
+        },
+        {
+          "slug": "touchDevices",
+          "title": {
+            "en": "Touch devices",
+            "ru": "Сенсорные устройства"
+          }
+        },
+        {
+          "slug": "mcp",
+          "title": {
+            "en": "MCP",
+            "ru": "MCP"
+          }
+        }
       ]
     },
     {
       "type": "group",
-      "slug": "core",
-      "title": { "en": "Core components", "ru": "Основные компоненты" },
-      "urlBase": "components/core",
-      "icon": "Layers",
-      "pages": [
-        { "slug": "application", "title": { "en": "Application", "ru": "Application" } },
-        { "slug": "screen", "title": { "en": "Screen", "ru": "Screen" } },
-        { "slug": "box", "title": { "en": "Box", "ru": "Box" } },
-        { "slug": "text", "title": { "en": "Text", "ru": "Text" } },
-        { "slug": "image", "title": { "en": "Image", "ru": "Image" } }
-      ]
-    },
-    {
-      "type": "group",
-      "slug": "containers",
-      "title": { "en": "Containers", "ru": "Контейнеры" },
-      "urlBase": "components/containers",
+      "slug": "layout",
+      "title": {
+        "en": "Layout",
+        "ru": "Макет"
+      },
+      "urlBase": "components/layout",
       "icon": "Boxes",
       "pages": [
-        { "slug": "grid", "title": { "en": "Grid", "ru": "Grid" } },
-        { "slug": "flex", "title": { "en": "Flex", "ru": "Flex" } },
-        { "slug": "drawer", "title": { "en": "Drawer", "ru": "Drawer" } },
-        { "slug": "popover", "title": { "en": "Popover", "ru": "Popover" } },
-        { "slug": "dropdown", "title": { "en": "Dropdown", "ru": "Dropdown" } },
-        { "slug": "tooltip", "title": { "en": "Tooltip", "ru": "Tooltip" } },
-        { "slug": "modal", "title": { "en": "Modal", "ru": "Modal" } },
-        { "slug": "scrollable", "title": { "en": "Scrollable", "ru": "Scrollable" } },
-        { "slug": "collapsedList", "title": { "en": "Collapsed List", "ru": "Collapsed List" } },
-        { "slug": "form", "title": { "en": "Form", "ru": "Form" } },
-        { "slug": "splitter", "title": { "en": "Splitter", "ru": "Splitter" } },
-        { "slug": "spoiler", "title": { "en": "Spoiler", "ru": "Spoiler" } },
-        { "slug": "toolbar", "title": { "en": "Toolbar", "ru": "Toolbar" } }
+        {
+          "slug": "application",
+          "title": {
+            "en": "Application",
+            "ru": "Application"
+          }
+        },
+        {
+          "slug": "screen",
+          "title": {
+            "en": "Screen",
+            "ru": "Screen"
+          }
+        },
+        {
+          "slug": "box",
+          "title": {
+            "en": "Box",
+            "ru": "Box"
+          }
+        },
+        {
+          "slug": "grid",
+          "title": {
+            "en": "Grid",
+            "ru": "Grid"
+          }
+        },
+        {
+          "slug": "flex",
+          "title": {
+            "en": "Flex",
+            "ru": "Flex"
+          }
+        },
+        {
+          "slug": "scrollable",
+          "title": {
+            "en": "Scrollable",
+            "ru": "Scrollable"
+          }
+        },
+        {
+          "slug": "splitter",
+          "title": {
+            "en": "Splitter",
+            "ru": "Splitter"
+          }
+        },
+        {
+          "slug": "toolbar",
+          "title": {
+            "en": "Toolbar",
+            "ru": "Toolbar"
+          }
+        },
+        {
+          "slug": "collapsedList",
+          "title": {
+            "en": "Collapsed List",
+            "ru": "Collapsed List"
+          }
+        },
+        {
+          "slug": "spoiler",
+          "title": {
+            "en": "Spoiler",
+            "ru": "Spoiler"
+          }
+        },
+        {
+          "slug": "divider",
+          "title": {
+            "en": "Divider",
+            "ru": "Divider"
+          }
+        }
       ]
     },
     {
       "type": "group",
       "slug": "controls",
-      "title": { "en": "Controls", "ru": "Элементы управления" },
+      "title": {
+        "en": "Controls",
+        "ru": "Элементы управления"
+      },
       "urlBase": "components/controls",
       "icon": "SlidersHorizontal",
       "pages": [
-        { "slug": "button", "title": { "en": "Button", "ru": "Button" } },
-        { "slug": "textInput", "title": { "en": "Text Input", "ru": "Text Input" } },
-        { "slug": "passwordInput", "title": { "en": "Password Input", "ru": "Password Input" } },
-        { "slug": "numberInput", "title": { "en": "Number Input", "ru": "Number Input" } },
-        { "slug": "autocompleteInput", "title": { "en": "Autocomplete Input", "ru": "Autocomplete Input" } },
-        { "slug": "search", "title": { "en": "Search", "ru": "Search" } },
-        { "slug": "textArea", "title": { "en": "TextArea", "ru": "TextArea" } },
-        { "slug": "select", "title": { "en": "Select", "ru": "Select" } },
-        { "slug": "checkbox", "title": { "en": "Checkbox", "ru": "Checkbox" } },
-        { "slug": "switch", "title": { "en": "Switch", "ru": "Switch" } },
-        { "slug": "radio", "title": { "en": "Radio", "ru": "Radio" } },
-        { "slug": "colorPicker", "title": { "en": "Color Picker", "ru": "Color Picker" } },
-        { "slug": "datePicker", "title": { "en": "Date Picker", "ru": "Date Picker" } },
-        { "slug": "filePicker", "title": { "en": "File Picker", "ru": "File Picker" } },
-        { "slug": "slider", "title": { "en": "Slider", "ru": "Slider" } }
+        {
+          "slug": "button",
+          "title": {
+            "en": "Button",
+            "ru": "Button"
+          }
+        },
+        {
+          "slug": "closeButton",
+          "title": {
+            "en": "Close Button",
+            "ru": "Close Button"
+          }
+        },
+        {
+          "slug": "textInput",
+          "title": {
+            "en": "Text Input",
+            "ru": "Text Input"
+          }
+        },
+        {
+          "slug": "passwordInput",
+          "title": {
+            "en": "Password Input",
+            "ru": "Password Input"
+          }
+        },
+        {
+          "slug": "numberInput",
+          "title": {
+            "en": "Number Input",
+            "ru": "Number Input"
+          }
+        },
+        {
+          "slug": "autocompleteInput",
+          "title": {
+            "en": "Autocomplete Input",
+            "ru": "Autocomplete Input"
+          }
+        },
+        {
+          "slug": "search",
+          "title": {
+            "en": "Search",
+            "ru": "Search"
+          }
+        },
+        {
+          "slug": "textArea",
+          "title": {
+            "en": "TextArea",
+            "ru": "TextArea"
+          }
+        },
+        {
+          "slug": "select",
+          "title": {
+            "en": "Select",
+            "ru": "Select"
+          }
+        },
+        {
+          "slug": "checkbox",
+          "title": {
+            "en": "Checkbox",
+            "ru": "Checkbox"
+          }
+        },
+        {
+          "slug": "switch",
+          "title": {
+            "en": "Switch",
+            "ru": "Switch"
+          }
+        },
+        {
+          "slug": "radio",
+          "title": {
+            "en": "Radio",
+            "ru": "Radio"
+          }
+        },
+        {
+          "slug": "colorPicker",
+          "title": {
+            "en": "Color Picker",
+            "ru": "Color Picker"
+          }
+        },
+        {
+          "slug": "datePicker",
+          "title": {
+            "en": "Date Picker",
+            "ru": "Date Picker"
+          }
+        },
+        {
+          "slug": "filePicker",
+          "title": {
+            "en": "File Picker",
+            "ru": "File Picker"
+          }
+        },
+        {
+          "slug": "slider",
+          "title": {
+            "en": "Slider",
+            "ru": "Slider"
+          }
+        },
+        {
+          "slug": "form",
+          "title": {
+            "en": "Form",
+            "ru": "Form"
+          }
+        },
+        {
+          "slug": "label",
+          "title": {
+            "en": "Label",
+            "ru": "Label"
+          }
+        }
       ]
     },
     {
       "type": "group",
-      "slug": "display",
-      "title": { "en": "Display", "ru": "Отображение" },
-      "urlBase": "components/display",
+      "slug": "overlays",
+      "title": {
+        "en": "Overlays",
+        "ru": "Оверлеи"
+      },
+      "urlBase": "components/overlays",
+      "icon": "Layers",
+      "pages": [
+        {
+          "slug": "modal",
+          "title": {
+            "en": "Modal",
+            "ru": "Modal"
+          }
+        },
+        {
+          "slug": "drawer",
+          "title": {
+            "en": "Drawer",
+            "ru": "Drawer"
+          }
+        },
+        {
+          "slug": "popover",
+          "title": {
+            "en": "Popover",
+            "ru": "Popover"
+          }
+        },
+        {
+          "slug": "dropdown",
+          "title": {
+            "en": "Dropdown",
+            "ru": "Dropdown"
+          }
+        },
+        {
+          "slug": "tooltip",
+          "title": {
+            "en": "Tooltip",
+            "ru": "Tooltip"
+          }
+        },
+        {
+          "slug": "dialog",
+          "title": {
+            "en": "Dialogs",
+            "ru": "Dialogs"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "slug": "content",
+      "title": {
+        "en": "Content",
+        "ru": "Контент"
+      },
+      "urlBase": "components/content",
       "icon": "LayoutGrid",
       "pages": [
-        { "slug": "calendar", "title": { "en": "Calendar", "ru": "Calendar" } },
-        { "slug": "dataTable", "title": { "en": "Data Table", "ru": "Data Table" } },
-        { "slug": "dialog", "title": { "en": "Dialogs", "ru": "Dialogs" } },
-        { "slug": "message", "title": { "en": "Message", "ru": "Message" } },
-        { "slug": "progress", "title": { "en": "Progress", "ru": "Progress" } },
-        { "slug": "tags", "title": { "en": "Tags", "ru": "Tags" } },
-        { "slug": "notifications", "title": { "en": "Notifications", "ru": "Notifications" } },
-        { "slug": "result", "title": { "en": "Result", "ru": "Result" } }
+        {
+          "slug": "text",
+          "title": {
+            "en": "Text",
+            "ru": "Text"
+          }
+        },
+        {
+          "slug": "image",
+          "title": {
+            "en": "Image",
+            "ru": "Image"
+          }
+        },
+        {
+          "slug": "avatar",
+          "title": {
+            "en": "Avatar",
+            "ru": "Avatar"
+          }
+        },
+        {
+          "slug": "tags",
+          "title": {
+            "en": "Tags",
+            "ru": "Tags"
+          }
+        },
+        {
+          "slug": "calendar",
+          "title": {
+            "en": "Calendar",
+            "ru": "Calendar"
+          }
+        },
+        {
+          "slug": "dataTable",
+          "title": {
+            "en": "Data Table",
+            "ru": "Data Table"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "slug": "feedback",
+      "title": {
+        "en": "Feedback",
+        "ru": "Обратная связь"
+      },
+      "urlBase": "components/feedback",
+      "icon": "BellRing",
+      "pages": [
+        {
+          "slug": "message",
+          "title": {
+            "en": "Message",
+            "ru": "Message"
+          }
+        },
+        {
+          "slug": "result",
+          "title": {
+            "en": "Result",
+            "ru": "Result"
+          }
+        },
+        {
+          "slug": "progress",
+          "title": {
+            "en": "Progress",
+            "ru": "Progress"
+          }
+        },
+        {
+          "slug": "loading",
+          "title": {
+            "en": "Loading",
+            "ru": "Loading"
+          }
+        },
+        {
+          "slug": "skeleton",
+          "title": {
+            "en": "Skeleton",
+            "ru": "Skeleton"
+          }
+        },
+        {
+          "slug": "notifications",
+          "title": {
+            "en": "Notifications",
+            "ru": "Notifications"
+          }
+        }
       ]
     },
     {
       "type": "group",
       "slug": "navigation",
-      "title": { "en": "Navigation", "ru": "Навигация" },
+      "title": {
+        "en": "Navigation",
+        "ru": "Навигация"
+      },
       "urlBase": "components/navigation",
       "icon": "Compass",
       "pages": [
-        { "slug": "navigationList", "title": { "en": "Navigation List", "ru": "Navigation List" } },
-        { "slug": "bottomNavigation", "title": { "en": "Bottom Navigation", "ru": "Bottom Navigation" } },
-        { "slug": "sideNavigation", "title": { "en": "Side Navigation", "ru": "Side Navigation" } },
-        { "slug": "tabs", "title": { "en": "Tabs", "ru": "Tabs" } },
-        { "slug": "breadcrumbs", "title": { "en": "Breadcrumbs", "ru": "Breadcrumbs" } },
-        { "slug": "pagination", "title": { "en": "Pagination", "ru": "Pagination" } }
+        {
+          "slug": "navigationList",
+          "title": {
+            "en": "Navigation List",
+            "ru": "Navigation List"
+          }
+        },
+        {
+          "slug": "bottomNavigation",
+          "title": {
+            "en": "Bottom Navigation",
+            "ru": "Bottom Navigation"
+          }
+        },
+        {
+          "slug": "sideNavigation",
+          "title": {
+            "en": "Side Navigation",
+            "ru": "Side Navigation"
+          }
+        },
+        {
+          "slug": "tabs",
+          "title": {
+            "en": "Tabs",
+            "ru": "Tabs"
+          }
+        },
+        {
+          "slug": "breadcrumbs",
+          "title": {
+            "en": "Breadcrumbs",
+            "ru": "Breadcrumbs"
+          }
+        },
+        {
+          "slug": "pagination",
+          "title": {
+            "en": "Pagination",
+            "ru": "Pagination"
+          }
+        }
       ]
     },
     {
       "type": "group",
-      "slug": "atoms",
-      "title": { "en": "Atoms", "ru": "Атомы" },
-      "urlBase": "components/atoms",
-      "icon": "Atom",
+      "slug": "project",
+      "title": {
+        "en": "Project",
+        "ru": "Проект"
+      },
+      "urlBase": "project",
       "pages": [
-        { "slug": "avatar", "title": { "en": "Avatar", "ru": "Avatar" } },
-        { "slug": "divider", "title": { "en": "Divider", "ru": "Divider" } },
-        { "slug": "label", "title": { "en": "Label", "ru": "Label" } },
-        { "slug": "loading", "title": { "en": "Loading", "ru": "Loading" } },
-        { "slug": "skeleton", "title": { "en": "Skeleton", "ru": "Skeleton" } },
-        { "slug": "closeButton", "title": { "en": "Close Button", "ru": "Close Button" } }
+        {
+          "slug": "roadmap",
+          "title": {
+            "en": "Roadmap",
+            "ru": "Роадмап"
+          },
+          "icon": "Map"
+        },
+        {
+          "slug": "release-notes",
+          "title": {
+            "en": "Release Notes",
+            "ru": "Релизы"
+          },
+          "icon": "Newspaper"
+        }
       ]
     }
   ]

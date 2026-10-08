@@ -58,11 +58,13 @@ export async function getNavigation(locale: string): Promise<Navigation> {
   return { items: raw.items.map((item) => resolveItem(item, locale)) }
 }
 
+const NON_COMPONENT_GROUPS = ['foundations', 'project']
+
 /** The flat groups that back `/components/[category]` — the component doc taxonomy. `foundations` lives at its own top-level route, not under `/components`. */
 export async function getComponentCategories(locale: string) {
   const nav = await getNavigation(locale)
   return nav.items.filter(
-    (item): item is NavFlatGroupItem => item.type === 'group' && item.slug !== 'foundations'
+    (item): item is NavFlatGroupItem => item.type === 'group' && !NON_COMPONENT_GROUPS.includes(item.slug)
   )
 }
 
@@ -76,5 +78,13 @@ export async function getFoundationsGroup(locale: string) {
   const nav = await getNavigation(locale)
   return nav.items.find(
     (item): item is NavFlatGroupItem => item.type === 'group' && item.slug === 'foundations'
+  )
+}
+
+/** The `project` group — Roadmap and other pages about the library itself, rendered as a sidebar section. */
+export async function getProjectGroup(locale: string) {
+  const nav = await getNavigation(locale)
+  return nav.items.find(
+    (item): item is NavFlatGroupItem => item.type === 'group' && item.slug === 'project'
   )
 }

@@ -54,8 +54,8 @@ export interface Navigation {
 
 /**
  * Title of the current doc page, matched from the URL path (without the
- * locale segment, e.g. `getting-started` or `components/core/application`).
- * Returns `undefined` for a category index page (e.g. `components/core`) or
+ * locale segment, e.g. `getting-started` or `components/layout/application`).
+ * Returns `undefined` for a category index page (e.g. `components/layout`) or
  * an unrecognized path — the caller decides the fallback.
  */
 export function findPageTitle(nav: Navigation, restOfPath: string): string | undefined {
