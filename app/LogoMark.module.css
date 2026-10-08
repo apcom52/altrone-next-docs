@@ -8,18 +8,14 @@
 .logoLink .logoMark {
   display: flex;
   flex: none;
-  align-items: center;
-  justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  background: color(display-p3 0.125 0.125 0.125);
-  border: 1px solid color(display-p3 0 0 0 / 0.153);
 }
 
-.logoLink .logoMark svg {
-  width: 48px;
-  height: 48px;
+.logoLink .logoMark img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
 }
 
 .logoText {

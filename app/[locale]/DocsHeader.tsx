@@ -18,6 +18,7 @@ const BLOG_LABEL: Record<string, string> = {
   ru: "Блог",
 };
 
+
 export function DocsHeader({ locale, nav }: { locale: string; nav: Navigation }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -31,6 +32,12 @@ export function DocsHeader({ locale, nav }: { locale: string; nav: Navigation })
       : section === "foundations" && segments.length === 3
         ? `/${locale}/foundations`
         : undefined;
+
+  const backLabel =
+    nav.items.find(
+      (item) =>
+        item.type === "group" && item.slug === (section === "components" ? category : section),
+    )?.title ?? "Back";
 
   const restOfPath = segments.slice(1).join("/");
   const title = findPageTitle(nav, restOfPath);
@@ -49,7 +56,7 @@ export function DocsHeader({ locale, nav }: { locale: string; nav: Navigation })
       <Toolbar.Leading>
         {backHref && (
           <Toolbar.Group>
-            <Toolbar.Action asChild icon={<ArrowLeft />} label="Back">
+            <Toolbar.Action asChild icon={<ArrowLeft />} label={backLabel}>
               <Link href={backHref} />
             </Toolbar.Action>
           </Toolbar.Group>

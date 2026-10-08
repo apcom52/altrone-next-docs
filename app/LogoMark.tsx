@@ -1,7 +1,7 @@
 "use client";
 
 import { Toolbar } from "altrone-ui";
-import { Altrone4 } from "altrone-ui/logos";
+import Image from "next/image";
 import Link from "next/link";
 import s from "./LogoMark.module.css";
 
@@ -10,7 +10,7 @@ export function LogoMark({ locale }: { locale: string }) {
   return (
     <Link href={`/${locale}`} className={s.logoLink}>
       <Toolbar.Logo className={s.logoMark}>
-        <Altrone4 />
+        <Image src="/logos/altrone-4.png" alt="" width={36} height={36} priority />
       </Toolbar.Logo>
       <span className={s.logoText}>Altrone UI</span>
     </Link>

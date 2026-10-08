@@ -6,11 +6,49 @@
 .Hero {
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
   height: 700px;
   width: calc(100% + 2 * var(--space-content));
   margin-inline: calc(-1 * var(--space-content));
   margin-block-start: calc(
     -1 * (var(--screen-content-padding-block) + var(--screen-header-height))
   );
-  background-image: radial-gradient(circle at bottom center, #6e45e2 0%, #88d3ce 100%);
+  padding-inline: max(var(--space-content), 6vw);
+  padding-block-start: var(--screen-header-height);
+  background-color: #000;
+  background-image: url("/slides/4/hero.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  color: #fff;
+}
+
+.Content {
+  max-width: 600px;
+}
+
+.Title,
+.Description {
+  color: #fff;
+  margin: 0;
+}
+
+.Title {
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.05;
+}
+
+.Brand {
+  color: var(--accent-9);
+}
+
+.Description {
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .Hero {
+    background-position: 70% center;
+  }
 }

@@ -9,6 +9,7 @@ import { Sidebar } from "./sidebar";
 import { useAside } from "./AsideContext";
 import { HomeHeader } from "./[locale]/HomeHeader";
 import { DocsHeader } from "./[locale]/DocsHeader";
+import { findPageTitle } from "@/lib/types";
 import type { Navigation } from "@/lib/types";
 
 /**
@@ -39,6 +40,11 @@ export function ScreenShell({
   const isBlog = rest[0] === "blog";
   const isDocs = !isHome && !isBlog;
 
+  /* Same lookup `DocsHeader` uses for its own title — `undefined` for a
+     category index, a blog/home route, or a component page's non-Overview
+     tab (its `restOfPath` doesn't match a nav entry's slug exactly). */
+  const pageTitle = isDocs ? findPageTitle(nav, rest.join("/")) : undefined;
+
   const aside = useAside();
   const showAside = isDocs && aside != null;
 
@@ -48,7 +54,7 @@ export function ScreenShell({
   else header = <Header />;
 
   return (
-    <Screen mobileBreakpoint="md">
+    <Screen mobileBreakpoint="md" title={pageTitle}>
       <Screen.Header>{header}</Screen.Header>
 
       <Screen.Sidebar visibleFrom="md" collapsed={!isDocs}>

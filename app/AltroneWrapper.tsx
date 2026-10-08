@@ -1,6 +1,7 @@
 "use client";
 
 import { Application } from "altrone-ui";
+import { DOCS_ACCENT } from "@/lib/accent";
 
 export const AltroneWrapper = ({
   children,
@@ -8,7 +9,7 @@ export const AltroneWrapper = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <Application accent="indigo" persistTheme>
+    <Application accent={DOCS_ACCENT} persistTheme applicationName="Altrone">
       {children}
     </Application>
   );

@@ -20,7 +20,7 @@ export function BlogList({
   posts: BlogPost[];
 }) {
   return (
-    <Flex direction="vertical" gap="l">
+    <Flex orientation="vertical" gap="l">
       <Text size={7} weight="bold">
         {title}
       </Text>
@@ -28,7 +28,7 @@ export function BlogList({
       {posts.length === 0 ? (
         <Text color="muted">{empty}</Text>
       ) : (
-        <Flex direction="vertical" gap="m">
+        <Flex orientation="vertical" gap="m">
           {posts.map((post) => (
             <Box key={post.slug} asChild shape="rounded" material="outline" pressable focusable padding={16}>
               <Link href={`/${locale}/blog/${post.slug}`}>

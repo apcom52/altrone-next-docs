@@ -1,0 +1,122 @@
+/**
+ * Theme is local to this section (light/dark), independent of Altrone's own
+ * app-wide theme — `--text-color`/`--text-color-muted` are overridden here so
+ * the nested altrone-ui <Text> components follow it instead of the global one.
+ *
+ * Bleeds out of Screen.Content's own padding to span the full page width —
+ * same technique as Hero (see app/[locale]/home/hero.module.css).
+ */
+.Showcase {
+  --showcase-bg: #fff;
+  --showcase-text-color: #1d1d1f;
+  --showcase-text-muted: #6e6e73;
+  --showcase-arrow-bg: rgb(0 0 0 / 6%);
+  --showcase-arrow-bg-hover: rgb(0 0 0 / 10%);
+  --showcase-arrow-icon: #1d1d1f;
+  --showcase-arrow-disabled: rgb(0 0 0 / 25%);
+
+  --text-color: var(--showcase-text-color);
+  --text-color-muted: var(--showcase-text-muted);
+
+  background: var(--showcase-bg);
+  color: var(--showcase-text-color);
+  width: calc(100% + 2 * var(--space-content));
+  margin-inline: calc(-1 * var(--space-content));
+  padding-block: 100px 64px;
+  overflow: hidden;
+}
+
+.Showcase[data-theme="dark"] {
+  --showcase-bg: #000;
+  --showcase-text-color: #f5f5f7;
+  --showcase-text-muted: #a1a1a6;
+  --showcase-arrow-bg: rgb(255 255 255 / 12%);
+  --showcase-arrow-bg-hover: rgb(255 255 255 / 20%);
+  --showcase-arrow-icon: #f5f5f7;
+  --showcase-arrow-disabled: rgb(255 255 255 / 30%);
+}
+
+.Intro {
+  max-width: 900px;
+  padding-inline: 48px;
+}
+
+.Eyebrow {
+  margin-bottom: 12px;
+}
+
+.Title {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.Description {
+  max-width: 520px;
+}
+
+.Carousel {
+  position: relative;
+  margin-top: 48px;
+}
+
+.Track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  padding-inline: 48px;
+  /* Must mirror padding-inline — otherwise scroll-snap treats the padding as
+     slack and snaps the first/last slide flush instead of resting at it. */
+  scroll-padding-inline: 48px;
+  scrollbar-width: none;
+}
+
+.Track::-webkit-scrollbar {
+  display: none;
+}
+
+.Slide {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+/* Height is fixed; width is whatever the image's own aspect ratio yields. */
+.SlideImage {
+  display: block;
+  height: 452px;
+  width: auto;
+  border-radius: 24px;
+  margin-bottom: 16px;
+}
+
+.SlideCaption {
+  max-width: 500px;
+  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.SlideCaptionTitle {
+  color: var(--showcase-text-color);
+  font-weight: 500;
+}
+
+.SlideCaptionText {
+  color: var(--showcase-text-muted);
+}
+
+.Controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-inline: 48px;
+  margin-top: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Track {
+    scroll-behavior: auto;
+  }
+}
