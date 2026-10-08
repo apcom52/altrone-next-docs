@@ -21,7 +21,7 @@ npm install -D @types/slate
 app/[lang]/[...slug]/edit/page.tsx
 ```
 
-URL: `/en/components/forms/button/edit`
+URL: `/en/components/controls/button/edit`
 
 Сервер проверяет `NODE_ENV` — если `production`, возвращает `notFound()`.
 Никакой клиентской проверки, никакого `localStorage`.
