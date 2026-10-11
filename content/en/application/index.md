@@ -232,6 +232,26 @@ resetPageTitle();
 `setPageTitle` applies even with `manageTitle={false}` — it's a manual mechanism, separate from the automatic sync.
 :::
 
+## Overriding part of the app
+
+`Application` exists once, at the top. To change the theme, accent, language or icons for one block only, wrap it in `Override`. Everything you don't pass is inherited from the surrounding `Application`.
+
+```tsx
+<Override theme="dark" accent="red">
+  <Button label="Delete project" />
+</Override>
+```
+
+::playground{src="application/ApplicationOverrideDemo" caption="A dark block with its own accent inside a light page"}
+
+`Override` draws its own background, so a different theme looks like a real panel. Popovers and tooltips opened from inside it follow its theme.
+
+`customLabels` and `icons` are merged over the inherited ones. If you set `language`, the dictionary of that language replaces the inherited one, and `customLabels` from `Application` don't carry over.
+
+:::note
+`Modal`, `Drawer`, `Dialog` and notifications still render under the top-level `Application`, so they don't pick up the theme of an `Override`.
+:::
+
 ## Reduced motion
 
 Some people ask their system to reduce animations. `Application` respects that for you: animated components like `Modal`, `Popover`, `Tooltip`, `Spoiler` and notifications calm down on their own, and you don't need to add anything. See [Motion](/en/foundations/motion) for what changes and what deliberately stays.
@@ -348,6 +368,30 @@ Ref to the root element: the `<div>`, or with `asChild`, the child element.
 :::
 
 All other `div` attributes (`id`, `data-*`, `aria-*`, event handlers) are passed to the root element.
+
+### Override props
+
+:::prop[theme]{type="'light' | 'dark'" default="inherited"}
+Theme of the block.
+:::
+
+:::prop[accent]{type="Accent" default="inherited"}
+Accent color of the block.
+:::
+
+:::prop[language]{type="Language" default="inherited"}
+Language of the block.
+:::
+
+:::prop[customLabels]{type="Partial<Localization>"}
+Texts merged over the inherited ones.
+:::
+
+:::prop[icons]{type="Partial<IconSet>"}
+Icon roles merged over the inherited ones.
+:::
+
+All other `div` attributes, `className`, `style` and `ref` go to the block's root element.
 
 ## Related topics
 

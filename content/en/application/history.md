@@ -7,6 +7,7 @@
 - Renamed from `AltroneApplication` to `Application`.
 - Added `asChild` to merge the root attributes onto your own element.
 - Added `persistTheme` to keep the theme between visits.
+- Added `Override` to change the theme, accent, language, labels and icons for part of the app.
 - Added the `icons` prop to replace the built-in icons in all components at once.
 - Added the `applicationName` prop and automatic `document.title` sync with `Screen.title` (turned off via the `manageTitle` prop).
 - Added the imperative `setPageTitle`/`resetPageTitle` functions to override the page title manually.
