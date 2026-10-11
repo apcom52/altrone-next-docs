@@ -4,13 +4,13 @@ import { useState } from "react";
 import { Radio } from "altrone-ui";
 
 export default function RadioBasicDemo() {
-  const [value, setValue] = useState("email");
+  const [channel, setChannel] = useState("email");
 
   return (
-    <Radio value={value} onChange={(v) => setValue(v)} name="notification">
+    <Radio value={channel} onChange={setChannel}>
       <Radio.Item value="email">Email</Radio.Item>
       <Radio.Item value="sms">SMS</Radio.Item>
-      <Radio.Item value="push">Push-уведомление</Radio.Item>
+      <Radio.Item value="push">Push notification</Radio.Item>
     </Radio>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, ChevronsDown, ChevronsLeft, ChevronsRight, ChevronsUp, CircleAlert, Delete, Eye, EyeOff, HelpCircle, ImageOff, Minus, PanelLeftClose, PanelLeftOpen, Plus, Search, X } from "lucide-react";
+import { Calendar, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, ChevronsDown, ChevronsLeft, ChevronsRight, ChevronsUp, CircleAlert, Delete, Eye, EyeOff, Grid3X3, HelpCircle, ImageOff, Minus, PanelLeftClose, PanelLeftOpen, Palette, Plus, RotateCw, Search, Trash2, Upload, X } from "lucide-react";
 import { DocCard } from "./DocCard";
 import s from "./cards.module.css";
 
@@ -11,6 +11,7 @@ const COPIED_MESSAGE: Record<string, string> = {
 };
 
 const ICONS: Record<string, ReactNode> = {
+  Calendar: <Calendar />,
   Check: <Check />,
   CircleAlert: <CircleAlert />,
   Delete: <Delete />,
@@ -21,6 +22,11 @@ const ICONS: Record<string, ReactNode> = {
   EyeOff: <EyeOff />,
   Plus: <Plus />,
   Search: <Search />,
+  Grid3X3: <Grid3X3 />,
+  Palette: <Palette />,
+  Upload: <Upload />,
+  RotateCw: <RotateCw />,
+  Trash2: <Trash2 />,
   Minus: <Minus />,
   ChevronDown: <ChevronDown />,
   ChevronUp: <ChevronUp />,

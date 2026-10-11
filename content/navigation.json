@@ -180,17 +180,17 @@
           }
         },
         {
-          "slug": "scrollable",
-          "title": {
-            "en": "Scrollable",
-            "ru": "Scrollable"
-          }
-        },
-        {
           "slug": "splitter",
           "title": {
             "en": "Splitter",
             "ru": "Splitter"
+          }
+        },
+        {
+          "slug": "scrollable",
+          "title": {
+            "en": "Scrollable",
+            "ru": "Scrollable"
           }
         },
         {
@@ -201,13 +201,6 @@
           }
         },
         {
-          "slug": "collapsedList",
-          "title": {
-            "en": "Collapsed List",
-            "ru": "Collapsed List"
-          }
-        },
-        {
           "slug": "spoiler",
           "title": {
             "en": "Spoiler",
@@ -215,10 +208,71 @@
           }
         },
         {
+          "slug": "collapsedList",
+          "title": {
+            "en": "Collapsed List",
+            "ru": "Collapsed List"
+          }
+        },
+        {
           "slug": "divider",
           "title": {
             "en": "Divider",
             "ru": "Divider"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "slug": "overlays",
+      "title": {
+        "en": "Overlays",
+        "ru": "Оверлеи"
+      },
+      "urlBase": "components/overlays",
+      "icon": "Layers",
+      "pages": [
+        {
+          "slug": "modal",
+          "title": {
+            "en": "Modal",
+            "ru": "Modal"
+          }
+        },
+        {
+          "slug": "dialog",
+          "title": {
+            "en": "Dialogs",
+            "ru": "Dialogs"
+          }
+        },
+        {
+          "slug": "drawer",
+          "title": {
+            "en": "Drawer",
+            "ru": "Drawer"
+          }
+        },
+        {
+          "slug": "popover",
+          "title": {
+            "en": "Popover",
+            "ru": "Popover"
+          }
+        },
+        {
+          "slug": "dropdown",
+          "title": {
+            "en": "Dropdown",
+            "ru": "Dropdown"
+          }
+        },
+        {
+          "slug": "tooltip",
+          "title": {
+            "en": "Tooltip",
+            "ru": "Tooltip"
           }
         }
       ]
@@ -241,10 +295,17 @@
           }
         },
         {
-          "slug": "closeButton",
+          "slug": "form",
           "title": {
-            "en": "Close Button",
-            "ru": "Close Button"
+            "en": "Form",
+            "ru": "Form"
+          }
+        },
+        {
+          "slug": "label",
+          "title": {
+            "en": "Label",
+            "ru": "Label"
           }
         },
         {
@@ -269,6 +330,13 @@
           }
         },
         {
+          "slug": "textArea",
+          "title": {
+            "en": "TextArea",
+            "ru": "TextArea"
+          }
+        },
+        {
           "slug": "autocompleteInput",
           "title": {
             "en": "Autocomplete Input",
@@ -280,13 +348,6 @@
           "title": {
             "en": "Search",
             "ru": "Search"
-          }
-        },
-        {
-          "slug": "textArea",
-          "title": {
-            "en": "TextArea",
-            "ru": "TextArea"
           }
         },
         {
@@ -318,10 +379,10 @@
           }
         },
         {
-          "slug": "colorPicker",
+          "slug": "slider",
           "title": {
-            "en": "Color Picker",
-            "ru": "Color Picker"
+            "en": "Slider",
+            "ru": "Slider"
           }
         },
         {
@@ -332,6 +393,13 @@
           }
         },
         {
+          "slug": "colorPicker",
+          "title": {
+            "en": "Color Picker",
+            "ru": "Color Picker"
+          }
+        },
+        {
           "slug": "filePicker",
           "title": {
             "en": "File Picker",
@@ -339,78 +407,10 @@
           }
         },
         {
-          "slug": "slider",
+          "slug": "closeButton",
           "title": {
-            "en": "Slider",
-            "ru": "Slider"
-          }
-        },
-        {
-          "slug": "form",
-          "title": {
-            "en": "Form",
-            "ru": "Form"
-          }
-        },
-        {
-          "slug": "label",
-          "title": {
-            "en": "Label",
-            "ru": "Label"
-          }
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "slug": "overlays",
-      "title": {
-        "en": "Overlays",
-        "ru": "Оверлеи"
-      },
-      "urlBase": "components/overlays",
-      "icon": "Layers",
-      "pages": [
-        {
-          "slug": "modal",
-          "title": {
-            "en": "Modal",
-            "ru": "Modal"
-          }
-        },
-        {
-          "slug": "drawer",
-          "title": {
-            "en": "Drawer",
-            "ru": "Drawer"
-          }
-        },
-        {
-          "slug": "popover",
-          "title": {
-            "en": "Popover",
-            "ru": "Popover"
-          }
-        },
-        {
-          "slug": "dropdown",
-          "title": {
-            "en": "Dropdown",
-            "ru": "Dropdown"
-          }
-        },
-        {
-          "slug": "tooltip",
-          "title": {
-            "en": "Tooltip",
-            "ru": "Tooltip"
-          }
-        },
-        {
-          "slug": "dialog",
-          "title": {
-            "en": "Dialogs",
-            "ru": "Dialogs"
+            "en": "Close Button",
+            "ru": "Close Button"
           }
         }
       ]
@@ -423,7 +423,7 @@
         "ru": "Контент"
       },
       "urlBase": "components/content",
-      "icon": "LayoutGrid",
+      "icon": "SwatchBook",
       "pages": [
         {
           "slug": "text",
@@ -447,6 +447,13 @@
           }
         },
         {
+          "slug": "dataTable",
+          "title": {
+            "en": "Data Table",
+            "ru": "Data Table"
+          }
+        },
+        {
           "slug": "tags",
           "title": {
             "en": "Tags",
@@ -458,13 +465,6 @@
           "title": {
             "en": "Calendar",
             "ru": "Calendar"
-          }
-        },
-        {
-          "slug": "dataTable",
-          "title": {
-            "en": "Data Table",
-            "ru": "Data Table"
           }
         }
       ]
@@ -480,24 +480,17 @@
       "icon": "BellRing",
       "pages": [
         {
+          "slug": "notifications",
+          "title": {
+            "en": "Notifications",
+            "ru": "Notifications"
+          }
+        },
+        {
           "slug": "message",
           "title": {
             "en": "Message",
             "ru": "Message"
-          }
-        },
-        {
-          "slug": "result",
-          "title": {
-            "en": "Result",
-            "ru": "Result"
-          }
-        },
-        {
-          "slug": "progress",
-          "title": {
-            "en": "Progress",
-            "ru": "Progress"
           }
         },
         {
@@ -515,10 +508,17 @@
           }
         },
         {
-          "slug": "notifications",
+          "slug": "progress",
           "title": {
-            "en": "Notifications",
-            "ru": "Notifications"
+            "en": "Progress",
+            "ru": "Progress"
+          }
+        },
+        {
+          "slug": "result",
+          "title": {
+            "en": "Result",
+            "ru": "Result"
           }
         }
       ]
@@ -534,17 +534,17 @@
       "icon": "Compass",
       "pages": [
         {
+          "slug": "tabs",
+          "title": {
+            "en": "Tabs",
+            "ru": "Tabs"
+          }
+        },
+        {
           "slug": "navigationList",
           "title": {
             "en": "Navigation List",
             "ru": "Navigation List"
-          }
-        },
-        {
-          "slug": "bottomNavigation",
-          "title": {
-            "en": "Bottom Navigation",
-            "ru": "Bottom Navigation"
           }
         },
         {
@@ -555,10 +555,10 @@
           }
         },
         {
-          "slug": "tabs",
+          "slug": "bottomNavigation",
           "title": {
-            "en": "Tabs",
-            "ru": "Tabs"
+            "en": "Bottom Navigation",
+            "ru": "Bottom Navigation"
           }
         },
         {
