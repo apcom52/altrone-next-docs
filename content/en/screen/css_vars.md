@@ -91,8 +91,8 @@ Layer of the sidebar and bottom bar; the header sits one level below. Default: `
 Layer of the dimmed background behind the sidebar. Default: `1040`
 :::
 
-:::css-var[--elevation-overlay-z-index]{kind="size" type="Layer"}
-Layer of the sidebar when it opens over the content. Default: `var(--level-popover)`
+:::css-var[--level-offcanvas]{kind="size" type="Layer"}
+Layer of the sidebar when it opens over the content. Default: `1045`
 :::
 
 :::css-var[--breakpoint-xs]{kind="size" type="Size"}

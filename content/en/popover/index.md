@@ -86,7 +86,7 @@ A floating panel anchored to a trigger. The base primitive `Dropdown`, `Autocomp
 ```
 
 :::note
-With `trigger="hover"`, opening is delayed by 500ms and closing by 250ms. The built-in `safePolygon` keeps the panel open while the pointer travels from the trigger to it.
+With `trigger="hover"`, opening is delayed by 500ms and closing by 250ms. The built-in `safePolygon` keeps the panel open while the pointer travels from the trigger to it. Touch devices have no hover, so there the popover opens and closes on tap.
 :::
 
 ## Programmatic control
