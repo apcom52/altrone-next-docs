@@ -7,7 +7,6 @@ import { Header } from "./header";
 import { Footer } from "./footer";
 import { Sidebar } from "./sidebar";
 import { useAside } from "./AsideContext";
-import { HomeHeader } from "./[locale]/HomeHeader";
 import { DocsHeader } from "./[locale]/DocsHeader";
 import { findPageTitle } from "@/lib/types";
 import type { Navigation } from "@/lib/types";
@@ -48,14 +47,13 @@ export function ScreenShell({
   const aside = useAside();
   const showAside = isDocs && aside != null;
 
-  let header: ReactNode;
-  if (isHome) header = <HomeHeader locale={locale} />;
-  else if (isDocs) header = <DocsHeader locale={locale} nav={nav} />;
-  else header = <Header />;
+  let header: ReactNode = null;
+  if (isDocs) header = <DocsHeader locale={locale} nav={nav} />;
+  else if (!isHome) header = <Header />;
 
   return (
     <Screen mobileBreakpoint="md" title={pageTitle}>
-      <Screen.Header>{header}</Screen.Header>
+      {header ? <Screen.Header>{header}</Screen.Header> : null}
 
       <Screen.Sidebar visibleFrom="md" collapsed={!isDocs}>
         {isDocs ? <Sidebar nav={nav} /> : null}

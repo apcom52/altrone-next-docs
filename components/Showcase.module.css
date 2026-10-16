@@ -87,12 +87,16 @@
   display: block;
   height: 452px;
   width: auto;
+  object-fit: cover;
+  object-position: center;
   border-radius: 24px;
   margin-bottom: 16px;
 }
 
 .SlideCaption {
+  box-sizing: border-box;
   max-width: 500px;
+  padding-inline: 16px;
   line-height: 1.5;
   font-size: 16px;
   font-weight: 400;

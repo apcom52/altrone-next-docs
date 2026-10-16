@@ -97,6 +97,8 @@ function ShowcaseBase({
 interface ShowcaseSlideProps {
   image: string;
   imageAlt?: string;
+  /** Fixed width in px; the image is cropped to it around its center. Natural aspect ratio when omitted. */
+  width?: number;
   title: ReactNode;
   description: ReactNode;
 }
@@ -106,6 +108,7 @@ const CAPTION_MAX_WIDTH = 500;
 function ShowcaseSlide({
   image,
   imageAlt = "",
+  width,
   title,
   description,
 }: ShowcaseSlideProps) {
@@ -134,6 +137,7 @@ function ShowcaseSlide({
         src={image}
         alt={imageAlt}
         className={s.SlideImage}
+        style={width ? { width } : undefined}
         onLoad={updateCaptionWidth}
       />
       <div className={s.SlideCaption} style={{ maxWidth: captionMaxWidth }}>

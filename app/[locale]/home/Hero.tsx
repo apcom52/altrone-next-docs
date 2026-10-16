@@ -1,29 +1,36 @@
 "use client";
 
 import { Button, Flex, Text } from "altrone-ui";
-import { ArrowRight, BookOpen, Download } from "lucide-react";
+import { ArrowRight, BookOpen, Languages } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { rememberLocale } from "@/lib/localePreference";
 import s from "./hero.module.css";
 
 const COPY: Record<
   string,
-  { brand: string; title: string; description: string; docs: string; installation: string }
+  {
+    brand: string;
+    description: string;
+    docs: string;
+    otherLocale: string;
+    otherLocaleLabel: string;
+  }
 > = {
   en: {
     brand: "Altrone 4",
-    title: " is here",
     description:
       "A fresh, living design with smooth animations, five sizes for every component, a choice of accent colors and far deeper customization. Adaptive by default, with new capabilities in the components you already use.",
     docs: "Documentation",
-    installation: "Installation",
+    otherLocale: "ru",
+    otherLocaleLabel: "На Русском",
   },
   ru: {
     brand: "Altrone 4",
-    title: " уже здесь",
     description:
       "Новый живой дизайн с крутыми анимациями, пять размеров для всех компонентов, на выбор разные акцентные цвета и расширенная кастомизация. Адаптивность из коробки и новые функции в привычных компонентах.",
     docs: "Документация",
-    installation: "Установка",
+    otherLocale: "en",
+    otherLocaleLabel: "In English",
   },
 };
 
@@ -33,10 +40,14 @@ export function Hero({ locale }: { locale: string }) {
 
   return (
     <div className={s.Hero}>
-      <Flex orientation="vertical" align="start" gap="xxl" className={s.Content}>
+      <Flex
+        orientation="vertical"
+        align="start"
+        gap="xxl"
+        className={s.Content}
+      >
         <Text block weight="bold" className={s.Title}>
-          <span className={s.Brand}>{copy.brand}</span>
-          {copy.title}
+          <span className={s.Brand}>{copy.brand}</span> Decent Dragon
         </Text>
         <Text block size={5} className={s.Description}>
           {copy.description}
@@ -52,9 +63,12 @@ export function Hero({ locale }: { locale: string }) {
           />
           <Button
             size="xl"
-            label={copy.installation}
-            icon={<Download />}
-            onClick={() => router.push(`/${locale}/installation`)}
+            label={copy.otherLocaleLabel}
+            icon={<Languages />}
+            onClick={() => {
+              rememberLocale(copy.otherLocale);
+              router.push(`/${copy.otherLocale}`);
+            }}
           />
         </Flex>
       </Flex>

@@ -6,7 +6,12 @@ import { Showcase } from "@/components/Showcase";
  * Placeholder art until real screenshots/photos are wired in — width varies
  * per slide (452px height, natural aspect ratio) to demonstrate the layout.
  */
-function gradientPlaceholder(width: number, height: number, from: string, to: string) {
+function gradientPlaceholder(
+  width: number,
+  height: number,
+  from: string,
+  to: string,
+) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${from}"/><stop offset="100%" stop-color="${to}"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`;
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
@@ -20,10 +25,11 @@ const DESIGN_IMAGES = [
 ];
 
 const COMPONENTS_IMAGES = [
-  gradientPlaceholder(560, 452, "#f43f5e", "#fb923c"),
-  gradientPlaceholder(452, 452, "#14b8a6", "#0ea5e9"),
-  gradientPlaceholder(700, 452, "#8b5cf6", "#d946ef"),
-  gradientPlaceholder(603, 452, "#facc15", "#f97316"),
+  "/slides/4/sc2-box.png",
+  "/slides/4/sc2-splitter.png",
+  "/slides/4/sc2-toolbar.png",
+  "/slides/4/sc2-datatable.png",
+  "/slides/4/sc2-components.png",
 ];
 
 const SCREEN_IMAGES = [
@@ -137,34 +143,40 @@ function ComponentsShowcaseRu() {
       eyebrow="Новые компоненты"
       title={
         <>
-          Больше компонентов.
+          Новые компоненты.
           <br />
-          Больше возможностей.
+          Больше возможностей в привычных.
         </>
       }
-      description="Мы добавили десятки новых компонентов — от сложных таблиц до сплиттеров и цветовых пикеров. Каждый сделан с тем же вниманием к деталям, что и остальная библиотека."
+      description="В четвёртой версии появились новые компоненты, а уже знакомые, например таблицы и тулбары, сильно изменились и научились новому."
       prevLabel="Назад"
       nextLabel="Далее"
     >
       <Showcase.Slide
         image={COMPONENTS_IMAGES[0]}
-        title="Таблицы, готовые к продакшену."
-        description="Сортировка, фильтрация и виртуализация строк — из коробки, без сторонних библиотек."
+        title="Box — кирпичик, из которого собрано всё."
+        description="Это основа, из которой собираются все остальные компоненты. Материал, тон, форма и тень задаются в одном месте, поэтому кнопки, поля и бейджи так похожи друг на друга. Берите тот же Box для своих карточек и панелей, и они сразу впишутся в библиотеку."
       />
       <Showcase.Slide
         image={COMPONENTS_IMAGES[1]}
-        title="Выбор цвета без компромиссов."
-        description="Полноценный ColorPicker с альфа-каналом, палитрами и ручным вводом HEX/RGB."
+        width={452}
+        title="Splitter — панели с изменяемым размером."
+        description="Несколько панелей на одном экране, а границу между ними можно двигать мышью или с клавиатуры. Нужно больше места для главного — расширьте его, ненужное — сверните."
       />
       <Showcase.Slide
         image={COMPONENTS_IMAGES[2]}
-        title="Гибкие панели."
-        description="Splitter позволяет перетаскивать, схлопывать и настраивать макет — как нативный жест."
+        title="Toolbar — панель действий для любой части экрана."
+        description="Из него собирается шапка приложения и любые другие наборы кнопок: сверху, снизу или сбоку. Если действия не помещаются, лишние сами уходят в отдельное меню, и на узком экране ничего не ломается."
       />
       <Showcase.Slide
         image={COMPONENTS_IMAGES[3]}
-        title="Панели инструментов нового поколения."
-        description="Группы, разделители и адаптивное сворачивание в Toolbar готовы из коробки."
+        title="DataTable — таблица для больших данных."
+        description="Новый движок под капотом и обновлённый дизайн снаружи. Появились типы колонок, изменение их ширины, состояние загрузки и удобные фильтры. Также появился полностью контролируемый режим состояния таблицы — текущей страницей, сортировкой и фильтрами можно управлять из своего кода."
+      />
+      <Showcase.Slide
+        image={COMPONENTS_IMAGES[4]}
+        title="И это ещё не всё."
+        description="Screen собирает каркас приложения за пару минут. Не хватает места — сбоку выезжает Drawer. Пока данные грузятся, Skeleton держит для них место, а когда данных нет, Result объясняет, почему. Label помечает статусы и категории, а Image показывает картинки вместе с подписями."
       />
     </Showcase>
   );
@@ -177,34 +189,40 @@ function ComponentsShowcaseEn() {
       eyebrow="New components"
       title={
         <>
-          More components.
+          New components.
           <br />
-          More possibilities.
+          More power in the familiar ones.
         </>
       }
-      description="We added dozens of new components — from complex tables to splitters and color pickers. Each one built with the same attention to detail as the rest of the library."
+      description="Version 4 brings new components, and familiar ones like tables and toolbars have changed a lot and learned new tricks."
       prevLabel="Previous"
       nextLabel="Next"
     >
       <Showcase.Slide
         image={COMPONENTS_IMAGES[0]}
-        title="Tables, ready for production."
-        description="Sorting, filtering and row virtualization — out of the box, no third-party libraries."
+        title="Box — the building block of everything."
+        description="It's the foundation every other component is built from. Material, tone, shape and shadow are set in one place, which is why buttons, inputs and badges feel so alike. Use the same Box for your own cards and panels, and they fit right into the library."
       />
       <Showcase.Slide
         image={COMPONENTS_IMAGES[1]}
-        title="Color picking without compromise."
-        description="A full ColorPicker with an alpha channel, palettes and manual HEX/RGB input."
+        width={452}
+        title="Splitter — resizable panels."
+        description="Several panels on one screen, with dividers you can move by mouse or keyboard. Need more room for what matters? Widen it, and collapse the rest."
       />
       <Showcase.Slide
         image={COMPONENTS_IMAGES[2]}
-        title="Flexible panels."
-        description="Splitter lets you drag, collapse and resize layouts — it feels like a native gesture."
+        title="Toolbar — an action bar for any part of the screen."
+        description="It builds your app header and any other set of buttons: on top, at the bottom or on the side. When actions don't fit, the extra ones move into a separate menu on their own, so nothing breaks on a narrow screen."
       />
       <Showcase.Slide
         image={COMPONENTS_IMAGES[3]}
-        title="A next-generation toolbar."
-        description="Groups, dividers and adaptive collapsing come built into Toolbar."
+        title="DataTable — a table for big data."
+        description="A new engine under the hood and a refreshed design on the outside. It brings column types, resizable columns, a loading state and handy filters. There's also a fully controlled mode for the table's state — the current page, sorting and filters can be driven from your own code."
+      />
+      <Showcase.Slide
+        image={COMPONENTS_IMAGES[4]}
+        title="And there's more."
+        description="Screen builds your app shell in a couple of minutes. Need more room? Drawer slides in from the side. While data loads, Skeleton holds its place, and when there is none, Result explains why. Label tags statuses and categories, and Image shows pictures together with their captions."
       />
     </Showcase>
   );
