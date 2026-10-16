@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Calendar, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, ChevronsDown, ChevronsLeft, ChevronsRight, ChevronsUp, CircleAlert, Delete, Eye, EyeOff, Grid3X3, HelpCircle, ImageOff, Minus, PanelLeftClose, PanelLeftOpen, Palette, Plus, RotateCw, Search, Trash2, Upload, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Calendar, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, ChevronsDown, ChevronsLeft, ChevronsRight, ChevronsUp, CircleAlert, Delete, Ellipsis, Eye, EyeOff, Funnel, Grid3X3, HelpCircle, ImageOff, Minus, PanelLeftClose, PanelLeftOpen, Palette, Plus, RotateCw, Search, Square, SquareCheckBig, Trash, Trash2, Upload, X } from "lucide-react";
 import { DocCard } from "./DocCard";
 import s from "./cards.module.css";
 
@@ -38,6 +38,13 @@ const ICONS: Record<string, ReactNode> = {
   ChevronsRight: <ChevronsRight />,
   PanelLeftOpen: <PanelLeftOpen />,
   PanelLeftClose: <PanelLeftClose />,
+  ArrowUp: <ArrowUp />,
+  ArrowDown: <ArrowDown />,
+  Funnel: <Funnel />,
+  Trash: <Trash />,
+  SquareCheckBig: <SquareCheckBig />,
+  Square: <Square />,
+  Ellipsis: <Ellipsis />,
 };
 
 export function IconCardsBlock({ children }: { children?: ReactNode }) {
