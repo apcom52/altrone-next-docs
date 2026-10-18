@@ -106,8 +106,8 @@ CSS-переменные, которые читает `Checkbox` и которы
 Цвет подписи с `danger`. По умолчанию: `var(--red-11)`
 :::
 
-:::css-var[--background-a2]{kind="fill" type="Цвет заливки" color="var(--background-a2)"}
-Фон бокса в заблокированном состоянии. По умолчанию: `var(--gray-a2)`
+:::css-var[--disabled-background]{kind="fill" type="Цвет заливки" color="var(--disabled-background)"}
+Фон бокса в заблокированном состоянии. По умолчанию: `var(--gray-3)`
 :::
 
 :::css-var[--disabled-border]{kind="border" type="Цвет рамки" color="var(--disabled-border)"}
@@ -119,7 +119,7 @@ CSS-переменные, которые читает `Checkbox` и которы
 :::
 
 :::css-var[--radius-s]{kind="radius" type="Радиус скругления"}
-Скругление чёрточки и бокса `mini`. По умолчанию: `4px`
+Скругление чёрточки. По умолчанию: `4px`
 :::
 
 :::css-var[--shadow-1]{kind="shadow" type="Тень"}

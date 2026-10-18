@@ -30,24 +30,24 @@ What can't be overridden:
 Defined by the component itself.
 
 ::::css-vars
-:::css-var[--radio-background-color]{kind="fill" type="Fill color" color="var(--interactive-a1)"}
-Circle background at rest. Default: `var(--interactive-a1)`
+:::css-var[--radio-background-color]{kind="fill" type="Fill color" color="var(--interactive-1)"}
+Circle background at rest. Default: `var(--interactive-1)`
 :::
 
-:::css-var[--radio-hover-background-color]{kind="fill" type="Fill color" color="var(--interactive-a2)"}
-Circle background on hover. Default: `var(--interactive-a2)`
+:::css-var[--radio-hover-background-color]{kind="fill" type="Fill color" color="var(--interactive-2)"}
+Circle background on hover. Default: `var(--interactive-2)`
 :::
 
-:::css-var[--radio-checked-background-color]{kind="fill" type="Fill color" color="var(--accent-a5)"}
-Circle background of the selected option. Default: `var(--accent-a5)`
+:::css-var[--radio-checked-background-color]{kind="fill" type="Fill color" color="var(--accent-5)"}
+Circle background of the selected option. Default: `var(--accent-5)`
 :::
 
-:::css-var[--radio-border-color]{kind="border" type="Border color" color="var(--border-a1)"}
-Ring around the circle at rest. Default: `var(--border-a1)`
+:::css-var[--radio-border-color]{kind="border" type="Border color" color="var(--border-1)"}
+Ring around the circle at rest. Default: `var(--border-1)`
 :::
 
-:::css-var[--radio-checked-border-color]{kind="border" type="Border color" color="var(--border-a1)"}
-Ring around the circle of the selected option. Default: `var(--border-a1)`
+:::css-var[--radio-checked-border-color]{kind="border" type="Border color" color="var(--border-1)"}
+Ring around the circle of the selected option. Default: `var(--border-1)`
 :::
 
 :::css-var[--radio-icon-color]{kind="fill" type="Fill color" color="var(--text-2)"}
@@ -92,8 +92,8 @@ Space between options and between the circle and its label. Default: `8px`
 Keyboard focus ring. Default: black in the light theme
 :::
 
-:::css-var[--background-a2]{kind="fill" type="Fill color" color="var(--background-a2)"}
-Circle background of a disabled option. Default: `var(--gray-a2)`
+:::css-var[--disabled-background]{kind="fill" type="Fill color" color="var(--disabled-background)"}
+Circle background of a disabled option. Default: `var(--gray-3)`
 :::
 
 :::css-var[--disabled-border]{kind="border" type="Border color" color="var(--disabled-border)"}

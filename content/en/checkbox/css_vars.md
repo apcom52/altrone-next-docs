@@ -106,8 +106,8 @@ Keyboard focus ring. Default: black in the light theme
 Label color with `danger`. Default: `var(--red-11)`
 :::
 
-:::css-var[--background-a2]{kind="fill" type="Fill color" color="var(--background-a2)"}
-Box background when disabled. Default: `var(--gray-a2)`
+:::css-var[--disabled-background]{kind="fill" type="Fill color" color="var(--disabled-background)"}
+Box background when disabled. Default: `var(--gray-3)`
 :::
 
 :::css-var[--disabled-border]{kind="border" type="Border color" color="var(--disabled-border)"}
@@ -119,7 +119,7 @@ Label and check mark when disabled. Default: `var(--gray-9)`
 :::
 
 :::css-var[--radius-s]{kind="radius" type="Corner radius"}
-Corner radius of the dash and of the `mini` box. Default: `4px`
+Corner radius of the dash. Default: `4px`
 :::
 
 :::css-var[--shadow-1]{kind="shadow" type="Shadow"}

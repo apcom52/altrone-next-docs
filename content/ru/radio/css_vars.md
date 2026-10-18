@@ -30,24 +30,24 @@ CSS-переменные, которые читает `Radio` и которые 
 Определены самим компонентом.
 
 ::::css-vars
-:::css-var[--radio-background-color]{kind="fill" type="Цвет заливки" color="var(--interactive-a1)"}
-Фон кружка в обычном состоянии. По умолчанию: `var(--interactive-a1)`
+:::css-var[--radio-background-color]{kind="fill" type="Цвет заливки" color="var(--interactive-1)"}
+Фон кружка в обычном состоянии. По умолчанию: `var(--interactive-1)`
 :::
 
-:::css-var[--radio-hover-background-color]{kind="fill" type="Цвет заливки" color="var(--interactive-a2)"}
-Фон кружка при наведении. По умолчанию: `var(--interactive-a2)`
+:::css-var[--radio-hover-background-color]{kind="fill" type="Цвет заливки" color="var(--interactive-2)"}
+Фон кружка при наведении. По умолчанию: `var(--interactive-2)`
 :::
 
-:::css-var[--radio-checked-background-color]{kind="fill" type="Цвет заливки" color="var(--accent-a5)"}
-Фон кружка у выбранного варианта. По умолчанию: `var(--accent-a5)`
+:::css-var[--radio-checked-background-color]{kind="fill" type="Цвет заливки" color="var(--accent-5)"}
+Фон кружка у выбранного варианта. По умолчанию: `var(--accent-5)`
 :::
 
-:::css-var[--radio-border-color]{kind="border" type="Цвет рамки" color="var(--border-a1)"}
-Кольцо вокруг кружка в обычном состоянии. По умолчанию: `var(--border-a1)`
+:::css-var[--radio-border-color]{kind="border" type="Цвет рамки" color="var(--border-1)"}
+Кольцо вокруг кружка в обычном состоянии. По умолчанию: `var(--border-1)`
 :::
 
-:::css-var[--radio-checked-border-color]{kind="border" type="Цвет рамки" color="var(--border-a1)"}
-Кольцо вокруг кружка у выбранного варианта. По умолчанию: `var(--border-a1)`
+:::css-var[--radio-checked-border-color]{kind="border" type="Цвет рамки" color="var(--border-1)"}
+Кольцо вокруг кружка у выбранного варианта. По умолчанию: `var(--border-1)`
 :::
 
 :::css-var[--radio-icon-color]{kind="fill" type="Цвет заливки" color="var(--text-2)"}
@@ -92,8 +92,8 @@ CSS-переменные, которые читает `Radio` и которые 
 Кольцо фокуса с клавиатуры. По умолчанию: чёрный в светлой теме
 :::
 
-:::css-var[--background-a2]{kind="fill" type="Цвет заливки" color="var(--background-a2)"}
-Фон кружка заблокированного варианта. По умолчанию: `var(--gray-a2)`
+:::css-var[--disabled-background]{kind="fill" type="Цвет заливки" color="var(--disabled-background)"}
+Фон кружка заблокированного варианта. По умолчанию: `var(--gray-3)`
 :::
 
 :::css-var[--disabled-border]{kind="border" type="Цвет рамки" color="var(--disabled-border)"}
