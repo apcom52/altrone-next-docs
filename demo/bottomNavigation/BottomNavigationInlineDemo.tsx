@@ -3,7 +3,7 @@
 import { BottomNavigation } from "altrone-ui";
 import { Home, Search } from "lucide-react";
 
-export default function BottomNavigationFlushDemo() {
+export default function BottomNavigationInlineDemo() {
   return (
     <BottomNavigation floating={false}>
       <BottomNavigation.Link icon={<Home />} label="Home" selected />

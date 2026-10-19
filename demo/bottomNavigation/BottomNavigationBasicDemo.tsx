@@ -8,7 +8,7 @@ export default function BottomNavigationBasicDemo() {
   const [active, setActive] = useState("home");
 
   return (
-    <BottomNavigation>
+    <BottomNavigation floating={false}>
       <BottomNavigation.Link
         icon={<Home />}
         label="Home"
