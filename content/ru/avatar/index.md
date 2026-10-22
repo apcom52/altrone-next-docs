@@ -132,4 +132,4 @@ import { Bot } from 'lucide-react';
 - [Цвет](/ru/foundations/color) — категориальная палитра, из которой берётся фон по умолчанию
 - [Tags](/ru/components/content/tags) — ещё один способ обозначить принадлежность
 - [DataTable](/ru/components/content/dataTable) — таблица, где аватары часто стоят в первой колонке
-- [Доступность](/ru/accessibility) — доступные имена и контраст во всей библиотеке
+- [Доступность](/ru/foundations/accessibility) — доступные имена и контраст во всей библиотеке

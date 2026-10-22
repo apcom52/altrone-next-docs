@@ -132,4 +132,4 @@ Other `<div>` attributes, including `aria-label` and `title`, are passed to the 
 - [Color](/en/foundations/color) — the categorical palette the default background comes from
 - [Tags](/en/components/content/tags) — another way to mark membership
 - [DataTable](/en/components/content/dataTable) — a table where avatars often sit in the first column
-- [Accessibility](/en/accessibility) — accessible names and contrast across the library
+- [Accessibility](/en/foundations/accessibility) — accessible names and contrast across the library
