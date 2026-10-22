@@ -11,8 +11,8 @@ const LABELS: Record<string, { good: string; bad: string }> = {
   ru: { good: "Хорошо", bad: "Плохо" },
 };
 
-export function GoodBadBlock({ children }: { children?: ReactNode }) {
-  return <div className={s.Columns}>{children}</div>;
+export function GoodBadBlock({ columns, children }: { columns?: string; children?: ReactNode }) {
+  return <div className={clsx(s.Columns, { [s.Single]: columns === "1" })}>{children}</div>;
 }
 
 export function GoodBadItem({

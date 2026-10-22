@@ -5,6 +5,10 @@
   align-items: stretch;
 }
 
+.Single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .Column {
   display: flex;
   flex-direction: column;

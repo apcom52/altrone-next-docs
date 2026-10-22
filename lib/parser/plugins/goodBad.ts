@@ -13,6 +13,7 @@ export const goodBadPlugin: Plugin<[], Root> = () => (tree) => {
     if (node.name === "good-bad") {
       const data = node.data ?? (node.data = {});
       data.hName = "good-bad-block";
+      data.hProperties = { columns: node.attributes?.columns ?? "2" };
       return;
     }
 

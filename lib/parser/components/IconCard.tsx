@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ArrowDown, ArrowUp, Calendar, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, ChevronsDown, ChevronsLeft, ChevronsRight, ChevronsUp, CircleAlert, Delete, Ellipsis, Eye, EyeOff, Funnel, Grid3X3, HelpCircle, ImageOff, Minus, PanelLeftClose, PanelLeftOpen, Palette, Plus, RotateCw, Search, Square, SquareCheckBig, Trash, Trash2, Upload, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Calendar, Check, ChevronDown, ChevronFirst, ChevronLast, ChevronLeft, ChevronRight, ChevronUp, ChevronsDown, ChevronsLeft, ChevronsRight, ChevronsUp, CircleAlert, Delete, Ellipsis, Eye, EyeOff, Funnel, Grid3X3, HelpCircle, ImageOff, Minus, PanelLeftClose, PanelLeftOpen, Palette, Plus, RotateCw, Search, Square, SquareCheckBig, Trash, Trash2, Upload, X } from "lucide-react";
 import { DocCard } from "./DocCard";
 import s from "./cards.module.css";
 
@@ -29,6 +29,8 @@ const ICONS: Record<string, ReactNode> = {
   Trash2: <Trash2 />,
   Minus: <Minus />,
   ChevronDown: <ChevronDown />,
+  ChevronFirst: <ChevronFirst />,
+  ChevronLast: <ChevronLast />,
   ChevronUp: <ChevronUp />,
   ChevronLeft: <ChevronLeft />,
   ChevronRight: <ChevronRight />,
