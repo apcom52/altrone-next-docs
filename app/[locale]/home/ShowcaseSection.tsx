@@ -33,10 +33,9 @@ const COMPONENTS_IMAGES = [
 ];
 
 const SCREEN_IMAGES = [
-  gradientPlaceholder(700, 452, "#0ea5e9", "#6366f1"),
-  gradientPlaceholder(452, 452, "#22c55e", "#14b8a6"),
-  gradientPlaceholder(603, 452, "#f97316", "#ef4444"),
-  gradientPlaceholder(500, 452, "#a855f7", "#ec4899"),
+  "/slides/4/sc3-screen.png",
+  "/slides/4/sc3-elements.png",
+  "/slides/4/sc3-navigation.png",
 ];
 
 const MORE_IMAGES = [
@@ -246,23 +245,18 @@ function ScreenShowcaseRu() {
     >
       <Showcase.Slide
         image={SCREEN_IMAGES[0]}
-        title="Боковая панель, которая просто работает."
-        description="Сворачивается, докируется и превращается в мобильное меню — без единой строчки медиа-запросов."
+        title="Каркас, который не нужно придумывать."
+        description="Почти у каждого приложения один и тот же скелет: шапка, меню, контент. Screen берёт эту рутину на себя — зоны уже стоят на своих местах, отступы и скролл настроены, а вам остаётся только наполнить их содержимым. Меньше вёрстки — больше времени на сам продукт."
       />
       <Showcase.Slide
         image={SCREEN_IMAGES[1]}
-        title="Шапка на своём месте."
-        description="Screen.Header фиксируется поверх контента и уважает отступы на любом брейкпоинте."
+        title="Шесть зон. Берите только нужные."
+        description="Шапка закреплена сверху, сайдбар хранит навигацию, контент прокручивается по центру. Рядом может появиться боковая панель с деталями, внизу — подвал, а на телефоне — нижняя панель навигации. Не нужна зона — просто не добавляйте её, сетка перестроится сама."
       />
       <Showcase.Slide
         image={SCREEN_IMAGES[2]}
-        title="Контент без лишней вёрстки."
-        description="Отступы и скролл в Screen.Content заданы заранее — просто кладите содержимое внутрь."
-      />
-      <Showcase.Slide
-        image={SCREEN_IMAGES[3]}
-        title="От сайдбара до таб-бара."
-        description="На мобильных экранах Screen сам превращает навигацию в нижний таб-бар — переключать вручную ничего не нужно."
+        title="Адаптивная навигация."
+        description="На большом экране меню живёт в сайдбаре, на телефоне удобнее нижняя панель — до неё достаёт большой палец. Задайте, с какой ширины показывать каждую из них, а на узких экранах сайдбар сам превращается в выезжающее меню."
       />
     </Showcase>
   );
@@ -286,23 +280,18 @@ function ScreenShowcaseEn() {
     >
       <Showcase.Slide
         image={SCREEN_IMAGES[0]}
-        title="A sidebar that just works."
-        description="It collapses, docks and turns into a mobile menu — without a single media query."
+        title="A shell you don't have to invent."
+        description="Almost every app shares the same skeleton: a header, a menu, content. Screen takes that routine off your hands — the zones are already in place, padding and scrolling are set up, and all that's left is to fill them in. Less layout work, more time for the product itself."
       />
       <Showcase.Slide
         image={SCREEN_IMAGES[1]}
-        title="A header that stays put."
-        description="Screen.Header sticks above the content and respects insets at every breakpoint."
+        title="Six zones. Use only what you need."
+        description="The header sits on top, the sidebar holds navigation, and the content scrolls in the middle. A side pane with details can join in, a footer closes the page, and on a phone a bottom navigation bar steps in. Don't need a zone? Just leave it out and the grid adapts on its own."
       />
       <Showcase.Slide
         image={SCREEN_IMAGES[2]}
-        title="Content without the boilerplate."
-        description="Padding and scrolling in Screen.Content are already set up — just drop your content in."
-      />
-      <Showcase.Slide
-        image={SCREEN_IMAGES[3]}
-        title="From sidebar to tab bar."
-        description="On mobile, Screen turns navigation into a bottom tab bar on its own — nothing to switch by hand."
+        title="Adaptive navigation."
+        description="On a large screen the menu lives in a sidebar; on a phone a bottom bar is easier — it's right under your thumb. Choose the width from which each one shows up, and on narrow screens the sidebar turns into a slide-out menu by itself."
       />
     </Showcase>
   );
