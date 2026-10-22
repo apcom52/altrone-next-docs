@@ -11,7 +11,7 @@ The CSS variables `Divider` reads and that can be overridden.
 
 ::playground{src=divider/DividerCssVarsDemo caption="An accent-colored line"}
 
-The thickness (`1px`) and the corner rounding are fixed and can't be changed through variables. The inset from the container edges and the margins come from the global `--l-gap` and `--xs-gap`; inside a `Flex` with the default `disableInnerMargins` the margins are reset, so the spacing is set by the `gap` of `Flex`.
+The thickness (`1px`) is fixed and can't be changed through variables. The inset of the line's ends and its outer margins come from the global `--l-gap` and `--xs-gap`. The inset is padding, so it stays inside a `Flex`; the outer margins are reset there by the default `disableInnerMargins`, and the `gap` of `Flex` spaces the line instead.
 :::
 
 ## Internal variables
@@ -34,10 +34,10 @@ The default for `--divider-color`. Default: `var(--gray-a6)`
 :::
 
 :::css-var[--l-gap]{kind="gap" type="Spacing"}
-How much shorter a horizontal line is than its container; the side margins of a vertical line. Default: `12px`
+A horizontal line is inset by half of it at each end; the side margins of a vertical line. Default: `12px`
 :::
 
 :::css-var[--xs-gap]{kind="gap" type="Spacing"}
-The top and bottom margins of the line. Default: `4px`
+The top and bottom margins of a horizontal line; the inset at the ends of a vertical line. Default: `4px`
 :::
 ::::

@@ -20,10 +20,6 @@ By default the line is horizontal: it takes the width of the container, slightly
 
 ::playground{src=divider/DividerBasicDemo caption="Three sections separated by horizontal lines"}
 
-:::note
-`Flex` resets the margins of its children by default, so inside it the spacing around the line comes from the `gap` of `Flex`, not from `Divider` itself.
-:::
-
 ## Vertical divider
 
 `orientation="vertical"` stands the line up to separate items in a row. It stretches to the height of the row, so it needs a parent with a flex layout, and gets `aria-orientation="vertical"`.
