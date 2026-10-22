@@ -18,11 +18,11 @@ import { Skeleton } from 'altrone-ui';
 
 ::playground{src=skeleton/SkeletonBasicDemo caption="Три строки абзаца"}
 
-Все размерные пропы — строки с CSS-единицей (`"14px"`, `"70%"`, `"var(--radius-m)"`). Без `width` или `height` скелетон занимает `100%` родителя по этой оси — поэтому всегда задавайте `height`: в контейнере, высота которого зависит от содержимого, `100%` превращается в ноль и блок пропадает.
+Размерные пропы и `radius` принимают число пикселей (`14`) или любое значение CSS (`"70%"`, `"var(--radius-m)"`). Без `width` скелетон занимает всю ширину родителя. Без `height` он заполняет высоту родителя, но не бывает ниже одной строки текста (`1lh`) — в контейнере, высота которого зависит от содержимого, он получается высотой в одну строку. В строке `Flex` скелетоны не сжимаются, поэтому маленькая заглушка сохраняет размер рядом с длинной.
 
 ## Формы
 
-`radius` уходит прямо в `border-radius`: `50%` даёт круг для аватара, несколько пикселей — мягкие углы кнопки или строки текста. Без `radius` углы прямые.
+`radius` уходит прямо в `border-radius`: `50%` даёт круг для аватара, несколько пикселей — мягкие углы кнопки или строки текста. Без `radius` углы следуют окружающему скруглению, как у [Box](/ru/components/layout/box), и не становятся острее `--radius-mini`.
 
 ```tsx
 <Skeleton width="48px" height="48px" radius="50%" />
@@ -31,14 +31,14 @@ import { Skeleton } from 'altrone-ui';
 <Skeleton width="64px" height="64px" />
 ```
 
-::playground{src=skeleton/SkeletonShapesDemo caption="Аватар, кнопка, строка текста и блок без скругления"}
+::playground{src=skeleton/SkeletonShapesDemo caption="Аватар, кнопка, строка текста и блок со скруглением по умолчанию"}
 
 ## Гибкий размер
 
-`width` и `height` фиксируют размер: `minWidth` и `maxWidth` по умолчанию равны `width`, а `minHeight` и `maxHeight` — `height`. Чтобы блок тянулся в пределах, передайте пределы явно. Передавайте и минимум, и максимум: минимум по умолчанию равен `width`, а в CSS `min-width` сильнее `max-width`.
+`minWidth`, `maxWidth`, `minHeight` и `maxHeight` ограничивают гибкий размер: блок с `width="100%"` и `maxWidth` тянется вместе с родителем и останавливается на пределе.
 
 ```tsx
-<Skeleton width="100%" minWidth="120px" maxWidth="320px" height="14px" radius="4px" />
+<Skeleton width="100%" maxWidth={320} height={14} radius={4} />
 ```
 
 ::playground{src=skeleton/SkeletonFlexibleSizeDemo caption="Верхняя строка останавливается на 320px, нижняя занимает всю ширину"}
@@ -100,32 +100,32 @@ import { Skeleton } from 'altrone-ui';
 
 ## Свойства
 
-:::prop[width]{type="string" default="'100%'"}
-Ширина. Также значение по умолчанию для `minWidth` и `maxWidth`.
+:::prop[width]{type="string | number" default="'100%'"}
+Ширина. Число — в пикселях.
 :::
 
-:::prop[minWidth]{type="string"}
-Минимальная ширина. По умолчанию равна `width`.
+:::prop[minWidth]{type="string | number"}
+Минимальная ширина.
 :::
 
-:::prop[maxWidth]{type="string"}
-Максимальная ширина. По умолчанию равна `width`.
+:::prop[maxWidth]{type="string | number"}
+Максимальная ширина.
 :::
 
-:::prop[height]{type="string" default="'100%'"}
-Высота. Также значение по умолчанию для `minHeight` и `maxHeight`.
+:::prop[height]{type="string | number" default="'100%'"}
+Высота. Число — в пикселях.
 :::
 
-:::prop[minHeight]{type="string"}
-Минимальная высота. По умолчанию равна `height`.
+:::prop[minHeight]{type="string | number" default="'1lh'"}
+Минимальная высота. Без `height` по умолчанию — одна строка текста.
 :::
 
-:::prop[maxHeight]{type="string"}
-Максимальная высота. По умолчанию равна `height`.
+:::prop[maxHeight]{type="string | number"}
+Максимальная высота.
 :::
 
-:::prop[radius]{type="string"}
-Скругление углов, передаётся в `border-radius`. Без него углы прямые.
+:::prop[radius]{type="string | number"}
+Скругление углов, передаётся в `border-radius`. Без него углы следуют окружающему скруглению, но не меньше `--radius-mini`.
 :::
 
 :::prop[animateLayout]{type="boolean" default="false"}
@@ -136,7 +136,7 @@ import { Skeleton } from 'altrone-ui';
 Ссылка на корневой элемент.
 :::
 
-Остальные атрибуты `<div>` (кроме `children`) передаются корневому элементу; `style` объединяется с вычисленным размером, и размерные пропы сильнее тех же свойств в нём.
+Остальные атрибуты `<div>` (кроме `children`) передаются корневому элементу. `className` добавляется к собственному классу компонента; `style` применяется поверх вычисленного размера и может его переопределить.
 
 ## Похожие темы
 

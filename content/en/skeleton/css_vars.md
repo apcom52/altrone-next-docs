@@ -21,7 +21,7 @@ The variables are defined on the application root, so they can be changed for on
 
 ::playground{src=skeleton/SkeletonCssVarsDemo caption="A placeholder in the accent color"}
 
-The block pulses between `--skeleton-background-color` and `--skeleton-animate-background-color`; set them to the same value to get a still block. Keep both semi-transparent, so the skeleton fits any surface it lies on. The size and the rounding aren't configurable through variables — use the `width`, `height` and `radius` props.
+The block pulses between `--skeleton-background-color` and `--skeleton-animate-background-color`; set them to the same value to get a still block. Keep both semi-transparent, so the skeleton fits any surface it lies on. The size isn't configurable through variables — use the `width` and `height` props; the rounding is set by `radius` or follows `--radius-outer`.
 :::
 
 ## Internal variables
@@ -49,5 +49,13 @@ The default for `--skeleton-background-color`. Default: `var(--gray-a3)`
 
 :::css-var[--interactive-a2]{kind="fill" type="Fill color" color="var(--interactive-a2)"}
 The default for `--skeleton-animate-background-color`. Default: `var(--gray-a4)`
+:::
+
+:::css-var[--radius-outer]{kind="radius" type="Corner radius"}
+The surrounding radius the default rounding follows. Default: `0`
+:::
+
+:::css-var[--radius-mini]{kind="radius" type="Corner radius"}
+The lower bound of the default rounding. Default: `2px`
 :::
 ::::

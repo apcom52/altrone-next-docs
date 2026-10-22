@@ -18,11 +18,11 @@ A skeleton is a `<div>` with a background and nothing inside. Set its size with 
 
 ::playground{src=skeleton/SkeletonBasicDemo caption="Three lines of a paragraph"}
 
-All size props are strings with a CSS unit (`"14px"`, `"70%"`, `"var(--radius-m)"`). Without `width` or `height` the skeleton takes `100%` of its parent on that axis — so always give it a `height`: inside a container whose height depends on its content, `100%` resolves to zero and the block disappears.
+Size props and `radius` take a number of pixels (`14`) or any CSS value (`"70%"`, `"var(--radius-m)"`). Without `width` the skeleton takes the whole width of its parent. Without `height` it fills the parent's height, but is never shorter than one line of text (`1lh`) — in a container whose height depends on its content it becomes one text line tall. Skeletons don't shrink in a `Flex` row, so a small placeholder keeps its size next to a long one.
 
 ## Shapes
 
-`radius` goes straight to `border-radius`: `50%` makes a circle for an avatar, a few pixels give the softened corners of a button or a text line. Without `radius` the corners are square.
+`radius` goes straight to `border-radius`: `50%` makes a circle for an avatar, a few pixels give the softened corners of a button or a text line. Without `radius` the corners follow the surrounding radius, like a [Box](/en/components/layout/box), and never get sharper than `--radius-mini`.
 
 ```tsx
 <Skeleton width="48px" height="48px" radius="50%" />
@@ -31,14 +31,14 @@ All size props are strings with a CSS unit (`"14px"`, `"70%"`, `"var(--radius-m)
 <Skeleton width="64px" height="64px" />
 ```
 
-::playground{src=skeleton/SkeletonShapesDemo caption="An avatar, a button, a text line and a block without rounding"}
+::playground{src=skeleton/SkeletonShapesDemo caption="An avatar, a button, a text line and a block with the default rounding"}
 
 ## Flexible size
 
-`width` and `height` fix the size: `minWidth` and `maxWidth` default to `width`, and `minHeight` and `maxHeight` to `height`. To let a block stretch within limits, pass the limits explicitly. Pass the minimum as well as the maximum — the minimum defaults to `width`, and in CSS `min-width` beats `max-width`.
+`minWidth`, `maxWidth`, `minHeight` and `maxHeight` limit a fluid size: a block with `width="100%"` and `maxWidth` stretches with its parent and stops at the cap.
 
 ```tsx
-<Skeleton width="100%" minWidth="120px" maxWidth="320px" height="14px" radius="4px" />
+<Skeleton width="100%" maxWidth={320} height={14} radius={4} />
 ```
 
 ::playground{src=skeleton/SkeletonFlexibleSizeDemo caption="The top line stops at 320px, the bottom one takes the whole width"}
@@ -100,32 +100,32 @@ Render the skeleton while the data is loading and the content once it's there. S
 
 ## Props
 
-:::prop[width]{type="string" default="'100%'"}
-Width. Also the default for `minWidth` and `maxWidth`.
+:::prop[width]{type="string | number" default="'100%'"}
+Width. A number is in pixels.
 :::
 
-:::prop[minWidth]{type="string"}
-Minimum width. Defaults to `width`.
+:::prop[minWidth]{type="string | number"}
+Minimum width.
 :::
 
-:::prop[maxWidth]{type="string"}
-Maximum width. Defaults to `width`.
+:::prop[maxWidth]{type="string | number"}
+Maximum width.
 :::
 
-:::prop[height]{type="string" default="'100%'"}
-Height. Also the default for `minHeight` and `maxHeight`.
+:::prop[height]{type="string | number" default="'100%'"}
+Height. A number is in pixels.
 :::
 
-:::prop[minHeight]{type="string"}
-Minimum height. Defaults to `height`.
+:::prop[minHeight]{type="string | number" default="'1lh'"}
+Minimum height. Without `height` it defaults to one line of text.
 :::
 
-:::prop[maxHeight]{type="string"}
-Maximum height. Defaults to `height`.
+:::prop[maxHeight]{type="string | number"}
+Maximum height.
 :::
 
-:::prop[radius]{type="string"}
-Corner rounding, passed to `border-radius`. Without it the corners are square.
+:::prop[radius]{type="string | number"}
+Corner rounding, passed to `border-radius`. Without it the corners follow the surrounding radius, not below `--radius-mini`.
 :::
 
 :::prop[animateLayout]{type="boolean" default="false"}
@@ -136,7 +136,7 @@ Animate changes of size and position.
 Reference to the root element.
 :::
 
-Other `<div>` attributes (except `children`) are passed to the root element; `style` is merged with the computed size, and the size props win over the same properties in it.
+Other `<div>` attributes (except `children`) are passed to the root element. `className` is added to the component's own class; `style` is applied on top of the computed size and can override it.
 
 ## Related topics
 
