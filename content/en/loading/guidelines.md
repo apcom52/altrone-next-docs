@@ -56,10 +56,6 @@ Next to text the spinner should be no bigger than a line: 16px with a thin strok
 :::
 ::::
 
-## Don't stop the spinner under reduced motion
-
-The spinner keeps rotating under `prefers-reduced-motion` on purpose: without the motion people can't tell a running operation from a frozen one. Don't add your own override that stops it.
-
 ## Accessibility
 
 - An indeterminate spinner is `role="status"`; a determinate one is `role="progressbar"` with `aria-valuenow`, `aria-valuemin` and `aria-valuemax`.
