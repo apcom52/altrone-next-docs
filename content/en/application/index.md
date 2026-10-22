@@ -167,6 +167,7 @@ Each value is a ready icon element (`<MyIcon />`), just like icon props elsewher
 | `success` | `CheckCircle2` | Notifications, Result              |
 | `warning` | `AlertTriangle`| Notifications, Result              |
 | `danger`  | `XCircle`      | Notifications, Result              |
+| `dismiss` | `X`            | CloseButton (Modal, Drawer, Popover, Message, toasts and notifications) |
 
 If an icon belongs to a single component (like the arrow of `Spoiler` or the sort icons of `DataTable`), change it through that component's own props instead. Your own components can read the current set with `useIcons()`, so they stay in step with your changes.
 
@@ -336,7 +337,7 @@ Replaces individual texts. Applied on top of the chosen `language`.
 :::
 
 :::prop[icons]{type="Partial<IconSet>" default="{}"}
-Replaces icons shared by several components (`prev`, `next`, `open`, `close`, `search`, `clear`, `error`, `help`, `info`, `success`, `warning`, `danger`). An icon used by a single component is changed with that component's own props.
+Replaces icons shared by several components (`prev`, `next`, `open`, `close`, `search`, `clear`, `error`, `help`, `info`, `success`, `warning`, `danger`, `dismiss`). An icon used by a single component is changed with that component's own props.
 :::
 
 :::prop[toastPlacement]{type="'top' | 'bottom'" default="'bottom'"}

@@ -20,7 +20,7 @@ The accessible name comes from the library's localization — "Close" in English
 
 ## Sizes
 
-`size` takes the same five steps as every other control. The button is always a circle, and the icon scales with it.
+`size` takes the same five steps as every other control. The button is always a circle, and the icon scales with it. At `mini` the button is 16px, but an invisible ring keeps its clickable area at 24px.
 
 ```tsx
 <CloseButton size="mini" />
@@ -59,7 +59,7 @@ The usual place for the button is the trailing edge of a header, next to the tit
 
 ::playground{src=closeButton/CloseButtonDisabledDemo caption="Enabled and disabled"}
 
-The icon itself is replaced with the `icon` prop — see the [Icons](/en/components/controls/closeButton/icons) tab.
+The icon is replaced with the `icon` prop on one button or with the `dismiss` role in `Application` for all of them — see the [Icons](/en/components/controls/closeButton/icons) tab.
 
 ## Props
 
@@ -77,8 +77,8 @@ Button size.
 Accessible name. Defaults to the localized "Close".
 :::
 
-:::prop[icon]{type="ReactElement" default="<X />"}
-Replaces the icon. More on the [Icons](/en/components/controls/closeButton/icons) tab.
+:::prop[icon]{type="ReactElement"}
+Replaces the icon. Defaults to the `dismiss` role from `Application` — a cross. More on the [Icons](/en/components/controls/closeButton/icons) tab.
 :::
 
 :::prop[disabled]{type="boolean" default="false"}
@@ -106,4 +106,5 @@ Other `<button>` attributes (`id`, `className`, `style`, `data-*`, `onFocus`, �
 - [Drawer](/en/components/overlays/drawer) — a side panel with a close button in the header
 - [Popover](/en/components/overlays/popover) — `showCloseButton` adds the button to a popover
 - [Message](/en/components/feedback/message) — a message that can be dismissed
+- [Application](/en/components/layout/application) — the label language and the shared `dismiss` icon
 - [Accessibility](/en/foundations/accessibility) — the accessible-name rule for icon-only controls

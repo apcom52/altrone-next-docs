@@ -167,6 +167,7 @@ import { MyChevronLeft, MyChevronRight } from './my-icons';
 | `success` | `CheckCircle2` | Notifications, Result              |
 | `warning` | `AlertTriangle`| Notifications, Result              |
 | `danger`  | `XCircle`      | Notifications, Result              |
+| `dismiss` | `X`            | CloseButton (Modal, Drawer, Popover, Message, toasts and notifications) |
 
 Если иконка принадлежит одному компоненту (например, стрелка у `Spoiler` или иконки сортировки у `DataTable`), меняйте её через собственные пропы этого компонента. Ваши компоненты могут узнать текущий набор через `useIcons()`, чтобы ваши замены работали и в них.
 
@@ -336,7 +337,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 :::
 
 :::prop[icons]{type="Partial<IconSet>" default="{}"}
-Заменяет иконки, общие для нескольких компонентов (`prev`, `next`, `open`, `close`, `search`, `clear`, `error`, `help`, `info`, `success`, `warning`, `danger`). Иконка одного компонента меняется через его собственные пропы.
+Заменяет иконки, общие для нескольких компонентов (`prev`, `next`, `open`, `close`, `search`, `clear`, `error`, `help`, `info`, `success`, `warning`, `danger`, `dismiss`). Иконка одного компонента меняется через его собственные пропы.
 :::
 
 :::prop[toastPlacement]{type="'top' | 'bottom'" default="'bottom'"}

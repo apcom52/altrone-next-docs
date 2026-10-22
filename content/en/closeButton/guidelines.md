@@ -55,6 +55,6 @@ The default name "Close" is right in most cases. When several close buttons are 
 - The button always has an accessible name: the localized "Close" or your `label`.
 - It is a native `<button type="button">`: it is focusable, works with Enter and Space and never submits a form.
 - Focus is shown with the library-wide focus ring.
-- `mini` is 16px — below the recommended ~24px hit area. Use it only where a mistaken press is harmless.
+- Even at `mini` the hit area is 24px, though the button itself is 16px.
 
 See [Accessibility](/en/foundations/accessibility) for the library-wide rules.

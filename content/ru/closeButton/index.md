@@ -20,7 +20,7 @@ import { CloseButton } from 'altrone-ui';
 
 ## Размеры
 
-`size` принимает те же пять ступеней, что и остальные контролы. Кнопка всегда круглая, иконка масштабируется вместе с ней.
+`size` принимает те же пять ступеней, что и остальные контролы. Кнопка всегда круглая, иконка масштабируется вместе с ней. При `mini` кнопка 16px, но невидимое кольцо сохраняет зону нажатия 24px.
 
 ```tsx
 <CloseButton size="mini" />
@@ -59,7 +59,7 @@ import { CloseButton } from 'altrone-ui';
 
 ::playground{src=closeButton/CloseButtonDisabledDemo caption="Обычная и заблокированная"}
 
-Саму иконку заменяет проп `icon` — см. вкладку [Иконки](/ru/components/controls/closeButton/icons).
+Иконку заменяет проп `icon` на одной кнопке или роль `dismiss` в `Application` для всех сразу — см. вкладку [Иконки](/ru/components/controls/closeButton/icons).
 
 ## Свойства
 
@@ -77,8 +77,8 @@ import { CloseButton } from 'altrone-ui';
 Доступное имя. По умолчанию — локализованное «Закрыть».
 :::
 
-:::prop[icon]{type="ReactElement" default="<X />"}
-Заменяет иконку. Подробнее — на вкладке [Иконки](/ru/components/controls/closeButton/icons).
+:::prop[icon]{type="ReactElement"}
+Заменяет иконку. По умолчанию — роль `dismiss` из `Application`, крестик. Подробнее — на вкладке [Иконки](/ru/components/controls/closeButton/icons).
 :::
 
 :::prop[disabled]{type="boolean" default="false"}
@@ -106,4 +106,5 @@ HTML-тип кнопки. По умолчанию `"button"`, поэтому к�
 - [Drawer](/ru/components/overlays/drawer) — боковая панель с кнопкой закрытия в шапке
 - [Popover](/ru/components/overlays/popover) — `showCloseButton` добавляет кнопку в поповер
 - [Message](/ru/components/feedback/message) — сообщение, которое можно закрыть
+- [Application](/ru/components/layout/application) — язык подписи и общая иконка `dismiss`
 - [Доступность](/ru/foundations/accessibility) — правило доступного имени для иконочных контролов
