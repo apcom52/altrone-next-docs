@@ -18,7 +18,7 @@ The variables are defined on the application root, so the `style` prop of `Loadi
 
 ::playground{src=loading/LoadingCssVarsDemo caption="An accent color and a more visible track"}
 
-The `color` prop beats `--loading-color`: when it's set, the variable is ignored. The track has no color of its own — it is the stroke color with `--loading-track-opacity` applied. Size, stroke thickness and animation speed aren't configurable through variables: use the `size` and `strokeWidth` props.
+The `color` prop and `style.color` beat `--loading-color`: when either is set, the variable is ignored. The track has no color of its own — it is the stroke color with `--loading-track-opacity` applied. Size and stroke thickness aren't configurable through variables: use the `size` and `strokeWidth` props. The color and arc-length transitions follow the global motion tokens below.
 :::
 
 ## Internal variables
@@ -42,5 +42,13 @@ Not defined by the component itself, but they affect how it looks.
 ::::css-vars
 :::css-var[--text-2]{kind="text" type="Text color" color="var(--text-2)"}
 The default for `--loading-color`.
+:::
+
+:::css-var[--motion-duration-base]{kind="duration" type="Duration"}
+Duration of the color and arc-length transitions; `0s` under reduced motion. Default: `0.2s`
+:::
+
+:::css-var[--motion-easing-standard]{kind="easing" type="Easing"}
+Easing of the color and arc-length transitions. Default: `ease`
 :::
 ::::

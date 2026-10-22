@@ -22,7 +22,7 @@ The spinner keeps spinning under `prefers-reduced-motion`: it is a functional st
 
 ## Size and stroke
 
-`size` is the diameter, `strokeWidth` is the ring thickness in the same units. Both take a number of pixels or a pixel string (`24`, `'24px'`), and the stroke can be fractional (`1.5`). Only pixels are supported: the ring geometry is computed from the number, so `rem` or `%` won't work.
+`size` is the diameter, `strokeWidth` is the ring thickness in the same units. `size` takes a number of pixels or any CSS length (`24`, `'24px'`, `'2rem'`), and the stroke can be fractional (`1.5`). With a non-pixel `size` the ring is drawn as if it were 24px and scaled to the actual size, so `strokeWidth` is measured against a 24px circle and grows along with it.
 
 ```tsx
 <Loading size={16} strokeWidth={1.5} />
@@ -33,7 +33,7 @@ The spinner keeps spinning under `prefers-reduced-motion`: it is a functional st
 
 ## Known progress
 
-Pass `value` from 0 to 100 and the spinner stops: it draws a fixed arc starting at 12 o'clock, and the arc length follows the value with a short transition. Values outside the range are clamped to `0…100`. The root switches to `role="progressbar"` with `aria-valuenow`, `aria-valuemin` and `aria-valuemax`.
+Pass `value` from 0 to 100 and the spinner stops: it draws a fixed arc starting at 12 o'clock, and the arc length follows the value with a short transition, which is turned off under reduced motion. Values outside the range are clamped to `0…100`, and `NaN` is treated as no value — the spinner keeps spinning. The root switches to `role="progressbar"` with `aria-valuenow`, `aria-valuemin` and `aria-valuemax`.
 
 ```tsx
 <Loading size={48} strokeWidth={4} value={progress} aria-label="Upload progress" />
@@ -43,7 +43,7 @@ Pass `value` from 0 to 100 and the spinner stops: it draws a fixed arc starting 
 
 ## Color
 
-`color` takes any CSS color and paints both the arc and the track. Without it the spinner uses `--loading-color`. Pass `currentColor` to inherit the color of the surrounding text — handy for a spinner inside a line of text. The color can't be set through `style.color`: use the `color` prop.
+`color` takes any CSS color and paints both the arc and the track. Without it the spinner uses `--loading-color`. Pass `currentColor` to inherit the color of the surrounding text — handy for a spinner inside a line of text. A `color` in `style` works too; if both are set, the prop wins.
 
 ```tsx
 <Loading color="var(--accent-11)" />
@@ -55,7 +55,7 @@ Pass `value` from 0 to 100 and the spinner stops: it draws a fixed arc starting 
 ## Props
 
 :::prop[size]{type="number | string" default="'24px'"}
-Diameter: a number of pixels or a pixel string.
+Diameter: a number of pixels or any CSS length. With a non-pixel length the stroke scales relative to a 24px circle.
 :::
 
 :::prop[strokeWidth]{type="number | string" default="'2'"}
@@ -63,11 +63,11 @@ Ring thickness in the same units as `size`. Can be fractional.
 :::
 
 :::prop[color]{type="string"}
-Color of the arc and the track — any CSS color. Without it, `--loading-color` is used.
+Color of the arc and the track — any CSS color. Wins over `style.color`; without both, `--loading-color` is used.
 :::
 
 :::prop[value]{type="number"}
-Progress from 0 to 100. When set, the spinner stops and becomes a determinate indicator with `role="progressbar"`.
+Progress from 0 to 100. When set, the spinner stops and becomes a determinate indicator with `role="progressbar"`. `NaN` is treated as unset.
 :::
 
 :::prop[aria-label]{type="string" default="'Loading'"}
