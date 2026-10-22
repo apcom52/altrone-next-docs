@@ -1,0 +1,13 @@
+"use client";
+
+import { Flex, Skeleton } from "altrone-ui";
+
+export default function SkeletonGuidelineLinesGoodDemo() {
+  return (
+    <Flex orientation="vertical" gap="xs" style={{ width: "100%" }}>
+      <Skeleton width="100%" height="12px" radius="4px" />
+      <Skeleton width="95%" height="12px" radius="4px" />
+      <Skeleton width="60%" height="12px" radius="4px" />
+    </Flex>
+  );
+}
