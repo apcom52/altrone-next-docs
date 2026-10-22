@@ -12,7 +12,7 @@ export default function LabelCssVarsDemo() {
         style={
           {
             "--label-padding-x": "12px",
-            "--box-radius": "2px",
+            "--label-radius": "2px",
           } as CSSProperties
         }
       >

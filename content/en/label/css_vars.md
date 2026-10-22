@@ -10,7 +10,7 @@ The label's own variables are defined on its root element and depend on `size`; 
   color="teal"
   style={{
     "--label-padding-x": "12px",
-    "--box-radius": "2px",
+    "--label-radius": "2px",
   } as React.CSSProperties}
 >
   Release 2.0
@@ -19,7 +19,7 @@ The label's own variables are defined on its root element and depend on `size`; 
 
 ::playground{src=label/LabelCssVarsDemo caption="Wider padding and sharper corners; a bigger dot without a border"}
 
-Change the padding through `--label-padding-x` and `--label-padding-y`: the label writes them into `--box-padding-x`/`--box-padding-y` itself, so overriding the `--box-padding-*` variables directly has no effect. The same goes for rounding — the label sets `--radius-outer` from `size`, so override `--box-radius` instead; the status dot follows it too. `--box-color` is set by the `color` prop and can't be overridden. The gap between the icon or the dot and the text (`4px`) and the font size have no variables of their own.
+Change the padding and the rounding through the label's own variables: the label writes `--label-padding-x`/`--label-padding-y` into `--box-padding-x`/`--box-padding-y` and `--label-radius` into `--radius-outer` itself, so overriding those Box variables directly has no effect. The status dot follows the label's rounding; with `shape="pill"` the rounding comes from `--radius-pill` and `--label-radius` doesn't apply. `--box-color` is set by the `color` prop and can't be overridden.
 :::
 
 ## Internal variables
@@ -45,6 +45,22 @@ Status dot diameter. Default: `15px`
 
 :::css-var[--label-icon-size]{kind="size" type="Size"}
 Leading icon size. Default: `12px`
+:::
+
+:::css-var[--label-radius]{kind="radius" type="Corner radius"}
+Corner radius of `shape="rounded"`. Default: `8px`
+:::
+
+:::css-var[--label-gap]{kind="gap" type="Spacing"}
+Space between the icon or the dot and the text. Default: `4px`
+:::
+
+:::css-var[--label-font-size]{kind="font" type="Font size"}
+Text size. Default: `var(--text-size-3)`
+:::
+
+:::css-var[--label-line-height]{kind="font" type="Font size"}
+Line height. Default: `var(--line-height-3)`
 :::
 ::::
 
@@ -86,7 +102,7 @@ Border width of the `outline` and `status` variants. Default: `1px`
 :::
 
 :::css-var[--box-radius]{kind="radius" type="Corner radius"}
-Corner radius of the label and the status dot. Default: `8px`
+Resolved corner radius of the label and the status dot. Default: `var(--label-radius)`
 :::
 
 :::css-var[--solid-1]{kind="fill" type="Fill color" color="var(--solid-1)"}
@@ -114,11 +130,11 @@ Corner radius of `shape="pill"`.
 :::
 
 :::css-var[--text-size-3]{kind="font" type="Font size"}
-Text size. Default: `12px`
+The default for `--label-font-size`. Default: `12px`
 :::
 
 :::css-var[--line-height-3]{kind="font" type="Font size"}
-Line height. Default: `16px`
+The default for `--label-line-height`. Default: `16px`
 :::
 
 :::css-var[--text-weight-medium]{kind="font" type="Font weight"}

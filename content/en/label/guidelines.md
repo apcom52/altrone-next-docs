@@ -48,11 +48,11 @@ Labels of the same kind next to each other should share `variant`, `shape` and `
 
 ## Don't make a label clickable
 
-`Label` is not a control: it has no focus, hover or pressed states. For an action use a `Button`, for removable or clickable keywords use `Tags`.
+`Label` is not a control: it has no focus, hover or pressed states. For an action use a `Button`, for removable or clickable keywords use `Tags`. If a label has to lead to a page, render it as a link with `asChild` — it then gets the link's semantics.
 
 ## Accessibility
 
-- The label is a plain `<div>` with text and has no role — screen readers read its text as part of the surrounding content.
+- By default the label is a plain `<div>` with text and has no role — screen readers read its text as part of the surrounding content.
 - The color and the dot are not announced, so the text must carry the whole meaning on its own: "Failed", not a red label with "Status".
 - Icons from `lucide-react` are hidden from assistive technology by default; if the icon is the only carrier of meaning, add it to the text.
 - If a status changes while the page is open and the change matters, announce it through a live region in your own markup.

@@ -1,6 +1,6 @@
 # Label
 
-`Label` — небольшая метка статуса или категории: «Completed», «Beta», «SDK». Это не HTML-элемент `<label>` — подпись к полю формы делается через [Form](/ru/components/controls/form). Компонент рендерит `<div>` на основе [Box](/ru/components/layout/box): заливка, рамка и цвет текста берутся из его материалов и тонов, поэтому метка выглядит согласованно с остальной библиотекой в обеих темах.
+`Label` — небольшая метка статуса или категории: «Completed», «Beta», «SDK». Это не HTML-элемент `<label>` — подпись к полю формы делается через [Form](/ru/components/controls/form). По умолчанию компонент рендерит `<div>` на основе [Box](/ru/components/layout/box): заливка, рамка и цвет текста берутся из его материалов и тонов, поэтому метка выглядит согласованно с остальной библиотекой в обеих темах.
 
 ```tsx
 import { Label } from 'altrone-ui';
@@ -36,7 +36,7 @@ import { Label } from 'altrone-ui';
 
 ## Цвета
 
-`color` принимает значения двух видов. Семантические следуют статусным цветам дизайн-системы: `default` (нейтральный), `primary` (акцент приложения), `success`, `warning` и `danger`. Категориальные — `amber`, `blue`, `brown`, `indigo`, `pink`, `purple`, `red`, `teal` — собственного смысла не несут и подходят для категорий: команд, проектов, разделов продукта.
+`color` принимает значения двух видов. Семантические следуют статусным цветам дизайн-системы: `default` (нейтральный), `primary` (акцент приложения), `success`, `warning` и `danger`. Десять категориальных — `amber`, `blue`, `brown`, `green`, `indigo`, `orange`, `pink`, `purple`, `red`, `teal` — собственного смысла не несут и подходят для категорий: команд, проектов, разделов продукта.
 
 ```tsx
 <Label color="success" variant="soft">Completed</Label>
@@ -90,13 +90,23 @@ import { Clock } from 'lucide-react';
 
 ::playground{src=label/LabelSizesDemo caption="mini, s, m, l, xl"}
 
+## Метка-ссылка
+
+С `asChild` метка не рендерит свой `<div>`: её классы и стили переносятся на единственный дочерний элемент — например, ссылку или `<Link>` роутера. Дочерний элемент сохраняет свою семантику и поведение.
+
+```tsx
+<Label asChild color="blue" variant="soft">
+  <a href="/releases/2.0">v2.0.0</a>
+</Label>
+```
+
 ## Свойства
 
 :::prop[children*]{type="ReactNode"}
 Текст метки.
 :::
 
-:::prop[color]{type="'default' | 'primary' | 'success' | 'danger' | 'warning' | 'amber' | 'blue' | 'brown' | 'indigo' | 'pink' | 'purple' | 'red' | 'teal'" default="'default'"}
+:::prop[color]{type="'default' | 'primary' | 'success' | 'danger' | 'warning' | 'amber' | 'blue' | 'brown' | 'green' | 'indigo' | 'orange' | 'pink' | 'purple' | 'red' | 'teal'" default="'default'"}
 Цвет метки: семантический или один из категориальных.
 :::
 
@@ -114,6 +124,10 @@ import { Clock } from 'lucide-react';
 
 :::prop[icon]{type="ReactElement"}
 Иконка перед текстом. В варианте `status` рисуется внутри точки.
+:::
+
+:::prop[asChild]{type="boolean" default="false"}
+Перенести метку на единственный дочерний элемент вместо рендера `<div>`.
 :::
 
 :::prop[ref]{type="Ref<HTMLElement>"}

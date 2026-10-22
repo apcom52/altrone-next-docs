@@ -1,6 +1,6 @@
 # Label
 
-`Label` is a small tag for a status or a category: "Completed", "Beta", "SDK". It is not an HTML `<label>` — to caption a form field, use [Form](/en/components/controls/form). The component renders a `<div>` built on [Box](/en/components/layout/box): the fill, the border and the text color come from its materials and tones, so a label looks consistent with the rest of the library in both themes.
+`Label` is a small tag for a status or a category: "Completed", "Beta", "SDK". It is not an HTML `<label>` — to caption a form field, use [Form](/en/components/controls/form). By default the component renders a `<div>` built on [Box](/en/components/layout/box): the fill, the border and the text color come from its materials and tones, so a label looks consistent with the rest of the library in both themes.
 
 ```tsx
 import { Label } from 'altrone-ui';
@@ -36,7 +36,7 @@ The text is passed as `children`. Without other props the label is neutral, soli
 
 ## Colors
 
-`color` takes two kinds of values. The semantic ones follow the design-system status hues: `default` (neutral), `primary` (the application accent), `success`, `warning` and `danger`. The categorical ones — `amber`, `blue`, `brown`, `indigo`, `pink`, `purple`, `red`, `teal` — have no meaning of their own and suit categories: teams, projects, product areas.
+`color` takes two kinds of values. The semantic ones follow the design-system status hues: `default` (neutral), `primary` (the application accent), `success`, `warning` and `danger`. The ten categorical ones — `amber`, `blue`, `brown`, `green`, `indigo`, `orange`, `pink`, `purple`, `red`, `teal` — have no meaning of their own and suit categories: teams, projects, product areas.
 
 ```tsx
 <Label color="success" variant="soft">Completed</Label>
@@ -90,13 +90,23 @@ import { Clock } from 'lucide-react';
 
 ::playground{src=label/LabelSizesDemo caption="mini, s, m, l, xl"}
 
+## Label as a link
+
+With `asChild` the label doesn't render its own `<div>`: its classes and styles are merged onto the single child element — for example a link or a router `<Link>`. The child keeps its own semantics and behavior.
+
+```tsx
+<Label asChild color="blue" variant="soft">
+  <a href="/releases/2.0">v2.0.0</a>
+</Label>
+```
+
 ## Props
 
 :::prop[children*]{type="ReactNode"}
 The label text.
 :::
 
-:::prop[color]{type="'default' | 'primary' | 'success' | 'danger' | 'warning' | 'amber' | 'blue' | 'brown' | 'indigo' | 'pink' | 'purple' | 'red' | 'teal'" default="'default'"}
+:::prop[color]{type="'default' | 'primary' | 'success' | 'danger' | 'warning' | 'amber' | 'blue' | 'brown' | 'green' | 'indigo' | 'orange' | 'pink' | 'purple' | 'red' | 'teal'" default="'default'"}
 Label color: a semantic one or one of the categorical hues.
 :::
 
@@ -114,6 +124,10 @@ Label size.
 
 :::prop[icon]{type="ReactElement"}
 An icon before the text. In the `status` variant it is drawn inside the dot.
+:::
+
+:::prop[asChild]{type="boolean" default="false"}
+Merge the label onto its single child element instead of rendering a `<div>`.
 :::
 
 :::prop[ref]{type="Ref<HTMLElement>"}
