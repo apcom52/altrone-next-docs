@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar } from "altrone-ui";
+import { Avatar, Flex } from "altrone-ui";
 
 const members = [
   { firstName: "Alice", lastName: "Morgan", backgroundColor: "#6366f1" },
@@ -10,7 +10,7 @@ const members = [
 
 export default function AvatarGroupDemo() {
   return (
-    <div style={{ display: "flex", paddingLeft: 12 }}>
+    <Flex disableInnerMargins={false} style={{ paddingLeft: 12 }}>
       {members.map((member) => (
         <Avatar
           key={member.firstName}
@@ -23,9 +23,8 @@ export default function AvatarGroupDemo() {
       ))}
       <Avatar
         firstName="+4"
-        lastName=""
         style={{ marginLeft: -12, boxShadow: "0 0 0 2px var(--background-1)" }}
       />
-    </div>
+    </Flex>
   );
 }
