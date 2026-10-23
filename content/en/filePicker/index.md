@@ -98,7 +98,7 @@ autoUploadFn={async ({ startUploading, fail }) => {
 
 ## Removing files
 
-The delete button on a chip removes the file from the list. With `autoUpload` the picker first asks the server to delete the file: by default it sends a `DELETE` request to `url` with the file name, and `removeFileFn` replaces that request. The chip disappears after the request finishes. If the request fails, the file stays.
+The delete button on a chip removes the file from the list. With `autoUpload` the picker first asks the server to delete the file: by default it sends a `DELETE` request to `url` with the file name, and `removeFileFn` replaces that request. The chip disappears after the request finishes. If the request fails, the file is still removed from the list.
 
 ```tsx
 <FilePicker
