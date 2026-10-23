@@ -109,7 +109,7 @@ The delete button on a chip removes the file from the list. With `autoUpload` th
 />
 ```
 
-In the single-file mode the same call happens when the old file is replaced by a new one.
+In the single-file mode the same call happens when the old file is replaced by a new one. If it fails, the new file is still taken, and an unfinished upload of the old one is cancelled.
 
 ## Files already on the server
 
