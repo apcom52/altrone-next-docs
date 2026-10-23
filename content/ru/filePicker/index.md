@@ -202,7 +202,7 @@ const [files, setFiles] = useState<FileItem[]>([
 :::
 
 :::prop[url]{type="string"}
-Адрес загрузки. Обязателен с `autoUpload`, если не задан `autoUploadFn`.
+Адрес загрузки, на него же уходит запрос `DELETE` по умолчанию. Без него пикер сам не отправляет запросов: файлы остаются в списке, и вызываются только `autoUploadFn` и `removeFileFn`.
 :::
 
 :::prop[method]{type="string" default="'POST'"}

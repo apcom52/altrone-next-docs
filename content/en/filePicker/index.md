@@ -202,7 +202,7 @@ Sends each chosen file to the server right away.
 :::
 
 :::prop[url]{type="string"}
-The upload address. Required with `autoUpload` unless `autoUploadFn` is set.
+The upload address, also used for the default `DELETE` request. Without it the picker sends no requests of its own: files stay in the list, and only `autoUploadFn` and `removeFileFn` run.
 :::
 
 :::prop[method]{type="string" default="'POST'"}
