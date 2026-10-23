@@ -65,7 +65,7 @@ if (name !== null) await renameFile(String(name));
 
 ## How it works
 
-- Only one window is shown at a time. Calling a second one before the first is closed replaces it, and the first promise never settles — always `await` before the next call.
+- Only one window is shown at a time. A call made while another window is open waits in a queue and is shown once the current one closes; every promise settles, in the order of the calls.
 - The default title and button labels come from the application locale. `title` can be omitted — a standard title for that kind of window is used.
 - If `DialogProvider` is not mounted, the function logs a warning and settles at once with the "declined" value: `undefined`, `false` or `null`.
 - With nested providers, the most recently mounted one shows new windows.

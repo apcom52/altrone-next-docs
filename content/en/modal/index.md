@@ -172,6 +172,10 @@ When `false`, the dialog is never rendered, even if `open` or `defaultOpen` ask 
 Called when the dialog closes: via the ✕ or “Cancel” button, a click on the backdrop, Escape, or a `hide()` call; for `hide()`, `event` isn't passed. For a controlled `Modal`, this is the only place to set `open` back to `false` — the component doesn't close itself.
 :::
 
+:::prop[onExitComplete]{type="() => void"}
+Called once the close animation has finished and the dialog has left the page. Use it when the next step must wait for the window to disappear, e.g. before showing another one.
+:::
+
 :::prop[ref]{type="Ref<HTMLDivElement>"}
 Reference to the root DOM element — the dialog's backdrop.
 :::
