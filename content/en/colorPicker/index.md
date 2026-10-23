@@ -20,7 +20,7 @@ const [color, setColor] = useState<string | undefined>("#5b5bd6");
 
 ## Palette
 
-The popup holds a color field with hue and opacity sliders, and below it a hex field and three fields for the R, G and B channels. The hex field is applied when it loses focus; if it doesn't contain six hexadecimal digits, the color is reset.
+The popup holds a color field with hue and opacity sliders, and below it a hex field and three fields for the R, G and B channels. The hex and RGB fields are applied on `Enter` or when they lose focus; if it doesn't contain six hexadecimal digits, the color is reset.
 
 ## Preset colors
 

@@ -37,4 +37,5 @@ A color swatch alone doesn't say what the color applies to. Put a label next to 
 - The field needs an accessible name: a visible label, `aria-label` or `aria-labelledby` — they are passed to the `<input>`.
 - With `asChild`, name the trigger itself, for example `aria-label="Pick a color"`: a bare circle has no text for a screen reader.
 - The color value is printed as text in the field, so it doesn't depend on how well someone perceives color.
+- The picker works from the keyboard: `Enter`, `Space` or `↓` opens it and moves focus inside, `Tab` stays within the popup until it closes, the arrow keys move between preset colors and `Tab` goes on from them to the buttons, `Esc` closes it and returns focus to the field. A value still being typed in the hex or RGB fields is discarded on `Esc`.
 - Preset colors have `title` tooltips — make them meaningful, not "Color 1".
