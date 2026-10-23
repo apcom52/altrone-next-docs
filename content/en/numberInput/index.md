@@ -137,7 +137,7 @@ The controlled value. Leave it `undefined` to show an empty field.
 :::
 
 :::prop[onChange*]{type="(value?: number, event?: SyntheticEvent<HTMLInputElement>) => void"}
-Called on every change. The first argument is the parsed number, `0` when there is nothing to parse.
+Called on every change. The first argument is the parsed number, `undefined` when there is nothing to parse (an empty field or a lone minus).
 :::
 
 :::prop[min]{type="number"}

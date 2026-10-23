@@ -137,7 +137,7 @@ const [amount, setAmount] = useState<number | undefined>();
 :::
 
 :::prop[onChange*]{type="(value?: number, event?: SyntheticEvent<HTMLInputElement>) => void"}
-Вызывается при каждом изменении. Первый аргумент — разобранное число, `0`, если разбирать нечего.
+Вызывается при каждом изменении. Первый аргумент — разобранное число, `undefined`, если разбирать нечего (пустое поле или одинокий минус).
 :::
 
 :::prop[min]{type="number"}
