@@ -34,7 +34,7 @@ Phone numbers, card numbers, postal codes and PINs are digits, but you never cal
 
 ## Tell people about the limits
 
-Because a number outside `min`/`max` is just refused, the user may not understand why the key does nothing. Say what is allowed in the label or a hint, for example "Quantity (1–99)".
+Because a number outside `min`/`max` is refused or quietly corrected on blur, the user may not understand why the value changed. Say what is allowed in the label or a hint, for example "Quantity (1–99)".
 
 ## Accessibility
 

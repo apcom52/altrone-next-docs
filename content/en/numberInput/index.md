@@ -42,9 +42,9 @@ The way the number looks is set with a few props. It only changes what the user 
 
 ## Limits
 
-`min` and `max` work while the user types: a number outside the range is refused on the spot, instead of being corrected afterwards. This way the field never holds an invalid value.
+While the user types, a number outside the range is accepted as long as more digits can still bring it back: with `min={10}`, `1` is on the way to `15`. A key is refused only when the number can no longer return to the range, for example a digit that pushes it past a positive `max`. When the field loses focus, a number outside the range snaps to the nearest bound and `onChange` reports it.
 
-By default `min` is `0` and minus signs are not allowed. To accept negative numbers, do both things: pass `allowNegative` and a negative `min`.
+Minus signs are not allowed by default. To accept negative numbers, pass `allowNegative`, and a negative `min` if you need a lower bound.
 
 ```tsx
 <NumberInput
@@ -140,16 +140,16 @@ The controlled value. Leave it `undefined` to show an empty field.
 Called on every change. The first argument is the parsed number, `0` when there is nothing to parse.
 :::
 
-:::prop[min]{type="number" default="0"}
-The smallest allowed number. Smaller numbers are refused as the user types.
+:::prop[min]{type="number"}
+The smallest allowed number. A smaller number snaps to it when the field loses focus.
 :::
 
 :::prop[max]{type="number"}
-The largest allowed number. Bigger numbers are refused as the user types.
+The largest allowed number. A bigger number snaps to it when the field loses focus; positive numbers past it are refused as the user types.
 :::
 
 :::prop[allowNegative]{type="boolean" default="false"}
-Allows a minus sign. Remember to set a negative `min` as well.
+Allows a minus sign.
 :::
 
 :::prop[digitsAfterPoint]{type="number" default="2"}
