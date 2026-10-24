@@ -77,7 +77,7 @@ The options of the `custom` column are described in "Custom cell content".
 
 ## Sorting and filters
 
-`sortable` turns on sorting by clicking the header. `filterable` adds the column to the filter builder in the header: `true` picks a filter from the column `type`, and an explicit value (`filterable: 'select'`) sets it directly. Use `defaultSort` and `defaultFilters` for the initial state.
+`sortable` turns on sorting by clicking the header. `filterable` adds the column to the filter builder in the header: `true` picks a filter from the column `type`, and an explicit value (`filterable: 'select'`) sets it directly. A `link` column is filtered by its text; a `custom` column has no filter of its own, so `filterable: true` leaves it out of the builder — give it an explicit type (`filterable: 'string'`). Use `defaultSort` and `defaultFilters` for the initial state.
 
 ```tsx
 <DataTable
