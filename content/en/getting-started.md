@@ -4,20 +4,16 @@ Altrone is a React component library for building application interfaces: dashbo
 
 ::playground{src=gettingStarted/GettingStartedDemo caption="Altrone components work together out of the box: a field, a button and a toast"}
 
-:::warning Altrone 4 is in beta
-These docs describe Altrone 4. It is published under the `beta` tag, so the API can still change between releases. The `latest` tag on npm still points to Altrone 3. What changed in each beta is listed in the [release notes](/en/project/release-notes).
-:::
-
 ## What's inside
 
 Components are grouped by what they are for:
 
-- [Layout](/en/components/layout) — the root of the app, the page frame, and the primitives to arrange content: `Application`, `Screen`, `Flex`, `Grid`, `Box`, `Toolbar`, `Splitter`
-- [Controls](/en/components/controls) — everything a user acts on or types into: `Button`, `Form`, text and number fields, `Select`, `DatePicker`, `FilePicker`, checkboxes and switches
-- [Overlays](/en/components/overlays) — content shown above the page: `Modal`, `Drawer`, `Popover`, `Dropdown`, `Tooltip` and dialogs
-- [Content](/en/components/content) — what people read: `Text`, `Image`, `Avatar`, `Tags`, `Calendar`, `DataTable`
-- [Feedback](/en/components/feedback) — what the app is doing right now: toasts and notifications, `Message`, `Progress`, `Loading`, `Skeleton`, `Result`
-- [Navigation](/en/components/navigation) — moving between places: `Tabs`, `NavigationList`, `SideNavigation`, `BottomNavigation`, `Breadcrumbs`, `Pagination`
+- [Layout](/en/components/layout) — the app root, the page frame with a header and a sidebar, flexible and grid layouts, toolbars
+- [Controls](/en/components/controls) — buttons, forms, text fields, dropdown lists, date and color pickers, file upload
+- [Overlays](/en/components/overlays) — modal windows, side panels, popovers, menus and tooltips
+- [Content](/en/components/content) — text, images, avatars, tags and data tables
+- [Feedback](/en/components/feedback) — toasts and notifications, messages, progress and loading states
+- [Navigation](/en/components/navigation) — tabs, side navigation, breadcrumbs and pagination
 
 ## How an Altrone app is built
 
@@ -68,4 +64,4 @@ Go to [Installation](/en/installation) to add the package to your project, impor
 - [Application](/en/components/layout/application) — the root component and everything it configures
 - [Screen](/en/components/layout/screen) — the frame of a page
 - [Color](/en/foundations/color) — accents, status colors and tokens
-- [Release notes](/en/project/release-notes) — what changed in each Altrone 4 beta
+- [Release notes](/en/project/release-notes) — what changed in each release

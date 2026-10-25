@@ -10,21 +10,29 @@ Altrone works with any React 19 project built by a modern bundler — Vite, Next
 
 ## Install the package
 
-Altrone 4 is published under the `beta` tag. Without it, your package manager installs Altrone 3, which has a different API.
-
 ```bash
-npm install altrone-ui@beta
+npm install altrone-ui
 ```
 
 ```bash
-pnpm add altrone-ui@beta
+pnpm add altrone-ui
 ```
 
 ```bash
-yarn add altrone-ui@beta
+yarn add altrone-ui
 ```
 
-Everything the components need — `motion` for animations, `lucide-react` for the built-in icons, `dayjs` for dates — is installed with the package.
+### Extending the library
+
+If you build your own components on top of Altrone, use custom icons or add animations, we recommend the same libraries Altrone itself is built on — your code will then look and behave like the rest of the interface:
+
+- [lucide-react](https://lucide.dev) — icons; every Altrone icon comes from this set, and icon props accept any of its icons
+- [motion](https://motion.dev) — animations; it also respects the reduced-motion setting that `Application` turns on
+- [dayjs](https://day.js.org) — dates; `Calendar` and `DatePicker` take and return `dayjs` values
+
+```bash
+npm install lucide-react motion dayjs
+```
 
 ## Import the styles
 
@@ -133,11 +141,11 @@ export function App() {
 }
 ```
 
-:::note If something looks wrong
+## Troubleshooting
+
 - **Components have no styles** — check that `altrone-ui/dist/style.css` is imported.
 - **Colors are missing, toasts and dialogs don't appear** — the component is rendered outside `Application`.
 - **An error about hooks or `'use client'` in Next.js** — the component is rendered from a server component; move it into a client one.
-:::
 
 ## Related topics
 

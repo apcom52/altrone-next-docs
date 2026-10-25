@@ -4,20 +4,16 @@ Altrone — библиотека React-компонентов для интер�
 
 ::playground{src=gettingStarted/GettingStartedDemo caption="Компоненты Altrone сразу работают вместе: поле, кнопка и тост"}
 
-:::warning Altrone 4 в бете
-Эта документация описывает Altrone 4. Он публикуется с тегом `beta`, поэтому API ещё может меняться от релиза к релизу. Тег `latest` в npm пока указывает на Altrone 3. Что изменилось в каждой бете, написано в [релизах](/ru/project/release-notes).
-:::
-
 ## Что внутри
 
 Компоненты сгруппированы по назначению:
 
-- [Макет](/ru/components/layout) — корень приложения, каркас страницы и примитивы для раскладки: `Application`, `Screen`, `Flex`, `Grid`, `Box`, `Toolbar`, `Splitter`
-- [Элементы управления](/ru/components/controls) — всё, с чем пользователь взаимодействует или во что вводит данные: `Button`, `Form`, текстовые и числовые поля, `Select`, `DatePicker`, `FilePicker`, чекбоксы и переключатели
-- [Оверлеи](/ru/components/overlays) — то, что показывается поверх страницы: `Modal`, `Drawer`, `Popover`, `Dropdown`, `Tooltip` и диалоги
-- [Контент](/ru/components/content) — то, что читают: `Text`, `Image`, `Avatar`, `Tags`, `Calendar`, `DataTable`
-- [Обратная связь](/ru/components/feedback) — что приложение делает прямо сейчас: тосты и уведомления, `Message`, `Progress`, `Loading`, `Skeleton`, `Result`
-- [Навигация](/ru/components/navigation) — переходы между разделами: `Tabs`, `NavigationList`, `SideNavigation`, `BottomNavigation`, `Breadcrumbs`, `Pagination`
+- [Макет](/ru/components/layout) — корень приложения, каркас страницы с шапкой и боковой панелью, гибкая и сеточная раскладка, панели инструментов
+- [Элементы управления](/ru/components/controls) — кнопки, формы, текстовые поля, выпадающие списки, выбор даты и цвета, загрузка файлов
+- [Оверлеи](/ru/components/overlays) — модальные окна, боковые панели, всплывающие окна, меню и подсказки
+- [Контент](/ru/components/content) — текст, изображения, аватары, теги и таблицы данных
+- [Обратная связь](/ru/components/feedback) — тосты и уведомления, сообщения, прогресс и состояния загрузки
+- [Навигация](/ru/components/navigation) — вкладки, боковая навигация, хлебные крошки и пагинация
 
 ## Как устроено приложение на Altrone
 
@@ -68,4 +64,4 @@ export default function App() {
 - [Application](/ru/components/layout/application) — корневой компонент и всё, что он настраивает
 - [Screen](/ru/components/layout/screen) — каркас страницы
 - [Цвет](/ru/foundations/color) — акценты, статусные цвета и токены
-- [Релизы](/ru/project/release-notes) — что изменилось в каждой бете Altrone 4
+- [Релизы](/ru/project/release-notes) — что изменилось в каждом релизе
