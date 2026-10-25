@@ -15,28 +15,36 @@ const HUES = [
   "brown",
 ];
 
+const STEPS = Array.from({ length: 12 }, (_, i) => i + 1);
+
 export default function ColorAccentHuesDemo() {
   return (
-    <Flex direction="vertical" gap="m">
-      {HUES.map((hue) => (
-        <Flex key={hue} direction="vertical" gap="xs">
-          <Text size={3} weight="medium">
-            --{hue}-*
+    <Flex orientation="vertical" gap="xxs" style={{ overflowX: "auto", paddingBlock: 4 }}>
+      <Flex gap="xxs" align="center" style={{ minWidth: "max-content", paddingInline: 4 }}>
+        <div style={{ width: 64 }} />
+        {STEPS.map((step) => (
+          <Text key={step} size={2} style={{ width: 28, textAlign: "center" }}>
+            {step}
           </Text>
-          <Flex gap="xxs">
-            {Array.from({ length: 12 }, (_, i) => i + 1).map((step) => (
-              <div
-                key={step}
-                title={`--${hue}-${step}`}
-                style={{
-                  width: 28,
-                  height: 28,
-                  borderRadius: 4,
-                  background: `var(--${hue}-${step})`,
-                }}
-              />
-            ))}
-          </Flex>
+        ))}
+      </Flex>
+      {HUES.map((hue) => (
+        <Flex key={hue} gap="xxs" align="center" style={{ minWidth: "max-content", paddingInline: 4 }}>
+          <Text size={2} weight="medium" style={{ width: 64 }}>
+            {hue}
+          </Text>
+          {STEPS.map((step) => (
+            <div
+              key={step}
+              title={`--${hue}-${step}`}
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: 4,
+                background: `var(--${hue}-${step})`,
+              }}
+            />
+          ))}
         </Flex>
       ))}
     </Flex>

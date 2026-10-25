@@ -13,7 +13,7 @@ export default function ThemeToggleDemo() {
   const { theme, setTheme } = useAltroneTheme();
 
   return (
-    <Flex direction="vertical" gap="m">
+    <Flex orientation="vertical" gap="m">
       <Flex gap="s">
         {OPTIONS.map((option) => (
           <Button
