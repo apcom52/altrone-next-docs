@@ -2,20 +2,6 @@
 
 import { Showcase } from "@/components/Showcase";
 
-/**
- * Placeholder art until real screenshots/photos are wired in — width varies
- * per slide (452px height, natural aspect ratio) to demonstrate the layout.
- */
-function gradientPlaceholder(
-  width: number,
-  height: number,
-  from: string,
-  to: string,
-) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${from}"/><stop offset="100%" stop-color="${to}"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`;
-  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
-}
-
 const DESIGN_IMAGES = [
   "/slides/4/sc-1-dark-theme.png",
   "/slides/4/sc-1-accents.png",
@@ -39,10 +25,11 @@ const SCREEN_IMAGES = [
 ];
 
 const MORE_IMAGES = [
-  gradientPlaceholder(452, 452, "#334155", "#64748b"),
-  gradientPlaceholder(700, 452, "#7c3aed", "#2563eb"),
-  gradientPlaceholder(603, 452, "#0891b2", "#0d9488"),
-  gradientPlaceholder(560, 452, "#db2777", "#9333ea"),
+  "/slides/4/sc4-aschild.png",
+  "/slides/4/sc4-accessibility.png",
+  "/slides/4/sc4-languages.png",
+  "/slides/4/sc4-mcp.png",
+  "/slides/4/sc4-sizes.png",
 ];
 
 function DesignShowcaseRu() {
@@ -309,23 +296,28 @@ function MoreShowcaseRu() {
     >
       <Showcase.Slide
         image={MORE_IMAGES[0]}
-        title="Один пропс. Любой элемент."
-        description="asChild подставляет логику компонента в любой элемент — от Link до кастомной кнопки."
+        title="Рендер через дочерний элемент."
+        description="Если передать asChild, компонент возьмёт за основу вложенный элемент: стили, обработчики и ref перенесутся на него. Так кнопка может стать ссылкой роутера, не теряя своего вида и поведения."
       />
       <Showcase.Slide
         image={MORE_IMAGES[1]}
-        title="Анимации, которые уважают пользователя."
-        description="prefers-reduced-motion учтён везде по умолчанию, без дополнительной настройки."
+        title="Доступность."
+        description="Навигация с клавиатуры, ARIA-атрибуты для скринридеров и поддержка prefers-reduced-motion уже есть в каждом компоненте. Дополнительно настраивать ничего не нужно."
       />
       <Showcase.Slide
         image={MORE_IMAGES[2]}
-        title="Восемь языков из коробки."
-        description="Каждый компонент локализован — от Button до DatePicker — и легко расширяется своими строками."
+        title="Восемь языков."
+        description="Встроенные тексты компонентов переведены на английский, русский, немецкий, французский, испанский, португальский, турецкий и китайский. Задайте язык один раз в Application — компоненты автоматически подхватят его."
       />
       <Showcase.Slide
         image={MORE_IMAGES[3]}
-        title="Доступность — не опция."
-        description="Фокус-кольца, ARIA-атрибуты и клавиатурная навигация встроены в каждый компонент библиотеки."
+        title="Разрабатывайте с помощью AI."
+        description="Подключите отдельный пакет @altrone/mcp, чтобы Claude Code, Cursor или Codex получал актуальную документацию компонентов и следовал гайдлайнам."
+      />
+      <Showcase.Slide
+        image={MORE_IMAGES[4]}
+        title="Пять размеров для всех контролов."
+        description="Пропс size принимает mini, s, m, l и xl у кнопок, полей, селектов и других контролов. Высота, отступы, шрифт и иконки меняются вместе, поэтому элементы одного размера стоят в ряд ровно."
       />
     </Showcase>
   );
@@ -343,23 +335,28 @@ function MoreShowcaseEn() {
     >
       <Showcase.Slide
         image={MORE_IMAGES[0]}
-        title="One prop. Any element."
-        description="asChild merges a component's logic onto any element — from Link to a custom button."
+        title="Render through a child element."
+        description="Pass asChild and the component uses its child as the root: styles, handlers and ref move onto it. This way a button can become a router link while keeping its look and behavior."
       />
       <Showcase.Slide
         image={MORE_IMAGES[1]}
-        title="Animation that respects the user."
-        description="prefers-reduced-motion is honored everywhere by default, with no extra setup."
+        title="Accessibility."
+        description="Keyboard navigation, ARIA attributes for screen readers and prefers-reduced-motion support are built into every component. No extra setup needed."
       />
       <Showcase.Slide
         image={MORE_IMAGES[2]}
-        title="Eight languages out of the box."
-        description="Every component is localized — from Button to DatePicker — and easy to extend with your own strings."
+        title="Eight languages."
+        description="Built-in component texts are translated into English, Russian, German, French, Spanish, Portuguese, Turkish and Chinese. Set the language once in Application — components pick it up automatically."
       />
       <Showcase.Slide
         image={MORE_IMAGES[3]}
-        title="Accessibility isn't optional."
-        description="Focus rings, ARIA attributes and keyboard navigation are built into every component."
+        title="Build with AI."
+        description="Connect the separate @altrone/mcp package so Claude Code, Cursor or Codex gets up-to-date component docs and follows the guidelines."
+      />
+      <Showcase.Slide
+        image={MORE_IMAGES[4]}
+        title="Five sizes for every control."
+        description="The size prop takes mini, s, m, l and xl on buttons, inputs, selects and other controls. Height, padding, font and icons change together, so controls of the same size line up evenly."
       />
     </Showcase>
   );
