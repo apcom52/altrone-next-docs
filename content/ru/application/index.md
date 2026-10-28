@@ -42,7 +42,7 @@ export default function App() {
 
 ### Чтение и смена темы
 
-Любой компонент внутри `Application` может узнать текущую тему и сменить её через `useAltroneTheme()`:
+Любой компонент внутри `Application` может узнать текущую тему и сменить её через `useAltroneTheme()`. `theme` — тема, которая показана на самом деле, всегда `'light'` или `'dark'`. `themePreference` — то, что выбрано, поэтому там может быть и `'auto'`, а `setTheme('auto')` возвращает тему к системной настройке.
 
 ```tsx
 import { useAltroneTheme } from 'altrone-ui';
@@ -60,7 +60,7 @@ function ThemeSwitcher() {
 
 ### Сохранение выбранной темы
 
-Добавьте `persistTheme`, чтобы выбор пользователя запоминался в `localStorage` (под ключом `altrone-theme`) и применялся при следующем визите. Сохранённый выбор важнее и `theme`, и системной настройки.
+Добавьте `persistTheme`, чтобы выбор пользователя, в том числе `'auto'`, запоминался в `localStorage` (под ключом `altrone-theme`) и применялся при следующем визите. Сохранённый выбор важнее `theme`.
 
 ```tsx
 <Application persistTheme>

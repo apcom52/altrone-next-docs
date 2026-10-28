@@ -22,7 +22,7 @@ function ThemeSwitcher() {
 
 ::playground{src=ThemeToggleDemo caption="Toggle the theme and watch the card below follow — no per-component code involved"}
 
-`'auto'` resolves against `window.matchMedia('(prefers-color-scheme: dark)')` — so a consumer who never calls `setTheme` still gets a theme that follows the OS, they just aren't locked into it if they want an explicit toggle later.
+`'auto'` resolves against `window.matchMedia('(prefers-color-scheme: dark)')` — so a consumer who never calls `setTheme` still gets a theme that follows the OS, they just aren't locked into it if they want an explicit toggle later. `theme` from `useAltroneTheme()` is always the resolved `'light'` or `'dark'`; the chosen value, `'auto'` included, is `themePreference`, and `setTheme('auto')` goes back to following the OS.
 
 Every color, shadow, and border token in the library is defined twice: once at the top level, once again scoped under `[data-altrone-theme='dark']`. Nothing about a component's own CSS changes between themes — only which value each token currently resolves to.
 
@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ## Persisting the user's choice
 
-Pass `persistTheme` to remember an explicit toggle in `localStorage` and restore it on the next visit:
+Pass `persistTheme` to remember an explicit toggle — `'auto'` included — in `localStorage` and restore it on the next visit:
 
 ```tsx
 <Application persistTheme>{children}</Application>

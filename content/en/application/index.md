@@ -42,7 +42,7 @@ The current theme is written to the `data-altrone-theme` attribute on the root e
 
 ### Reading and changing the theme
 
-Any component inside `Application` can read the current theme and change it with `useAltroneTheme()`:
+Any component inside `Application` can read the current theme and change it with `useAltroneTheme()`. `theme` is the theme actually shown, always `'light'` or `'dark'`. `themePreference` is what was chosen, so it can also be `'auto'`, and `setTheme('auto')` hands control back to the system setting.
 
 ```tsx
 import { useAltroneTheme } from 'altrone-ui';
@@ -60,7 +60,7 @@ function ThemeSwitcher() {
 
 ### Persisting the chosen theme
 
-Add `persistTheme` to remember the user's choice in `localStorage` (under the `altrone-theme` key) and use it on the next visit. A saved choice wins over `theme` and over the system setting.
+Add `persistTheme` to remember the user's choice in `localStorage` (under the `altrone-theme` key) and use it on the next visit, `'auto'` included. A saved choice wins over `theme`.
 
 ```tsx
 <Application persistTheme>
