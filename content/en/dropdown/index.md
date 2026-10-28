@@ -75,6 +75,8 @@ const [compact, setCompact] = useState(false);
 
 ::playground{src=dropdown/DropdownRadioDemo caption="The selection persists across reopenings of the menu"}
 
+Your own `onClick`, `onKeyDown`, `onMouseEnter` and `onMouseLeave` on any menu item run before the built-in handling and don't replace it — call `event.preventDefault()` in them to skip the toggle, the selection or closing the menu.
+
 ## Nested submenus
 
 `Dropdown.ChildMenu` opens a nested menu on click, positioned to the side of the parent item.

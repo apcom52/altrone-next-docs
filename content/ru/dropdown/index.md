@@ -75,6 +75,8 @@ const [compact, setCompact] = useState(false);
 
 ::playground{src=dropdown/DropdownRadioDemo caption="Выбор сохраняется между открытиями меню"}
 
+Собственные `onClick`, `onKeyDown`, `onMouseEnter` и `onMouseLeave` у любого пункта меню вызываются до встроенной обработки и не заменяют её — чтобы пропустить переключение, выбор или закрытие меню, вызовите в них `event.preventDefault()`.
+
 ## Вложенные подменю
 
 `Dropdown.ChildMenu` открывает вложенное меню по клику, позиционируя его сбоку от родительского пункта.
