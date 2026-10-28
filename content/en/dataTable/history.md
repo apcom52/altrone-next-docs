@@ -12,6 +12,7 @@
 - Wide tables got their own horizontal scroll instead of stretching the page.
 - Added `getRowId`; `renderRowActions` was replaced by `rowActions`, and `RowAction.onClick` receives a native `MouseEvent`.
 - Removed the first/last page buttons from the pagination.
+- The column `visible` prop was renamed to `enabled`.
 :::
 
 :::release[Altrone 3 Curious CatZilla]{icon="/logos/altrone-3.png" image="/logos/dataTable-3.png" name="DataTable"}

@@ -276,12 +276,12 @@ A `type: 'custom'` column hands the cell markup to you: `renderReadMode` receive
 
 ::playground{src=dataTable/DataTableResizableDemo caption="Drag a header edge, ID stays fixed"}
 
-## Hidden columns
+## Unavailable columns
 
-A column can be taken off the screen without removing it from the definition — handy when visibility is toggled by the user or a setting. Set `visible: false` on a column, and it isn't displayed, doesn't take part in sorting and doesn't appear in filters.
+A column the current user has no access to (for example, without the right permission) can stay in the definition and be switched off. Set `enabled: false` on it, and the column is excluded entirely: it isn't displayed, doesn't take part in sorting and doesn't appear in filters.
 
 ```tsx
-{ accessor: 'salary', label: 'Salary', type: 'currency', visible: canSeeSalary }
+{ accessor: 'salary', label: 'Salary', type: 'currency', enabled: canSeeSalary }
 ```
 
 ## Footer
@@ -307,7 +307,7 @@ The table rows.
 :::
 
 :::prop[columns*]{type="DataTableColumn<T>[]"}
-Column definitions: `accessor`, `label`, `type`, `width`, `sortable`, `filterable`, `visible`, `resizable`, `options`.
+Column definitions: `accessor`, `label`, `type`, `width`, `sortable`, `filterable`, `enabled`, `resizable`, `options`.
 :::
 
 :::prop[getRowId]{type="(row: T, index: number) => string"}

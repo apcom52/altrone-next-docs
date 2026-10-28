@@ -12,6 +12,7 @@
 - Широкие таблицы получили собственный горизонтальный скролл вместо распирания страницы.
 - Добавлен `getRowId`; `renderRowActions` заменён на `rowActions`, а `RowAction.onClick` получает нативный `MouseEvent`.
 - Убраны кнопки первой и последней страницы пагинации.
+- Проп колонки `visible` переименован в `enabled`.
 :::
 
 :::release[Altrone 3 Curious CatZilla]{icon="/logos/altrone-3.png" image="/logos/dataTable-3.png" name="DataTable"}

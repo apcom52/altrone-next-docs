@@ -276,12 +276,12 @@ const [filters, setFilters] = useState<DataTableFilter[]>([]);
 
 ::playground{src=dataTable/DataTableResizableDemo caption="Потяните край заголовка, ID зафиксирован"}
 
-## Скрытые колонки
+## Недоступные колонки
 
-Колонку можно убрать с экрана, не удаляя из описания, — это удобно, когда видимость переключает пользователь или настройка. Задайте колонке `visible: false`, и она не отображается, не участвует в сортировке и не появляется в фильтрах.
+Колонку, к которой у текущего пользователя нет доступа (например, не хватает прав), можно оставить в описании и выключить. Задайте ей `enabled: false`, и колонка исключается полностью: она не отображается, не участвует в сортировке и не появляется в фильтрах.
 
 ```tsx
-{ accessor: 'salary', label: 'Salary', type: 'currency', visible: canSeeSalary }
+{ accessor: 'salary', label: 'Salary', type: 'currency', enabled: canSeeSalary }
 ```
 
 ## Нижняя панель
@@ -307,7 +307,7 @@ const [filters, setFilters] = useState<DataTableFilter[]>([]);
 :::
 
 :::prop[columns*]{type="DataTableColumn<T>[]"}
-Описание колонок: `accessor`, `label`, `type`, `width`, `sortable`, `filterable`, `visible`, `resizable`, `options`.
+Описание колонок: `accessor`, `label`, `type`, `width`, `sortable`, `filterable`, `enabled`, `resizable`, `options`.
 :::
 
 :::prop[getRowId]{type="(row: T, index: number) => string"}
