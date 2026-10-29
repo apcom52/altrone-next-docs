@@ -1,16 +1,22 @@
+import { createPropAnchor } from '@/lib/propAnchors';
 import { visit } from "unist-util-visit";
 import type { Plugin } from "unified";
 import type { Root } from "mdast";
 
 function labelText(node: any): string {
-  if (node.type === "text") return node.value ?? "";
+  if (node.type === "text" || node.type === "inlineCode") return node.value ?? "";
   if (node.children) return (node.children as any[]).map(labelText).join("");
   return "";
 }
 
 export const propPlugin: Plugin<[], Root> = () => (tree) => {
-  visit(tree, "containerDirective", (node: any) => {
-    if (node.name !== "prop") return;
+  const anchor = createPropAnchor();
+  let section = '';
+  visit(tree, (node: any) => {
+    if (node.type === 'heading' && node.depth >= 2 && node.depth <= 4) {
+      section = labelText(node);
+    }
+    if (node.type !== 'containerDirective' || node.name !== "prop") return;
 
     const data = node.data ?? (node.data = {});
     const attrs = node.attributes ?? {};
@@ -27,6 +33,7 @@ export const propPlugin: Plugin<[], Root> = () => (tree) => {
     data.hName = "prop-block";
     data.hProperties = {
       name,
+      id: anchor(section, name),
       required,
       propType: attrs.type ?? "",
       propDefault: attrs.default ?? "",

@@ -1,7 +1,9 @@
 "use client";
 
+import { DocsSearch } from "@/components/DocsSearch";
+
 import { Dropdown, Toolbar, useAltroneTheme } from "altrone-ui";
-import { Globe, Moon, Search, Sun } from "lucide-react";
+import { Globe, Moon, Sun } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LOCALES, LOCALE_NAMES } from "@/lib/types";
@@ -12,9 +14,9 @@ const LOCALE_LABELS: Record<string, string> = {
   ru: "RU",
 };
 
-const NAV_LINKS: Record<string, { home: string; docs: string; blog: string }> = {
-  en: { home: "Home", docs: "Docs", blog: "Blog" },
-  ru: { home: "Главная", docs: "Документация", blog: "Блог" },
+const NAV_LINKS: Record<string, { home: string; docs: string }> = {
+  en: { home: "Home", docs: "Docs" },
+  ru: { home: "Главная", docs: "Документация" },
 };
 
 export const Header = () => {
@@ -56,16 +58,9 @@ export const Header = () => {
           >
             <Link href={`/${currentLocale}/getting-started`} />
           </Toolbar.Action>
-          <Toolbar.Action
-            asChild
-            label={labels.blog}
-            selected={isActive(`/${currentLocale}/blog`)}
-          >
-            <Link href={`/${currentLocale}/blog`} />
-          </Toolbar.Action>
         </Toolbar.Group>
       </Toolbar.Leading>
-      <Toolbar.Trailing>
+      <DocsSearch key={currentLocale} locale={currentLocale}>
         <Toolbar.Group>
           <Dropdown
             placement="bottom-end"
@@ -97,14 +92,7 @@ export const Header = () => {
             onClick={toggleTheme}
           />
         </Toolbar.Group>
-        <Toolbar.Group>
-          <Toolbar.Action
-            label="Поиск по сайту"
-            icon={<Search />}
-            showLabel={false}
-          />
-        </Toolbar.Group>
-      </Toolbar.Trailing>
+      </DocsSearch>
     </Toolbar>
   );
 };

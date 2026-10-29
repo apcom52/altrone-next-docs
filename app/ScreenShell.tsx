@@ -39,9 +39,6 @@ export function ScreenShell({
   const isBlog = rest[0] === "blog";
   const isDocs = !isHome && !isBlog;
 
-  /* Same lookup `DocsHeader` uses for its own title — `undefined` for a
-     category index, a blog/home route, or a component page's non-Overview
-     tab (its `restOfPath` doesn't match a nav entry's slug exactly). */
   const pageTitle = isDocs ? findPageTitle(nav, rest.join("/")) : undefined;
 
   const aside = useAside();

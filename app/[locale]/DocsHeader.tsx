@@ -1,7 +1,9 @@
 "use client";
 
+import { DocsSearch } from "@/components/DocsSearch";
+
 import { Dropdown, Toolbar, useAltroneTheme } from "altrone-ui";
-import { Globe, Moon, Search, Sun, ArrowLeft } from "lucide-react";
+import { Globe, Moon, Sun, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LOCALES, LOCALE_NAMES, findPageTitle } from "@/lib/types";
@@ -13,21 +15,14 @@ const LOCALE_LABELS: Record<string, string> = {
   ru: "RU",
 };
 
-const BLOG_LABEL: Record<string, string> = {
-  en: "Blog",
-  ru: "Блог",
-};
-
-
 export function DocsHeader({ locale, nav }: { locale: string; nav: Navigation }) {
   const pathname = usePathname();
   const router = useRouter();
   const segments = pathname.split("/").filter(Boolean);
   const [, section, category] = segments;
 
-  /** Back to the section's index when drilled into one of its pages. */
   const backHref =
-    section === "components" && segments.length === 4
+    section === "components" && segments.length >= 4
       ? `/${locale}/components/${category}`
       : section === "foundations" && segments.length === 3
         ? `/${locale}/foundations`
@@ -63,12 +58,7 @@ export function DocsHeader({ locale, nav }: { locale: string; nav: Navigation })
         )}
         {title && <Toolbar.Title title={title} />}
       </Toolbar.Leading>
-      <Toolbar.Trailing>
-        <Toolbar.Group>
-          <Toolbar.Action asChild label={BLOG_LABEL[locale] ?? BLOG_LABEL.en}>
-            <Link href={`/${locale}/blog`} />
-          </Toolbar.Action>
-        </Toolbar.Group>
+      <DocsSearch key={locale} locale={locale}>
         <Toolbar.Group>
           <Dropdown
             placement="bottom-end"
@@ -96,14 +86,7 @@ export function DocsHeader({ locale, nav }: { locale: string; nav: Navigation })
             onClick={toggleTheme}
           />
         </Toolbar.Group>
-        <Toolbar.Group>
-          <Toolbar.Action
-            label="Поиск по сайту"
-            icon={<Search />}
-            showLabel={false}
-          />
-        </Toolbar.Group>
-      </Toolbar.Trailing>
+      </DocsSearch>
     </Toolbar>
   );
 }

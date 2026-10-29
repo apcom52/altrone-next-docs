@@ -1,6 +1,6 @@
 import { visit } from "unist-util-visit";
 import type { Plugin } from "unified";
-import { slugify } from "@/lib/slugify";
+import { createHeadingAnchor } from "@/lib/slugify";
 
 function hastToText(node: any): string {
   if (node.type === "text") return node.value ?? "";
@@ -9,9 +9,10 @@ function hastToText(node: any): string {
 }
 
 export const headingIdsPlugin: Plugin = () => (tree: any) => {
+  const anchor = createHeadingAnchor();
   visit(tree, "element", (node: any) => {
     if (!["h2", "h3", "h4"].includes(node.tagName)) return;
     node.properties ??= {};
-    node.properties.id = slugify(hastToText(node));
+    node.properties.id = anchor(hastToText(node));
   });
 };

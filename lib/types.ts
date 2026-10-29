@@ -72,7 +72,13 @@ export function findPageTitle(nav: Navigation, restOfPath: string): string | und
     const base = group.urlBase ?? group.slug
     if (restOfPath.startsWith(`${base}/`)) {
       const pageSlug = restOfPath.slice(base.length + 1)
-      const page = group.pages.find((p) => p.slug === pageSlug)
+      const page = group.pages.find((p) => {
+        if (p.slug === pageSlug) return true
+        if (!base.startsWith('components/')) return false
+        return ['guidelines', 'css-vars', 'icons', 'history'].some(
+          (tab) => pageSlug === `${p.slug}/${tab}`
+        )
+      })
       if (page) return page.title
     }
   }

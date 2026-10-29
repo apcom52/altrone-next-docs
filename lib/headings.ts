@@ -2,7 +2,7 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import { visit } from "unist-util-visit";
 import type { Heading as MdastHeading } from "mdast";
-import { slugify } from "./slugify";
+import { createHeadingAnchor } from "./slugify";
 
 export type Heading = {
   level: 2 | 3 | 4;
@@ -20,6 +20,7 @@ function nodeText(node: any): string {
 export function parseHeadings(markdown: string): Heading[] {
   const tree = unified().use(remarkParse).parse(markdown);
   const headings: Heading[] = [];
+  const anchor = createHeadingAnchor();
 
   visit(tree, "heading", (node: MdastHeading) => {
     if (node.depth < 2 || node.depth > 4) return;
@@ -27,7 +28,7 @@ export function parseHeadings(markdown: string): Heading[] {
     headings.push({
       level: node.depth as 2 | 3 | 4,
       text,
-      id: slugify(text),
+      id: anchor(text),
     });
   });
 

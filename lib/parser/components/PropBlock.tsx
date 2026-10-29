@@ -7,6 +7,7 @@ import clsx from "clsx";
 
 export function PropBlock({
   name,
+  id,
   required,
   propType,
   propDefault,
@@ -15,6 +16,7 @@ export function PropBlock({
   children,
 }: {
   name?: string;
+  id?: string;
   required?: boolean | string;
   propType?: string;
   propDefault?: string;
@@ -26,7 +28,7 @@ export function PropBlock({
   const isDeprecated = deprecated === true || deprecated === "true";
 
   return (
-    <div className={s.PropertyWrapper}>
+    <div id={id} className={s.PropertyWrapper}>
       <div className={s.Property}>
         <div className={s.PropertyHeader}>
           <div
