@@ -63,6 +63,8 @@ By default the panel slides in from the left. `placement="end"` slides it in fro
 
 `onDone` takes an async function. While it's running, the button shows a loading state. Returning `false` keeps the panel open. Use it for forms with server- or client-side validation.
 
+If `onDone` throws or rejects, the drawer stays open, shakes, and restores the Done button for another attempt. The rejection is handled internally; show specific error details in your content. Closing or unmounting invalidates pending completion, so an earlier operation cannot close a reopened drawer or change its loading state. The shake uses the same feedback as a blocked dismiss attempt and remains enabled under reduced motion.
+
 ```tsx
 <Button label="Create task" variant="submit" onClick={() => setOpen(true)} />
 <Drawer
