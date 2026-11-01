@@ -2,6 +2,8 @@
 
 A side panel that slides in over the current screen without taking the user anywhere else. That's its main advantage: the user keeps seeing the context they acted from and can return to it in one move. Use `Drawer` for work that needs a form or a list of settings but doesn't deserve a page of its own.
 
+Escape is handled only by the most recently opened Modal, Drawer or Dialog. Closing it returns Escape handling to the previous window; a controlled window stays active until its owner sets `open` to `false`. A non-dismissible window blocks Escape for the windows underneath it.
+
 ## Basic usage
 
 Unlike `Popover`/`Dropdown`/`Tooltip`, `Drawer` isn't attached to a trigger element — open it explicitly via `open`, close it via `onClose`. The panel's content is passed through `content`.

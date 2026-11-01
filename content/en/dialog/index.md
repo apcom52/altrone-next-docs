@@ -2,6 +2,8 @@
 
 `showAlert`, `showConfirm` and `showPrompt` are ready-made modal windows for the three most common conversations with a user: inform, ask again and request a value. They are plain functions: call them from a click handler, a store or any module, with no hooks and no open state. Each returns a `Promise` that settles when the user has answered, so the code reads top to bottom with `await`.
 
+Escape is handled only by the most recently opened Modal, Drawer or Dialog. Closing it returns Escape handling to the previous window; a controlled window stays active until its owner sets `open` to `false`. A non-dismissible window blocks Escape for the windows underneath it.
+
 ```tsx
 import { showAlert, showConfirm, showPrompt } from 'altrone-ui';
 ```

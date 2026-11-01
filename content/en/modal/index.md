@@ -2,6 +2,8 @@
 
 A dialog appears over the page, dims the background, and takes the user's full attention: clicks outside it don't go through and focus is trapped inside. `Modal` is for deliberate decisions — confirming an irreversible action, entering a small piece of data, a warning that can't be skipped.
 
+Escape is handled only by the most recently opened Modal, Drawer or Dialog. Closing it returns Escape handling to the previous window; a controlled window stays active until its owner sets `open` to `false`. A non-dismissible window blocks Escape for the windows underneath it.
+
 ## Basic usage
 
 Unlike `Popover`/`Dropdown`/`Tooltip`, `Modal` isn't attached to a trigger element — open it explicitly via `open`, close it via `onClose`. The content is passed through `content`, the heading through `title`.
