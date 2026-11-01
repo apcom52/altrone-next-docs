@@ -2,6 +2,8 @@
 
 A side panel that slides in over the current screen without taking the user anywhere else. That's its main advantage: the user keeps seeing the context they acted from and can return to it in one move. Use `Drawer` for work that needs a form or a list of settings but doesn't deserve a page of its own.
 
+Portaled Popover panels and controls built on Popover remain keyboard-accessible inside Modal and Drawer. A trapped panel temporarily manages focus according to `focusTrapTargets` and returns focus to its trigger on closing. With `focusTrap={false}`, its content shares the parent window’s focus boundary.
+
 Escape is handled only by the most recently opened Modal, Drawer or Dialog. Closing it returns Escape handling to the previous window; a controlled window stays active until its owner sets `open` to `false`. A non-dismissible window blocks Escape for the windows underneath it.
 
 ## Basic usage

@@ -2,6 +2,8 @@
 
 A floating panel anchored to a trigger. The base primitive `Dropdown`, `AutocompleteInput`, `ColorPicker`, and `DatePicker` are built on. Use `Popover` directly when the content goes beyond a list of menu items — a form, a confirmation, an info block.
 
+Portaled Popover panels and controls built on Popover remain keyboard-accessible inside Modal and Drawer. A trapped panel temporarily manages focus according to `focusTrapTargets` and returns focus to its trigger on closing. With `focusTrap={false}`, its content shares the parent window’s focus boundary.
+
 ## Basic usage
 
 ```tsx

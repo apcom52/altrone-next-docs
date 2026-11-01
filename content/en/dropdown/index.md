@@ -2,6 +2,8 @@
 
 A floating menu anchored to a trigger button. Built on `Popover` and adds a ready-made item system: actions with icons, keyboard-shortcut hints and badges, radio lists, checkboxes, and nested submenus. `Dropdown` is the right choice whenever you need to hide a set of actions behind a single button.
 
+Portaled Popover panels and controls built on Popover remain keyboard-accessible inside Modal and Drawer. A trapped panel temporarily manages focus according to `focusTrapTargets` and returns focus to its trigger on closing. With `focusTrap={false}`, its content shares the parent window’s focus boundary.
+
 ## Basic example
 
 ```tsx

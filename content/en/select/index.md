@@ -2,6 +2,8 @@
 
 A drop-down list for choosing one or several values from a known set of options. The trigger is a `TextInput`, so the field looks like the other text controls, and the list opens in a `Dropdown`.
 
+Portaled Popover panels and controls built on Popover remain keyboard-accessible inside Modal and Drawer. A trapped panel temporarily manages focus according to `focusTrapTargets` and returns focus to its trigger on closing. With `focusTrap={false}`, its content shares the parent window’s focus boundary.
+
 ## Basic usage
 
 `options` is a list of `{ value, label }` objects, and `value` is the `value` of the chosen option. `onChange` is required: without it the control has nowhere to keep the choice.
