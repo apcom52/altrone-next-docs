@@ -56,6 +56,8 @@ If an item has both `badge` and `hintText`, the badge takes priority and `hintTe
 
 ## Radio lists and checkboxes
 
+Checkboxes and radio items use native button activation: Enter, Space or a mouse click calls `onChange` once with a click event. `onKeyDown` can cancel keyboard activation with `preventDefault()`; `onClick` can cancel the value change the same way.
+
 `Dropdown.RadioList` is a group of mutually exclusive options. `Dropdown.Checkbox` is an independent toggle. Both are controlled externally through their `value`/`checked` props. Unlike `Dropdown.Action`, selecting a radio item or toggling a checkbox does not close the menu — this lets a user change several options in one open session.
 
 ```tsx
