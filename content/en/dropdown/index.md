@@ -94,7 +94,7 @@ Your own `onClick`, `onKeyDown`, `onMouseEnter` and `onMouseLeave` on any menu i
 
 ## Actions as links
 
-`asChild` transfers `Dropdown.Action`'s styling onto the child element. Use it for router links.
+`asChild` transfers `Dropdown.Action`'s styling onto the child element. Use it for router links. Native buttons keep their Enter/Space activation, and links with `href` keep native Enter activation. Other action roots synthesize one click for Enter/Space; Space also activates links. Each gesture calls `onClick` once. Calling `preventDefault()` in `onKeyDown` cancels keyboard activation; calling it in `onClick` prevents the menu from closing.
 
 ```tsx
 <Dropdown.Action asChild icon={<Settings />} label="Settings" hintText="⌘,">

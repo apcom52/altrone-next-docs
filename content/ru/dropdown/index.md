@@ -94,7 +94,7 @@ const [compact, setCompact] = useState(false);
 
 ## Действия как ссылки
 
-`asChild` переносит стили `Dropdown.Action` на дочерний элемент. Используйте для ссылок маршрутизатора.
+`asChild` переносит стили `Dropdown.Action` на дочерний элемент. Используйте для ссылок маршрутизатора. Нативные кнопки сохраняют активацию по Enter/Space, ссылки с `href` — нативную активацию по Enter. Для остальных корневых элементов Enter/Space вызывают один клик; Space также активирует ссылки. Один жест вызывает `onClick` один раз. Вызов `preventDefault()` в `onKeyDown` отменяет активацию с клавиатуры, а в `onClick` — закрытие меню.
 
 ```tsx
 <Dropdown.Action asChild icon={<Settings />} label="Settings" hintText="⌘,">
