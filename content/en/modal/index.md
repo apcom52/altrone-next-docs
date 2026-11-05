@@ -2,6 +2,8 @@
 
 A dialog appears over the page, dims the background, and takes the user's full attention: clicks outside it don't go through and focus is trapped inside. `Modal` is for deliberate decisions — confirming an irreversible action, entering a small piece of data, a warning that can't be skipped.
 
+When opened, Modal preserves focus already claimed by a control in its body or footer, such as an input with `autoFocus`. If no control claims focus, the header close button receives focus with `preventScroll`.
+
 Portaled Popover panels and controls built on Popover remain keyboard-accessible inside Modal and Drawer. A trapped panel temporarily manages focus according to `focusTrapTargets` and returns focus to its trigger on closing. With `focusTrap={false}`, its content shares the parent window’s focus boundary.
 
 Escape is handled only by the most recently opened Modal, Drawer or Dialog. Closing it returns Escape handling to the previous window; a controlled window stays active until its owner sets `open` to `false`. A non-dismissible window blocks Escape for the windows underneath it.
