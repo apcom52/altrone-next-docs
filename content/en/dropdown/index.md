@@ -2,6 +2,8 @@
 
 A floating menu anchored to a trigger button. Built on `Popover` and adds a ready-made item system: actions with icons, keyboard-shortcut hints and badges, radio lists, checkboxes, and nested submenus. `Dropdown` is the right choice whenever you need to hide a set of actions behind a single button.
 
+Opening a menu transfers DOM focus to its first available item. The first ArrowDown moves to the next available item, and Escape returns focus to the trigger. With virtual navigation, DOM focus stays on the trigger.
+
 Portaled Popover panels and controls built on Popover remain keyboard-accessible inside Modal and Drawer. A trapped panel temporarily manages focus according to `focusTrapTargets` and returns focus to its trigger on closing. With `focusTrap={false}`, its content shares the parent window’s focus boundary.
 
 ## Basic example
@@ -94,7 +96,7 @@ Your own `onClick`, `onKeyDown`, `onMouseEnter` and `onMouseLeave` on any menu i
 
 ## Actions as links
 
-`asChild` transfers `Dropdown.Action`'s styling onto the child element. Use it for router links. Native buttons keep their Enter/Space activation, and links with `href` keep native Enter activation. Other action roots synthesize one click for Enter/Space; Space also activates links. Each gesture calls `onClick` once. Calling `preventDefault()` in `onKeyDown` cancels keyboard activation; calling it in `onClick` prevents the menu from closing.
+`asChild` transfers `Dropdown.Action`'s styling onto the child element. Use it for router links. Custom roots receive a roving `tabIndex` so even a `<div>` can receive DOM focus; an explicit `tabIndex` on the action takes precedence over the child's value, and both override the automatic value. Native buttons keep their Enter/Space activation, and links with `href` keep native Enter activation. Other action roots synthesize one click for Enter/Space; Space also activates links. Each gesture calls `onClick` once. Calling `preventDefault()` in `onKeyDown` cancels keyboard activation; calling it in `onClick` prevents the menu from closing.
 
 ```tsx
 <Dropdown.Action asChild icon={<Settings />} label="Settings" hintText="⌘,">
