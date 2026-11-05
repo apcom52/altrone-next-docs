@@ -23,7 +23,7 @@ The list is 300px wide and as tall as its container, scrolling when the content 
 
 ## Links and buttons
 
-With `href` a link is a regular `<a>`. Without `href` but with `onClick` it acts as a button: it is focusable and works with `Enter` and `Space`. To use the link component of your router, pass `asChild` and put the router link inside.
+With `href` a link is a regular `<a>`. Without `href` but with `onClick` it acts as a button: it is focusable and works with `Enter` and `Space`. To use the link component of your router, pass `asChild` and put the router link inside. With `asChild`, Enter preserves native link activation, and Space activates the link through a click so the router handles navigation. `disabled` blocks both keys; `onKeyDown` can cancel activation with `preventDefault()`.
 
 ```tsx
 <NavigationList.Link label="Dashboard" icon={<Home />} selected={pathname === '/'} asChild>
