@@ -90,7 +90,7 @@ In `default` the bubble is rendered through a portal, so a parent with `overflow
 
 ## Committing the value
 
-`onChange` fires on every move while dragging. When the change needs an expensive reaction — a server request, a recalculation, saving — put it on `onChangeEnd`: it fires once, when the user releases the thumb or presses a key. After a drag it receives the last value sent to `onChange`, even if the parent has yet to update `value`.
+`onChange` fires on every move while dragging. When the change needs an expensive reaction — a server request, a recalculation, saving — put it on `onChangeEnd`: it fires once, when the user releases the thumb or presses a key. After a drag it receives the last value sent to `onChange`, even if the parent has yet to update `value`. Cancelling the drag skips `onChangeEnd`.
 
 ```tsx
 <Slider value={value} onChange={setValue} onChangeEnd={save} />
