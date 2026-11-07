@@ -35,7 +35,7 @@ A row of actions — a header for your app, a window or a panel, or a set of too
 
 ## Sections
 
-For a header with a title, search and actions, use `Toolbar.Leading`, `Toolbar.Center` and `Toolbar.Trailing`. With them the toolbar lays out as a three-track grid, so the center stays optically centered no matter how wide the sides get. Without sections the content is a plain left-to-right row.
+For a header with a title, search and actions, use `Toolbar.Leading`, `Toolbar.Center` and `Toolbar.Trailing`. Multiple sections share a three-track grid. A single section spans the available width, or height in a vertical toolbar, and keeps its start, center or end alignment. Without sections the content is a plain left-to-right row.
 
 ```tsx
 <Toolbar sticky>
