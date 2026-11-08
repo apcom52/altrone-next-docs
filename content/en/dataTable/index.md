@@ -213,7 +213,7 @@ The table header is a `Toolbar`. Everything you pass to `actions` lands in the l
 
 ### Row actions
 
-Actions on a single row go to `rowActions` — one `DataTable.RowAction`, an array, or a function receiving `{ row, rowIndex, selected }`. Actions with `collapsed` fold into a "…" menu, the rest stay buttons.
+Actions on a single row go to `rowActions` — one `DataTable.RowAction`, an array, or a function receiving `{ row, rowIndex, selected }`. Actions with `collapsed` fold into a "…" menu, the rest stay buttons. Right-click a data cell to access all actions for its row above the built-in commands.
 
 ```tsx
 <DataTable
