@@ -28,6 +28,10 @@ A row has little room, and every icon button is one more target to find and not 
 :::
 ::::
 
+## Column visibility
+
+Keep columns needed to identify a row visible in the default configuration. Use `defaultHiddenColumns` for secondary details that users can show when they need them.
+
 ## Accessibility
 
 - Actions without a visible label (`showLabel={false}`) still get an `aria-label` from `label` — always give a meaningful `label`.

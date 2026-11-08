@@ -167,6 +167,8 @@ Good to know:
 
 ## Row selection and actions
 
+Right-click a data cell or press Shift+F10 while it is focused to open its context menu. **Copy** copies the displayed text and keeps passwords masked. When `selectable` is enabled, **Select this row** selects the row and enters selection mode if needed. **Deselect this row** clears the row selection and keeps selection mode active.
+
 The `selectable` prop turns on row selection: a selection mode toggle appears in the header, and actions receive the list of selected rows. `actions` accepts one `DataTable.Action`, an array, or a function that is passed `{ selectableMode, selectedItems }`.
 
 ```tsx
@@ -278,11 +280,21 @@ A `type: 'custom'` column hands the cell markup to you: `renderReadMode` receive
 
 ## Unavailable columns
 
-A column the current user has no access to (for example, without the right permission) can stay in the definition and be switched off. Set `enabled: false` on it, and the column is excluded entirely: it isn't displayed, doesn't take part in sorting and doesn't appear in filters.
+A column the current user has no access to (for example, without the right permission) can stay in the definition and be switched off. Set `enabled: false` on it, and the column is excluded entirely: it isn't displayed, doesn't take part in sorting and doesn't appear in filters. To let users hide and restore a column, use [Column visibility](/en/components/content/dataTable#column-visibility).
 
 ```tsx
 { accessor: 'salary', label: 'Salary', type: 'currency', enabled: canSeeSalary }
 ```
+
+## Column visibility
+
+Turn on `hideableColumns` to add a column picker to the toolbar. Click **Apply** to confirm the changes. **Show all** immediately shows every enabled column and closes the picker. **Reset** restores the draft to `defaultHiddenColumns` (all columns are visible if you omit it). At least one enabled data column stays visible.
+
+Set `defaultHiddenColumns` to initialize the uncontrolled table. To control visibility yourself, pass `hiddenColumns` and update it in `onHiddenColumnsChange`, as in the demo. Both modes work with the toolbar control turned off. Unknown accessors are ignored. Hidden columns keep their filters, sort order and width. They remain available in the filter builder.
+
+Right-click a column header or press Shift+F10 while it is focused. Sortable columns offer three options: no sorting, ascending, or descending. When `hideableColumns` is enabled, **Hide** immediately hides the column. The last visible data column cannot be hidden.
+
+::playground{src=dataTable/DataTableColumnVisibilityDemo caption="Control column visibility from the toolbar"}
 
 ## Footer
 
@@ -336,6 +348,22 @@ Shows a placeholder when there are no rows to display.
 
 :::prop[resizableColumns]{type="boolean" default="false"}
 Lets users resize columns by dragging.
+:::
+
+:::prop[hideableColumns]{type="boolean" default="false"}
+Shows the column picker in the toolbar.
+:::
+
+:::prop[hiddenColumns]{type="Array<keyof T>"}
+Controls which column accessors are hidden.
+:::
+
+:::prop[defaultHiddenColumns]{type="Array<keyof T>"}
+Sets the initial hidden list in uncontrolled mode and the target for Reset.
+:::
+
+:::prop[onHiddenColumnsChange]{type="(hidden: Array<keyof T>, event?: SyntheticEvent) => void"}
+Receives the next hidden list and, for a user action, its event.
 :::
 
 :::prop[icons]{type="Partial<DataTableIconSet>"}

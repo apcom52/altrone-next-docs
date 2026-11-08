@@ -39,6 +39,10 @@ import { ChevronDown, ChevronUp, ListFilter } from "lucide-react";
 Кнопка открытия фильтров в шапке
 :::
 
+:::icon-card[columnVisibility]{icon="Columns3Cog"}
+Открывает настройки видимости колонок в панели инструментов
+:::
+
 :::icon-card[addFilter]{icon="Plus"}
 Добавляет новое правило в конструкторе фильтров
 :::

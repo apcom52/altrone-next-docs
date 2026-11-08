@@ -39,6 +39,10 @@ Shows descending sorting in a column header
 The button that opens the filters in the header
 :::
 
+:::icon-card[columnVisibility]{icon="Columns3Cog"}
+Opens the column picker in the toolbar
+:::
+
 :::icon-card[addFilter]{icon="Plus"}
 Adds a new rule in the filter builder
 :::
