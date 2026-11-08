@@ -136,7 +136,7 @@ const [sizes, setSizes] = useState([30, 70]);
 :::
 
 :::prop[onResizeEnd]{type="(sizes: number[], event: PointerEvent) => void"}
-Вызывается однократно по окончании перетаскивания. Удобно для сохранения раскладки.
+Вызывается один раз при отпускании указателя. При отмене перетаскивания Splitter восстанавливает последние подтверждённые размеры без вызова `onResizeEnd` и `onSizesChange`.
 :::
 
 :::prop[onCollapse]{type="(panelIndex: number, collapsed: boolean, event?: MouseEvent) => void"}

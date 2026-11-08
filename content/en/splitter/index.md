@@ -136,7 +136,7 @@ Fires when a drag begins.
 :::
 
 :::prop[onResizeEnd]{type="(sizes: number[], event: PointerEvent) => void"}
-Fires once when a drag ends. A good moment to save the layout.
+Fires once when the pointer is released. A cancelled drag restores the latest confirmed sizes without firing `onResizeEnd` or `onSizesChange`.
 :::
 
 :::prop[onCollapse]{type="(panelIndex: number, collapsed: boolean, event?: MouseEvent) => void"}
