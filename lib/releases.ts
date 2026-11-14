@@ -5,6 +5,8 @@ export interface Release {
 }
 
 export const RELEASES: Release[] = [
+  { slug: '4.0.4', title: 'Altrone 4.0.4', date: '2026-11-14' },
+  { slug: '4.0.3', title: 'Altrone 4.0.3', date: '2026-11-08' },
   { slug: '4.0.2', title: 'Altrone 4.0.2', date: '2026-11-05' },
   { slug: '4.0.1', title: 'Altrone 4.0.1', date: '2026-11-01' },
   { slug: '4.0', title: 'Altrone 4.0 Decent Dragon', date: '2026-10-31' },
