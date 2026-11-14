@@ -17,6 +17,15 @@ A row of actions — a header for your app, a window or a panel, or a set of too
 
 ::playground{src=toolbar/ToolbarBasicDemo caption="Hover an icon to see its tooltip with the shortcut; `selected` marks the active tool"}
 
+Strings and numbers can be direct children of `Toolbar`, `Toolbar.Leading`, `Toolbar.Center` and `Toolbar.Trailing`. Adjacent text is kept together, including zero values. Its size is included in overflow calculations; text stays visible while actions collapse into the menu.
+
+```tsx
+<Toolbar>
+  <Toolbar.Leading>Untitled document</Toolbar.Leading>
+  <Toolbar.Trailing>{count} items</Toolbar.Trailing>
+</Toolbar>
+```
+
 ## Variants
 
 `variant` sets how much chrome the toolbar carries, from least to most:

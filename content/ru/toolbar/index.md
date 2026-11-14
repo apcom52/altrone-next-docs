@@ -17,6 +17,15 @@
 
 ::playground{src=toolbar/ToolbarBasicDemo caption="Наведите на иконку, чтобы увидеть подсказку с горячей клавишей; `selected` отмечает активный инструмент"}
 
+Строки и числа можно передавать напрямую в `Toolbar`, `Toolbar.Leading`, `Toolbar.Center` и `Toolbar.Trailing`. Соседние текстовые узлы сохраняются вместе, включая нулевые значения. Их размер учитывается при расчёте overflow: текст остаётся видимым, а действия сворачиваются в меню.
+
+```tsx
+<Toolbar>
+  <Toolbar.Leading>Untitled document</Toolbar.Leading>
+  <Toolbar.Trailing>{count} items</Toolbar.Trailing>
+</Toolbar>
+```
+
 ## Варианты
 
 `variant` определяет, сколько «хрома» несёт тулбар — от минимума к максимуму:
