@@ -109,6 +109,8 @@ Each section (`Toolbar.Leading`, `Toolbar.Center`, `Toolbar.Trailing`, or a flat
 
 A `Toolbar.Group` collapses as one block, and its actions become a flat list in the menu. Only a group made entirely of `Toolbar.Action` and `Toolbar.SidebarToggleAction` can collapse — one that also holds a `Search`, a `TextInput`, text or a custom element ignores its `priority` and stays in the row. `Toolbar.Title`, `Toolbar.Logo`, `Toolbar.Separator` and arbitrary nodes have no `priority` and never collapse. Because a group is the unit of collapse, a bare action outside a group leaves the row on its own instead of together with its neighbors.
 
+Actions keep their `asChild` links and `kbd` shortcut hints in the menu. `selected` shows a checkbox checkmark; `state="loading"` replaces the icon with a `Loading` spinner sized for the menu row and sets `aria-busy`. Disabled actions and actions with a non-idle `state` cannot be activated, including links. The same rules apply to `Toolbar.SidebarToggleAction`.
+
 The trigger sits at the side of the section closest to the toolbar's center, and its chevrons point further inward.
 
 ```tsx
