@@ -44,6 +44,8 @@ Strings and numbers can be direct children of `Toolbar`, `Toolbar.Leading`, `Too
 
 ## Sections
 
+Sections may be rendered conditionally. Adding, removing or restoring a section updates the balance even when the toolbar size and section content stay the same. Removing `Toolbar.Center` releases its space; removing a side section clears its previous allocation.
+
 For a header with a title, search and actions, use `Toolbar.Leading`, `Toolbar.Center` and `Toolbar.Trailing`. Multiple sections share a three-track grid. A single section spans the available width, or height in a vertical toolbar, and keeps its start, center or end alignment. Without sections the content is a plain left-to-right row.
 
 ```tsx
