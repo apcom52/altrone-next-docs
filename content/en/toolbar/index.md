@@ -111,6 +111,8 @@ A `Toolbar.Group` collapses as one block, and its actions become a flat list in 
 
 Actions keep their `asChild` links and `kbd` shortcut hints in the menu. `selected` shows a checkbox checkmark; `state="loading"` replaces the icon with a `Loading` spinner sized for the menu row and sets `aria-busy`. Disabled actions and actions with a non-idle `state` cannot be activated, including links. The same rules apply to `Toolbar.SidebarToggleAction`.
 
+Fragments are transparent to overflow: their actions keep individual priorities, and groups still collapse as a unit. Custom components may return `null`, text, several roots or a portal without shifting the measurements of their neighbors. Only content occupying the row contributes to its size and gaps; changes to custom content are measured automatically.
+
 The trigger sits at the side of the section closest to the toolbar's center, and its chevrons point further inward.
 
 ```tsx
